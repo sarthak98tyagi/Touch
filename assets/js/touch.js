@@ -17,8 +17,10 @@ map.addEventListener("touchstart",function(event)
             var x2=event.targetTouches[1].pageX;
             var y2=event.targetTouches[1].pageY;
             map.style.transform="scale("+z+")";
-            map.style.left='-'+x1+'px';
-            map.style.top='-'+y1+'px';
+            var p=x1<x2?x1:x2;
+            var q=y1<y2?y1:y2;
+            map.style.left='-'+p+'px';
+            map.style.top='-'+q+'px';
             // map.style.left=-event.targetTouches[0].pageX+'px';
            // final_distance=distance(event);
            //  z=Math.abs(final_distance-initial_distance);
