@@ -10,11 +10,12 @@ map.addEventListener("touchstart",function(event)
         var final_distance=0;
         var z=0;
         map.addEventListener("touchmove",function(event){
-           event.preventDefault();
-           final_distance=distance(event);
-            z=Math.abs(final_distance-initial_distance);
+            event.preventDefault();
+            map.style.transform="scale("+1.2+")";
+           // final_distance=distance(event);
+           //  z=Math.abs(final_distance-initial_distance);
         });
-        map.scale(1.2);
+
     }
 
 });
