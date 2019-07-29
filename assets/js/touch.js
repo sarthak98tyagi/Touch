@@ -1,6 +1,6 @@
 var map=$(".map-holder");
-map.on("touchmove",function(event)
+map.on("touchstart",function(event)
 {
     event.preventDefault();
-    alert(event.targetTouches.length);
+    alert(event.changedTouches);
 });
