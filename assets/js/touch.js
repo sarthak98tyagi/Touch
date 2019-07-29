@@ -1,6 +1,9 @@
-var map=$(".map-holder");
-map.on("touchstart",function(event)
+var map=document.getElementById("map-holder");
+map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
-    alert(event.changedTouches);
+    if(event.targetTouches.length===2)
+    {
+        console.log("Double Touch");
+    }
 });
