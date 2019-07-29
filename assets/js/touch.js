@@ -1,4 +1,5 @@
 var map=document.getElementById("map-holder");
+var z=1;
 map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
@@ -8,10 +9,10 @@ map.addEventListener("touchstart",function(event)
         var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
         var initial_distance=distance(event);
         var final_distance=0;
-        var z=0;
+        z=z+0.2;
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
-            map.style.transform="scale("+1.2+")";
+            map.style.transform="scale("+z+")";
            // final_distance=distance(event);
            //  z=Math.abs(final_distance-initial_distance);
         });
