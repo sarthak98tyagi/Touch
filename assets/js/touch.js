@@ -8,12 +8,15 @@ map.addEventListener("touchstart",function(event)
         var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
         var initial_distance=distance(event);
         var final_distance=0;
+        var z=0;
         map.addEventListener("touchmove",function(event){
            event.preventDefault();
            final_distance=distance(event);
-            var z=Math.abs(final_distance-initial_distance);
+            z=Math.abs(final_distance-initial_distance);
         });
-        map.style.width=(w+z)+"px";
+        alert(w+z);
+        var d=w+z;
+        map.style.width=d+"px";
     }
 });
 function distance(event)
