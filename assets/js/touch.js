@@ -14,9 +14,9 @@ map.addEventListener("touchstart",function(event)
            final_distance=distance(event);
             z=Math.abs(final_distance-initial_distance);
         });
-        var d=w+z;
-        map.style.width=d+"px";
+        map.scale(1.2);
     }
+
 });
 function distance(event)
 {
