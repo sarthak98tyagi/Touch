@@ -16,7 +16,7 @@ map.addEventListener("touchstart",function(event)
             var y1=event.targetTouches[0].pageY+50;
             var x2=event.targetTouches[1].pageX;
             var y2=event.targetTouches[1].pageY;
-            map.style.transform="scale("+z+")";
+            map.style.transform="zoom("+z+")";
             var p=x1<x2?x1:x2;
             var q=y1<y2?y1:y2;
             map.style.left='-'+p+'px';
