@@ -12,9 +12,13 @@ map.addEventListener("touchstart",function(event)
         z=z+0.5;
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
-            console.log(event.targetTouches[0].pageX,event.targetTouches[0].pageY);
+            var x1=event.targetTouches[0].pageX+50;
+            var y1=event.targetTouches[0].pageY+50;
+            var x2=event.targetTouches[1].pageX;
+            var y2=event.targetTouches[1].pageY;
             map.style.transform="scale("+z+")";
-            console.log(event.targetTouches[0].pageX,event.targetTouches[0].pageY);
+            map.style.left='-'+x1+'px';
+            map.style.top='-'+y1+'px';
             // map.style.left=-event.targetTouches[0].pageX+'px';
            // final_distance=distance(event);
            //  z=Math.abs(final_distance-initial_distance);
