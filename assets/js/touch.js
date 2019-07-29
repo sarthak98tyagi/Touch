@@ -2,7 +2,7 @@ var map=document.getElementById("map-holder");
 map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
-    if(event.targetTouches.length===1)
+    if(event.targetTouches.length===2)
     {
         var x1=event.targetTouches[0].pageX;
         var y1=event.targetTouches[0].pageY;
