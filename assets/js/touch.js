@@ -3,22 +3,24 @@ var z=1;
 map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
-    if(event.targetTouches.length===2)
+    if(event.targetTouches.length===1)
     {
-        var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-        var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-        var initial_distance=distance(event);
-        var final_distance=0;
-        z=z+0.2;
+        // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
+        // var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
+        // var initial_distance=distance(event);
+        // var final_distance=0;
+        z=z+0.5;
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
+            console.log(event.targetTouches[0].pageX,event.targetTouches[0].pageY);
             map.style.transform="scale("+z+")";
+            console.log(event.targetTouches[0].pageX,event.targetTouches[0].pageY);
+            // map.style.left=-event.targetTouches[0].pageX+'px';
            // final_distance=distance(event);
            //  z=Math.abs(final_distance-initial_distance);
         });
 
     }
-
 });
 function distance(event)
 {
