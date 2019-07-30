@@ -7,7 +7,7 @@ var width=getComputedStyle(map).getPropertyValue("width");
 var height=getComputedStyle(map).getPropertyValue("height");
 var lmar=50;
 var tmar=50;
-ham.on('tap',function(e)
+ham.on('pinch',function(e)
 {
     if(width*e.scale >= dwidth)
     {
