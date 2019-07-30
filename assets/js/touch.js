@@ -8,15 +8,32 @@ var init_width=parseInt(getComputedStyle(map).getPropertyValue("width"));
 var init_height=parseInt(getComputedStyle(map).getPropertyValue("height"));
 var mleft=50;
 var mtop=50;
+var i=0;
+// ham.on('tap',function(e)
+// {
+//     var ml=-1*parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+//     var mt=-1*parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+//     console.log(ml,mt);
+//     console.log(e.center);
+//
+// });
+
 ham.on('pinch',function(e)
 {
-    
+    console.log(e.center);
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
+            var x=e.center['x'];
+            var y=e.center['y'];
+            map.style.width=parseInt(getComputedStyle(map).getPropertyValue("width"))*2+'px';
+            map.style.height=parseInt(getComputedStyle(map).getPropertyValue("height"))*2+'px';
+            map.style.marginLeft=-x+'px';
+            map.style.marginTop=-y+'px';
+
         }
 });
 // ham.on('pinchend',function(e)
