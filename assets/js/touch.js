@@ -5,17 +5,9 @@ var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 var width=getComputedStyle(map).getPropertyValue("width");
 var height=getComputedStyle(map).getPropertyValue("height");
-var lmar=50;
-var tmar=50;
 ham.on('pinch',function(e)
 {
-    alert(e.scale);
-    // if(width*e.scale >= dwidth)
-    // {
-    //     map.style.width=(width*e.scale)+'px';
-    //     map.style.height=(height*e.scale)+'px';
-    //     map.style.marginLeft=(-lmar*e.scale)+'px';
-    //     map.style.marginTop=(-tmar*e.scale)+'px';
-    // }
+        map.style.width=(width*e.scale)+'px';
+        map.style.height=(height*e.scale)+'px';
 
 });
