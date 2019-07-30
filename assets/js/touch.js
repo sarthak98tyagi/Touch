@@ -16,6 +16,9 @@ map.addEventListener("touchstart",function(event)
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
             var g=x1>x2?x1-x2:x2-x1;
             map.style.width=w+g+"px";
+            var s=x1>x2?x2:x1;
+            var l=g-s1;
+            map.style.left=l+'px';
          });
     }
 });
