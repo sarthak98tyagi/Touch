@@ -2,17 +2,19 @@ var map=document.getElementById("map");
 var z=1;
 map.addEventListener("touchstart",function(event)
 {
+
     event.preventDefault();
     if(event.targetTouches.length===2)
     {
 
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
-            var x1=event.targetTouches[0].pageX+50;
-            var y1=event.targetTouches[0].pageY+50;
+            var x1=event.targetTouches[0].pageX;
+            var y1=event.targetTouches[0].pageY;
             var x2=event.targetTouches[1].pageX;
             var y2=event.targetTouches[1].pageY;
-            map.style.width=(x1+x2)+"px";
+            var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
+            map.style.width=w+(x1+x2)+"px";
 
          });
 
