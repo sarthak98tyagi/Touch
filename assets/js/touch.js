@@ -13,8 +13,7 @@ ham.on('pinch',function(e)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            map.style.marginLeft=(-mleft*e.scale)+'px';
-            map.style.marginTop=(-mtop*e.scale)+'px';
+
 
         }
 });
@@ -24,8 +23,6 @@ ham.on('pinchend',function(e)
     {
         map.style.width=(width*e.scale)+'px';
         map.style.height=(height*e.scale)+'px';
-        map.style.marginLeft=(mleft*e.scale)+'px';
-        map.style.marginTop=(mtop*e.scale)+'px';
 
     }
 
