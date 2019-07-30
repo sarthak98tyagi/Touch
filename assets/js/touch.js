@@ -1,9 +1,9 @@
-var map=document.getElementById("map-holder");
+var map=document.getElementById("map");
 var z=1;
 map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
-    if(event.targetTouches.length===1)
+    if(event.targetTouches.length===2)
     {
         // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
         // var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
