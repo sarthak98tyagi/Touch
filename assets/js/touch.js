@@ -31,8 +31,12 @@ ham.on('pinch',function(e)
             var y=e.center['y'];
             map.style.width=parseInt(getComputedStyle(map).getPropertyValue("width"))*2+'px';
             map.style.height=parseInt(getComputedStyle(map).getPropertyValue("height"))*2+'px';
-            map.style.marginLeft=-x+'px';
-            map.style.marginTop=-y+'px';
+            if(e.scale>1)
+            {
+                map.style.marginLeft=-x+'px';
+                map.style.marginTop=-y+'px';
+
+            }
 
         }
 });
