@@ -3,12 +3,9 @@ var z=1;
 map.addEventListener("touchstart",function(event)
 {
     event.preventDefault();
-    if(event.targetTouches.length===2)
+    if(event.targetTouches.length===1)
     {
-        // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-        // var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-        // var initial_distance=distance(event);
-        // var final_distance=0;
+
         z=z+0.5;
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
@@ -16,12 +13,11 @@ map.addEventListener("touchstart",function(event)
             var y1=event.targetTouches[0].pageY+50;
             var x2=event.targetTouches[1].pageX;
             var y2=event.targetTouches[1].pageY;
-            map.transform="scaleX("+z+")";
+            map.style.transform="scaleX("+z+")";
             var p=x1<x2?x1:x2;
             var q=y1<y2?y1:y2;
-           // final_distance=distance(event);
-           //  z=Math.abs(final_distance-initial_distance);
-        });
+
+         });
 
     }
 });
