@@ -6,6 +6,9 @@ map.addEventListener("touchstart",function(event)
     event.preventDefault();
     if(event.targetTouches.length===2)
     {
+        // map.style.width=parseInt(getComputedStyle(map).getPropertyValue("width"))+50+'px';
+        // map.style.left=parseInt(getComputedStyle(map).getPropertyValue("left"))-10+'px';
+        // console.log(getComputedStyle(map).getPropertyValue("left"));
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
             var x1=event.targetTouches[0].pageX;
@@ -16,11 +19,7 @@ map.addEventListener("touchstart",function(event)
             var g=x1>x2?x1-x2:x2-x1;
             map.style.width=w+g+"px";
             var s=x1>x2?x2:x1;
-            if(s>g)
-            {
-                s=s-g;
-            }
-            map.style.left=-s+'px';
+            map.style.left=-(s-10)+'px';
          });
     }
 });
