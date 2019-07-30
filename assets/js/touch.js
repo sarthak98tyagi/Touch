@@ -17,14 +17,11 @@ ham.on('pinch',function(e)
 
         }
 });
-// ham.on('pinchend',function(e)
-// {
-//     if(width*e.scale >= dwidth)
-//     {
-//         map.style.width=(width*e.scale)+'px';
-//         map.style.height=(height*e.scale)+'px';
-//
-//     }
-//
-// });
+ham.on('pinchend',function(e)
+{
+        map.style.width=(width*e.scale)+'px';
+        map.style.height=(height*e.scale)+'px';
+
+
+});
 
