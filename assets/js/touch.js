@@ -10,6 +10,7 @@ var mleft=50;
 var mtop=50;
 ham.on('pinch',function(e)
 {
+    alert(e.targetTouches.length);
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
