@@ -5,7 +5,7 @@ var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
 var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
-ham.on('tap',function(e)
+ham.on('pinch',function(e)
 {
         map.style.width=(width*e.scale)+'px';
         map.style.height=(height*e.scale)+'px';
