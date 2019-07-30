@@ -20,7 +20,7 @@ map.addEventListener("touchstart",function(event)
             {
                 s=s-g;
             }
-            map.style.left=s+'px';
+            map.style.left=-s+'px';
          });
     }
 });
