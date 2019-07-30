@@ -6,7 +6,6 @@ map.addEventListener("touchstart",function(event)
     event.preventDefault();
     if(event.targetTouches.length===2)
     {
-
         map.addEventListener("touchmove",function(event){
             event.preventDefault();
             var x1=event.targetTouches[0].pageX;
@@ -17,8 +16,11 @@ map.addEventListener("touchstart",function(event)
             var g=x1>x2?x1-x2:x2-x1;
             map.style.width=w+g+"px";
             var s=x1>x2?x2:x1;
-            var l=g-s;
-            map.style.left=l+'px';
+            if(s>g)
+            {
+                s=s-g;
+            }
+            map.style.left=s+'px';
          });
     }
 });
