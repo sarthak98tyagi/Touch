@@ -10,7 +10,7 @@ var mleft=50;
 var mtop=50;
 ham.on('pinch',function(e)
 {
-    console.log(e.center);
+    
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
@@ -21,6 +21,7 @@ ham.on('pinch',function(e)
             var y=e.center['y'];
             var l=parseInt(getComputedStyle(map).getPropertyValue("margin-left"))-((x*e.scale)/2);
             var t=parseInt(getComputedStyle(map).getPropertyValue("margin-top"))-((y*e.scale)/2);
+            console.log(l,t);
             map.style.marginLeft=l+'px';
             map.style.marginTop=t+'px';
 
