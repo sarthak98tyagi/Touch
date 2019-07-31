@@ -8,7 +8,6 @@ var init_width=parseInt(getComputedStyle(map).getPropertyValue("width"));
 var init_height=parseInt(getComputedStyle(map).getPropertyValue("height"));
 var mleft=50;
 var mtop=50;
-var i=0;
 ham.on('pinch',function(e)
 {
     console.log(e.center);
@@ -21,12 +20,12 @@ ham.on('pinch',function(e)
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            map.style.marginLeft=-((x*e.scale)/2)+'px';
-            map.style.marginTop=-((y*e.scale)/2)+'px';
-            if(i>0){map.style.transform='translate(-50%,-50%)';}
-            i=i+1;
+            map.style.marginLeft=-(x*e.scale)+'px';
+            map.style.marginTop=-(y*e.scale)+'px';
+            map.style.transform='translate('+((x*e.scale)/2)+'px,'+((y*e.scale)/2)+'px)';
 
-        }
+
+            }
 
 });
 // ham.on('pinchend',function(e)
