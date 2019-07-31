@@ -23,8 +23,8 @@ ham.on('pinchmove',function(e)
             var t=-(y*e.scale)/2;
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
-            map.style.marginLeft=l+'px';
-            map.style.marginTop=t+'px';
+            map.style.marginLeft=l-100+'px';
+            map.style.marginTop=t-100+'px';
         }
 });
 // ham.on('pinchend',function(e){
