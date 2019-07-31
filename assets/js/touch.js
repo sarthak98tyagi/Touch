@@ -30,8 +30,9 @@ ham.on('pinch',function(e)
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            map.style.marginLeft=((-x*e.scale)/2)+'px';
-            map.style.marginTop=((-y*e.scale)/2)+'px';
+            map.style.marginLeft=-((x*e.scale)/2)+'px';
+            map.style.marginTop=-((y*e.scale)/2)+'px';
+            map.style.transform='translate(-50%,-50%)';
             // if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
             // parseInt(getComputedStyle(map).getPropertyValue("height"))<=init_height)
             // {
