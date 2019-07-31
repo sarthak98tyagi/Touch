@@ -19,25 +19,28 @@ ham.on('pinch',function(e)
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            var l=width*e.scale-width;
-            var t=height*e.scale-height;
-            console.log(l,t);
-            map.style.marginLeft=(-(x*e.scale)/2)+'px';
-            map.style.marginTop=(-(y*e.scale)/2)+'px';
+            var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+            var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+            var l=(x*e.scale)/2;
+            var t=(y*e.scale)/2;
+            l=-(ml+Math.abs(ml-l));
+            t=-(mt+Math.abs(mt-t));
+            map.style.marginLeft=l+'px';
+            map.style.marginTop=t+'px';
 
 
         }
 
 });
-ham.on('pinchend',function(e){
-    var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    map.style.width=(width*e.scale)+'px';
-    map.style.height=(height*e.scale)+'px';
-    var x=e.center['x'];
-    var y=e.center['y'];
-    map.style.marginLeft=(-(x*e.scale)/2)+'px';
-    map.style.marginTop=(-(y*e.scale)/2)+'px';
-});
-
+// ham.on('pinchend',function(e){
+//     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
+//     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
+//     map.style.width=(width*e.scale)+'px';
+//     map.style.height=(height*e.scale)+'px';
+//     var x=e.center['x'];
+//     var y=e.center['y'];
+//     map.style.marginLeft=(-(x*e.scale)/2)+'px';
+//     map.style.marginTop=(-(y*e.scale)/2)+'px';
+// });
+//
 
