@@ -22,8 +22,8 @@ ham.on('pinch',function(e)
             var l=width*e.scale-width;
             var t=height*e.scale-height;
             console.log(l,t);
-            map.style.marginLeft=(l-e.scale*x)+'px';
-            map.style.marginTop=(t-e.scale*y)+'px';
+            map.style.marginLeft=(-(l-e.scale*x))+'px';
+            map.style.marginTop=(-(t-e.scale*y))+'px';
 
         }
 
