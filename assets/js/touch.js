@@ -25,8 +25,12 @@ ham.on('pinch',function(e)
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
         {
+            alert(e.center);
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
+            alert(getComputedStyle(map).getPropertyValue("width"));
+            alert(getComputedStyle(map).getPropertyValue("height"));
+            alert(e.center);
             // var x=e.center['x'];
             // var y=e.center['y'];
             // if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
@@ -42,8 +46,6 @@ ham.on('pinch',function(e)
             //     map.style.marginLeft=-x+'px';
             //     map.style.marginTop=-y+'px';
             // }
-
-
         }
 });
 // ham.on('pinchend',function(e)
