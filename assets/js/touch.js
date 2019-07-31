@@ -22,10 +22,16 @@ ham.on('pinch',function(e)
             var l=width*e.scale-width;
             var t=height*e.scale-height;
             console.log(l,t);
-            map.style.marginLeft=(-(l-x))+'px';
-            map.style.marginTop=(-(t-y))+'px';
+
 
         }
 
 });
+ham.on('pinchend',function(e){
+    var x=e.center['x'];
+    var y=e.center['y'];
+    map.style.marginLeft=-x+'px';
+    map.style.marginTop=-y+'px';
+});
+
 
