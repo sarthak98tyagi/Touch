@@ -9,15 +9,6 @@ var init_height=parseInt(getComputedStyle(map).getPropertyValue("height"));
 var mleft=50;
 var mtop=50;
 var i=0;
-// ham.on('tap',function(e)
-// {
-//     var ml=-1*parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-//     var mt=-1*parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-//     console.log(ml,mt);
-//     console.log(e.center);
-//
-// });
-
 ham.on('pinch',function(e)
 {
     console.log(e.center);
@@ -32,20 +23,10 @@ ham.on('pinch',function(e)
             var y=e.center['y'];
             map.style.marginLeft=-((x*e.scale)/2)+'px';
             map.style.marginTop=-((y*e.scale)/2)+'px';
-            map.style.transform='translate(-50%,-50%)';
-            // if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
-            // parseInt(getComputedStyle(map).getPropertyValue("height"))<=init_height)
-            // {
-            //     map.style.marginLeft='0px';
-            //     map.style.marginTop='0px';
-            //
-            // }
-            // else
-            // {
-            //
-            //     map.style.marginLeft=-x+'px';
-            //     map.style.marginTop=-y+'px';
-            }
+            if(i>0){map.style.transform='translate(-50%,-50%)';}
+            i=i+1;
+
+        }
 
 });
 // ham.on('pinchend',function(e)
