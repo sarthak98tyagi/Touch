@@ -44,7 +44,7 @@ ham.on('pinch',function(e)
             //     map.style.marginLeft=-x+'px';
             //     map.style.marginTop=-y+'px';
             }
-        }
+        
 });
 // ham.on('pinchend',function(e)
 // {
