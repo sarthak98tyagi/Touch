@@ -7,9 +7,8 @@ ham.get('pinch').set({enable:true});
 
 var mleft=50;
 var mtop=50;
-ham.on('pinchstart',function(e)
+ham.on('pinchmove',function(e)
 {
-
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
@@ -27,7 +26,6 @@ ham.on('pinchstart',function(e)
             map.style.marginLeft=l+'px';
             map.style.marginTop=t+'px';
         }
-
 });
 // ham.on('pinchend',function(e){
 //     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
