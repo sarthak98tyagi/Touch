@@ -15,16 +15,13 @@ ham.on('pinch',function(e)
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
         {
-
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            map.style.marginLeft=(-x*e.scale)/2+'px';
-            map.style.marginTop=(-y*e.scale)/2+'px';
-
-
-            }
+            map.style.marginLeft=(-(x*e.scale)/2)+'px';
+            map.style.marginTop=(-(y*e.scale)/2)+'px';
+        }
 
 });
 // ham.on('pinchend',function(e)
