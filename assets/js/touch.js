@@ -9,7 +9,7 @@ var mleft=50;
 var mtop=50;
 ham.on('pinch',function(e)
 {
-
+    console.log(e.targetTouches[0]);
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
         if(width*e.scale >= dwidth && height*e.scale >= dheight)
@@ -17,18 +17,16 @@ ham.on('pinch',function(e)
 
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            var x=e.center['x'];
-            var y=e.center['y'];
-            var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-            var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-            var l=ml-(x*e.scale)/2;
-            var t=mt-(y*e.scale)/2;
-            // l=-(ml+Math.abs(ml-l));
-            // t=-(mt+Math.abs(mt-t));
-            map.style.marginLeft=l+'px';
-            map.style.marginTop=t+'px';
-
-
+            // var x=e.center['x'];
+            // var y=e.center['y'];
+            // var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+            // var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+            // var l=ml-(x*e.scale)/2;
+            // var t=mt-(y*e.scale)/2;
+            // // l=-(ml+Math.abs(ml-l));
+            // // t=-(mt+Math.abs(mt-t));
+            // map.style.marginLeft=l+'px';
+            // map.style.marginTop=t+'px';
         }
 
 });
