@@ -27,21 +27,21 @@ ham.on('pinch',function(e)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            var x=e.center['x'];
-            var y=e.center['y'];
-            if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
-            parseInt(getComputedStyle(map).getPropertyValue("height"))<=init_height)
-            {
-                map.style.marginLeft='0px';
-                map.style.marginTop='0px';
-
-            }
-            else
-            {
-
-                map.style.marginLeft=-x+'px';
-                map.style.marginTop=-y+'px';
-            }
+            // var x=e.center['x'];
+            // var y=e.center['y'];
+            // if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
+            // parseInt(getComputedStyle(map).getPropertyValue("height"))<=init_height)
+            // {
+            //     map.style.marginLeft='0px';
+            //     map.style.marginTop='0px';
+            //
+            // }
+            // else
+            // {
+            //
+            //     map.style.marginLeft=-x+'px';
+            //     map.style.marginTop=-y+'px';
+            // }
 
 
         }
