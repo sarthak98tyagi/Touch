@@ -25,8 +25,8 @@ ham.on('pinch',function(e)
             var t=mt-(y*e.scale)/2;
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
-            map.style.marginLeft=-l+'px';
-            map.style.marginTop=-t+'px';
+            map.style.marginLeft=l+'px';
+            map.style.marginTop=t+'px';
 
 
         }
