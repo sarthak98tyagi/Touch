@@ -28,6 +28,8 @@ ham.on('pinch',function(e)
 
 });
 ham.on('pinchend',function(e){
+    map.style.width=(width*e.scale)+'px';
+    map.style.height=(height*e.scale)+'px';
     var x=e.center['x'];
     var y=e.center['y'];
     map.style.marginLeft=-x+'px';
