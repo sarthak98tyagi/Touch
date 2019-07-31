@@ -21,6 +21,8 @@ ham.on('pinch',function(e)
             var y=e.center['y'];
             map.style.marginLeft=(-(x*e.scale)/2)+'px';
             map.style.marginTop=(-(y*e.scale)/2)+'px';
+            map.style.transform='translate('+((-(x*e.scale)/2))+'px,'+((-(y*e.scale)/2))+'px)';
+
         }
 
 });
