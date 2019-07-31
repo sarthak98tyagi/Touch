@@ -22,7 +22,7 @@ ham.on('pinch',function(e)
             var y=e.center['y'];
             map.style.marginLeft=-(x*e.scale)+'px';
             map.style.marginTop=-(y*e.scale)+'px';
-            map.style.transform='translate('+(x*e.scale)+'px,'+(y*e.scale)+'px)';
+            map.style.transform='translate('+(x)+'px,'+(y)+'px)';
 
 
             }
