@@ -28,9 +28,6 @@ ham.on('pinch',function(e)
             console.log(e.center['x'],e.center['y'])
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            alert(getComputedStyle(map).getPropertyValue("width"));
-            alert(getComputedStyle(map).getPropertyValue("height"));
-            alert(e.center);
             var x=e.center['x'];
             var y=e.center['y'];
             console.log(x,y);
