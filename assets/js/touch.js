@@ -22,18 +22,22 @@ ham.on('pinch',function(e)
             var l=width*e.scale-width;
             var t=height*e.scale-height;
             console.log(l,t);
+            map.style.marginLeft=(-(x*e.scale)/2)+'px';
+            map.style.marginTop=(-(y*e.scale)/2)+'px';
 
 
         }
 
 });
 ham.on('pinchend',function(e){
+    var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
     map.style.width=(width*e.scale)+'px';
     map.style.height=(height*e.scale)+'px';
     var x=e.center['x'];
     var y=e.center['y'];
-    map.style.marginLeft=-x+'px';
-    map.style.marginTop=-y+'px';
+    map.style.marginLeft=((x*e.scale)/2)+'px';
+    map.style.marginTop=((y*e.scale)/2)+'px';
 });
 
 
