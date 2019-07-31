@@ -28,9 +28,9 @@ ham.on('pinch',function(e)
             alert(e.center);
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            alert(getComputedStyle(map).getPropertyValue("width"));
-            alert(getComputedStyle(map).getPropertyValue("height"));
-            alert(e.center);
+            // alert(getComputedStyle(map).getPropertyValue("width"));
+            // alert(getComputedStyle(map).getPropertyValue("height"));
+            // alert(e.center);
             // var x=e.center['x'];
             // var y=e.center['y'];
             // if(parseInt(getComputedStyle(map).getPropertyValue("width"))<=init_width ||
