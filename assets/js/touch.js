@@ -26,7 +26,7 @@ ham.on('pinchmove',function(e)
             var t=(y*e.scale)/2;
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
-            if( l<init_width && t<init_height)
+            if( (l*2)<init_width && (t*2)<init_height)
             {
                 map.style.marginLeft=-l+'px';
                 map.style.marginTop=-t+'px';
