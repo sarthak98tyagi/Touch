@@ -6,7 +6,6 @@ var dwidth=parseInt(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
-
 var mleft=50;
 var mtop=50;
 ham.on('pinchmove',function(e)
@@ -28,8 +27,8 @@ ham.on('pinchmove',function(e)
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             var lm=(ml+Math.abs(ml-l));
             var tm=(mt+Math.abs(mt-t));
-            var xgap=(w-ml);
-            var ygap=(h-mt);
+            var xgap=(w+ml);
+            var ygap=(h+mt);
             if(lm<(xgap) && tm<(ygap))
             {
                 map.style.marginLeft=-lm+'px';
