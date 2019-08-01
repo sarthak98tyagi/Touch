@@ -26,8 +26,8 @@ ham.on('pinchmove',function(e)
             var t=(y*e.scale);
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-            l=-(ml+Math.abs(ml-l));
-            t=-(mt+Math.abs(mt-t));
+            l=(ml+Math.abs(ml-l));
+            t=(mt+Math.abs(mt-t));
             console.log(w,dwidth,h,dheight);
             var xgap=(w-dwidth);
             var ygap=(h-dheight);
