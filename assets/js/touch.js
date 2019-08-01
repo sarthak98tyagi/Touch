@@ -26,9 +26,17 @@ ham.on('pinchmove',function(e)
             var t=(y*e.scale);
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-             map.style.marginLeft=-l+'px';
-             map.style.marginTop=-t+'px';
-
+            // l=-(ml+Math.abs(ml-l));
+            // t=-(mt+Math.abs(mt-t));
+            console.log(w,dwidth,h,dheight);
+            var xgap=(w-dwidth);
+            var ygap=(h-dheight);
+            console.log(l,t,xgap,ygap);
+            if(l<(xgap) && t<(ygap))
+            {
+                map.style.marginLeft=-l+'px';
+                map.style.marginTop=-t+'px';
+            }
         }
 });
 // ham.on('pinchend',function(e){
