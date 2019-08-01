@@ -24,14 +24,15 @@ ham.on('pinchmove',function(e)
             var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
             var l=(x*e.scale)/2;
             var t=(y*e.scale)/2;
+            var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
+             var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
-            if( (l*2)<init_width && (t*2)<init_height)
+            if(l<w && t<h)
             {
                 map.style.marginLeft=-l+'px';
                 map.style.marginTop=-t+'px';
             }
-
         }
 });
 // ham.on('pinchend',function(e){
