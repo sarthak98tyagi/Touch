@@ -37,7 +37,7 @@ ham.on('pinchmove',function(e)
             console.log(w,h,dwidth,dheight,lm,tm);
         }
 });
-ham.on('swiperight',function(e)
+ham.on('swiperight',function(e,threshold=0)
 {
   e.preventDefault();
   console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-right")));
@@ -53,12 +53,10 @@ ham.on('swipedown',function(e)
     e.preventDefault();
     console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-down")));
     var mt=-parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-
     if(ml>0)
     {
         map.style.marginTop=0+'px';
     }
 
 });
-
 
