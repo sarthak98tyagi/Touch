@@ -3,7 +3,8 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: visible;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 #map-holder img
 {
