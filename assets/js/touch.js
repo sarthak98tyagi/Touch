@@ -21,8 +21,8 @@ ham.on('pinchmove',function(e)
             var y=e.center['y'];
             var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
             var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-            var l=(x*e.scale);
-            var t=(y*e.scale);
+            var l=(x*e.scale)/2;
+            var t=(y*e.scale)/2;
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             var lm=(ml+Math.abs(ml-l));
