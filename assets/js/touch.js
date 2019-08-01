@@ -30,8 +30,8 @@ ham.on('pinchmove',function(e)
             // t=-(mt+Math.abs(mt-t));
             console.log(-l,-t);
 
-            var xgap=w-dwidth;
-            var ygap=h-dheight;
+            var xgap=(w-dwidth)/2;
+            var ygap=(h-dheight)/2;
             console.log(xgap,ygap);
             if(l<xgap && t<ygap)
             {
