@@ -37,14 +37,14 @@ ham.on('pinchmove',function(e)
             }
         }
 });
-ham.on('swiperight',function(e)
-{
-    var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-    var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-    if(ml>0)
-    {
-        map.style.marginLeft=-ml+'px';
-    }
-});
+// ham.on('swiperight',function(e)
+// {
+//     var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
+//     var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
+//     var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+//     var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+//     if(ml>0)
+//     {
+//         map.style.marginLeft=-ml+'px';
+//     }
+// });
