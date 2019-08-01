@@ -30,7 +30,7 @@ ham.on('pinchmove',function(e)
             tm=(mt+Math.abs(mt-t));
             var xgap=(w-dwidth);
             var ygap=(h-dheight);
-            if(l<(xgap) && t<(ygap))
+            if(lm<(xgap) && tm<(ygap))
             {
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
