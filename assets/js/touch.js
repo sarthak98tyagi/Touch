@@ -20,23 +20,23 @@ ham.on('pinchmove',function(e)
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            // var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-            // var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-            // var l=(x*e.scale);
-            // var t=(y*e.scale);
-            // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-            //  var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-            // // l=-(ml+Math.abs(ml-l));
-            // // t=-(mt+Math.abs(mt-t));
-            // console.log(w,dwidth,h,dheight);
-            // var xgap=(w-dwidth);
-            // var ygap=(h-dheight);
-            // console.log(l,t,xgap,ygap);
-            // if(l<(xgap) && t<(ygap))
-            // {
-            //     map.style.marginLeft=-l+'px';
-            //     map.style.marginTop=-t+'px';
-            // }
+            var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+            var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+            var l=(x*e.scale);
+            var t=(y*e.scale);
+            var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
+             var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
+            // l=-(ml+Math.abs(ml-l));
+            // t=-(mt+Math.abs(mt-t));
+            console.log(w,dwidth,h,dheight);
+            var xgap=(w-dwidth);
+            var ygap=(h-dheight);
+            console.log(l,t,xgap,ygap);
+            if(l<(xgap) && t<(ygap))
+            {
+                map.style.marginLeft=-l+'px';
+                map.style.marginTop=-t+'px';
+            }
         }
 });
 ham.on('pinchend',function(e){
@@ -46,8 +46,8 @@ ham.on('pinchend',function(e){
     map.style.height=(height*e.scale)+'px';
     var x=e.center['x'];
     var y=e.center['y'];
-    map.style.marginLeft=(-(x*e.scale)/2)+'px';
-    map.style.marginTop=(-(y*e.scale)/2)+'px';
+    map.style.marginLeft=((x*e.scale)/2)+'px';
+    map.style.marginTop=((y*e.scale)/2)+'px';
 });
 
 
