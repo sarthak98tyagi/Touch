@@ -31,13 +31,14 @@ ham.on('pinchmove',function(e)
             var ygap=(h-tm)+(h-dheight);
             if((w-lm)>dwidth && (h-tm)>dheight)
             {
+                console.log("Hello");
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
             }
-            console.log(w,h,dwidth,dheight,lm,tm);
+
         }
 });
-ham.on('swiperight',function(e,threshold=0)
+ham.on('swiperight',function(e)
 {
   e.preventDefault();
   console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-right")));
