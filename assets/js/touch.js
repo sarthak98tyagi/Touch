@@ -35,7 +35,7 @@ ham.on('pinchmove',function(e)
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
             }
-
+            console.log(w,h,ml,mt,lm,tm,dwidth,dheight);
         }
 });
 ham.on('swiperight',function(e)
