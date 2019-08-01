@@ -28,6 +28,9 @@ ham.on('pinchmove',function(e)
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
+            console.log(-l,-t);
+            console.log(w,h);
+            console.log(dwidth,dheight);
             if(l<w && t<h)
             {
                 map.style.marginLeft=-l+'px';
