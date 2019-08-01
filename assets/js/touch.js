@@ -44,7 +44,7 @@ ham.on('swiperight',function(e)
   console.log(ml);
   if(ml>0)
   {
-      map.style.marginLeft=ml+'px';
+      map.style.marginLeft=0+'px';
   }
   console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-left")));
 });
