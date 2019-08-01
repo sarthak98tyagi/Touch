@@ -29,8 +29,9 @@ ham.on('pinchmove',function(e)
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
             console.log(-l,-t);
-            console.log(w-dwidth,h-dheight);
-            if(l<w && t<h)
+            var xgap=w-dwidth;
+            var ygap=h-dheight;
+            if(l<xgap && t<ygap)
             {
                 map.style.marginLeft=-l+'px';
                 map.style.marginTop=-t+'px';
