@@ -40,12 +40,22 @@ ham.on('swiperight',function(e)
 {
   e.preventDefault();
   var ml=-parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-  console.log(ml);
   if(ml>0)
   {
       map.style.marginLeft=0+'px';
   }
-  console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-left")));
+
+});
+ham.on('swipedown',function(e)
+{
+    e.preventDefault();
+    var mt=-parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+
+    if(ml>0)
+    {
+        map.style.marginTop=0+'px';
+    }
+
 });
 
 
