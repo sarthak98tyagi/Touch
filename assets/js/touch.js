@@ -26,13 +26,12 @@ ham.on('pinchmove',function(e)
             var t=(y*e.scale);
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-            lm=(ml+Math.abs(ml-l));
-            tm=(mt+Math.abs(mt-t));
-            console.log(w,dwidth,h,dheight);
-            var xgap=(w-dwidth);
-            var ygap=(h-dheight);
+            var lm=(ml+Math.abs(ml-l));
+            var tm=(mt+Math.abs(mt-t));
+            var xgap=w-lm;
+            var ygap=h-lt;
             console.log(l,t,xgap,ygap);
-            if(l<(xgap) && t<(ygap))
+            if(xgap<dwidth && ygap<dheight)
             {
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
