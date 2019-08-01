@@ -27,13 +27,14 @@ ham.on('pinchmove',function(e)
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             var lm=(ml+Math.abs(ml-l));
             var tm=(mt+Math.abs(mt-t));
-            var xgap=w-lm;
-            var ygap=h-tm;
+            var xgap=(w-lm)+(w-dwidth);
+            var ygap=(h-tm)+(h-dheight);
             if(xgap<dwidth && ygap<dheight)
             {
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
             }
+            console.log(w,h,dwidth,dheight,lm,tm);
         }
 });
 ham.on('swiperight',function(e)
