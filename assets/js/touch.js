@@ -21,8 +21,8 @@ ham.on('pinchmove',function(e)
             var y=e.center['y'];
             var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
             var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
-            var l=(x*e.scale)/2;
-            var t=(y*e.scale)/2;
+            var l=(x*e.scale);
+            var t=(y*e.scale);
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             var lm=(ml+Math.abs(ml-l));
@@ -31,7 +31,7 @@ ham.on('pinchmove',function(e)
             var ygap=(h-tm)+(h-dheight);
             if((w-lm)>dwidth && (h-tm)>dheight)
             {
-                console.log("Hello");
+                console.log("!!!");
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
             }
