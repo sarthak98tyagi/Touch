@@ -29,8 +29,10 @@ ham.on('pinchmove',function(e)
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
             console.log(-l,-t);
+
             var xgap=w-dwidth;
             var ygap=h-dheight;
+            console.log(xgap,ygap);
             if(l<xgap && t<ygap)
             {
                 map.style.marginLeft=-l+'px';
