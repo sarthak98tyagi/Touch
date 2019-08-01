@@ -39,6 +39,7 @@ ham.on('pinchmove',function(e)
 ham.on('swiperight',function(e)
 {
   e.preventDefault();
+  console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-right")));
   var ml=-parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
   if(ml>0)
   {
@@ -49,6 +50,7 @@ ham.on('swiperight',function(e)
 ham.on('swipedown',function(e)
 {
     e.preventDefault();
+    console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-down")));
     var mt=-parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
 
     if(ml>0)
