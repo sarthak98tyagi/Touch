@@ -28,12 +28,11 @@ ham.on('pinchmove',function(e)
              var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
             // l=-(ml+Math.abs(ml-l));
             // t=-(mt+Math.abs(mt-t));
-            console.log(-l,-t);
-
-            var xgap=(w-dwidth)/2;
-            var ygap=(h-dheight)/2;
-            console.log(xgap,ygap);
-            if(l<xgap && t<ygap)
+            console.log(w,dwidth,h,dheight);
+            var xgap=(w-dwidth);
+            var ygap=(h-dheight);
+            console.log(l,t,xgap,ygap);
+            if(l<(xgap*e.scale) && t<(ygap*e.scale))
             {
                 map.style.marginLeft=-l+'px';
                 map.style.marginTop=-t+'px';
