@@ -41,6 +41,7 @@ ham.on('pinchmove',function(e)
 ham.on('swiperight',function(e){
   e.preventDefault();
   var ml=-parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+  console.log(ml);
   if(ml>0)
   {
       map.style.marginLeft=ml+'px';
