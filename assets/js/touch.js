@@ -51,10 +51,11 @@ ham.on('swipedown',function(e)
 ham.on('swipeleft',function(e)
 {
     e.preventDefault();
-    var mr=-parseInt(getComputedStyle(map).getPropertyValue("right"));
+    var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
+    var ml=-parseInt(getComputedStyle(map).getPropertyValue("left"));
     console.log(mr);
     if(mr>0)
     {
-        map.style.right=0+'px';
+        map.style.left=mr+'px';
     }
 });
