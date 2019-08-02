@@ -5,6 +5,7 @@ var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+var pointers={};
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
@@ -85,4 +86,11 @@ ham.on('swipeup',function(e)
     {
         map.style.left=mb+'px';
     }
+});
+ham.on('tap',function (e)
+{
+    e.preventDefault();
+    var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+    console.log(e.deltaX,e.deltaY);
 });

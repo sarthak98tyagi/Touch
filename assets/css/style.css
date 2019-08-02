@@ -18,3 +18,10 @@ body
     height: 100%;
     transition: all .3s ease-in-out;
 }
+.mark
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+}
