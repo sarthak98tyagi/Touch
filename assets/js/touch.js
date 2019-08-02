@@ -20,7 +20,6 @@ function shift()
        mark.style.left=value[0]+(cw-value[2])+'px';
        mark.style.top=value[1]+(ch-value[3])+'px';
     });
-    
 }
 ham.on('pinchmove',function(e)
 {
@@ -109,7 +108,7 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.left=mb+'px';
+        map.style.top=mb+'px';
         shift();
     }
 });
