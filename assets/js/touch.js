@@ -101,16 +101,18 @@ ham.on('swipeup',function(e)
     e.preventDefault();
     var mb=parseInt(getComputedStyle(map).getPropertyValue("bottom"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    if((mb+e.distance)<0)
-    {
-        map.style.top=(mt-e.distance)+'px';
-        shift();
-    }
-    else
-    {
-        map.style.top=mb+'px';
-        shift();
-    }
+    map.style.top=(mt-e.distance)+'px';
+    shift();
+    // if((mb+e.distance)<0)
+    // {
+    //     map.style.top=(mt-e.distance)+'px';
+    //     shift();
+    // }
+    // else
+    // {
+    //     map.style.top=mb+'px';
+    //     shift();
+    // }
 });
 ham.on('tap',function(e)
 {
