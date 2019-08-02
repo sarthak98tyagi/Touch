@@ -92,7 +92,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.left=mr+'px';
+        map.style.left=0+'px';
         shift();
     }
 });
@@ -101,18 +101,16 @@ ham.on('swipeup',function(e)
     e.preventDefault();
     var mb=parseInt(getComputedStyle(map).getPropertyValue("bottom"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    map.style.top=(mt-e.distance)+'px';
-    shift();
-    // if((mb+e.distance)<0)
-    // {
-    //     map.style.top=(mt-e.distance)+'px';
-    //     shift();
-    // }
-    // else
-    // {
-    //     map.style.top=mb+'px';
-    //     shift();
-    // }
+    if((mb+e.distance)<0)
+    {
+        map.style.top=(mt-e.distance)+'px';
+        shift();
+    }
+    else
+    {
+        map.style.top=0+'px';
+        shift();
+    }
 });
 ham.on('tap',function(e)
 {
