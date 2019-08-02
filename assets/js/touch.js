@@ -37,14 +37,14 @@ ham.on('pinchmove',function(e)
             map.style.width=w+'px';
             // map.style.height=h+'px';
             map.style.left=-l+'px';
-            map.style.top=-t+'px';
+            // map.style.top=-t+'px';
             shift();
         }
         else
         {
             map.style.width=dwidth+'px';
             // map.style.height=dheight+'px';
-            map.style.top=0+'px';
+            // map.style.top=0+'px';
             map.style.left=0+'px';
             shift();
         }
