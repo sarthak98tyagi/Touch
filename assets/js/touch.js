@@ -92,7 +92,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.left=0+'px';
+        map.style.right=0+'px';
         shift();
     }
 });
@@ -108,7 +108,7 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.top=0+'px';
+        map.style.bottom=0+'px';
         shift();
     }
 });
