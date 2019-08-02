@@ -13,22 +13,22 @@ ham.on('pinchmove',function(e)
     e.preventDefault();
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*e.scale)-width;
-    var h=(height*e.scale)-height;
+    var w=(width*e.scale);
+    var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
     var l=(x*e.scale);
     var t=(y*e.scale);
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    var lm=l;
-    var tm=t;
+    var lm=(ml-l);
+    var tm=(mt-t);
         if( (w-lm) > dwidth && (h-tm) > dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            map.style.left=-lm+'px';
-            map.style.top=-tm+'px';
+            map.style.left=lm+'px';
+            map.style.top=tm+'px';
         }
 });
 ham.on('swiperight',function(e)
