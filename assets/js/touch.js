@@ -15,8 +15,8 @@ function shift()
     {
        var mark=holder.children[index+1];
        console.log(value);
-       mark.style.left=value[0]+(cw-value[2]);
-       mark.style.top=value[1]+(ch-value[3]);
+       mark.style.left=value[0]+(cw-value[2])+'px';
+       mark.style.top=value[1]+(ch-value[3])+'px';
     });
     
 }
