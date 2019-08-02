@@ -19,8 +19,8 @@ ham.on('pinchmove',function(e)
             map.style.height=(height*e.scale)+'px';
             var x=e.center['x'];
             var y=e.center['y'];
-            var ml=parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
-            var mt=parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+            var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
+            var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
             var l=(x*e.scale)/2;
             var t=(y*e.scale)/2;
             var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
@@ -29,31 +29,30 @@ ham.on('pinchmove',function(e)
             var tm=(mt+Math.abs(mt-t));
             var xgap=(w-lm)+(w-dwidth);
             var ygap=(h-tm)+(h-dheight);
-                console.log("!!!");
-                map.style.marginLeft=-lm+'px';
-                map.style.marginTop=-tm+'px';
+            map.style.left=-lm+'px';
+            map.style.top=-tm+'px';
 
         }
 });
 ham.on('swiperight',function(e)
 {
   e.preventDefault();
-  console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-right")));
-  var ml=-parseInt(getComputedStyle(map).getPropertyValue("margin-left"));
+  console.log(parseInt(getComputedStyle(map).getPropertyValue("right")));
+  var ml=-parseInt(getComputedStyle(map).getPropertyValue("left"));
   if(ml>0)
   {
-      map.style.marginLeft=0+'px';
+      map.style.left=0+'px';
   }
 
 });
 ham.on('swipedown',function(e)
 {
     e.preventDefault();
-    console.log(parseInt(getComputedStyle(map).getPropertyValue("margin-down")));
-    var mt=-parseInt(getComputedStyle(map).getPropertyValue("margin-top"));
+    console.log(parseInt(getComputedStyle(map).getPropertyValue("bottom")));
+    var mt=-parseInt(getComputedStyle(map).getPropertyValue("top"));
     if(mt>0)
     {
-        map.style.marginTop=0+'px';
+        map.style.top=0+'px';
     }
 
 });
