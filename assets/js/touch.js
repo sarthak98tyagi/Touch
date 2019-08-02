@@ -27,6 +27,14 @@ ham.on('pinchmove',function(e)
             map.style.left=-l+'px';
             map.style.top=-t+'px';
         }
+        else
+        {
+            map.style.width=dwidth+'px';
+            map.style.height=dheight+'px';
+            map.style.top=0+'px';
+            map.style.left=0+'px';
+
+        }
 });
 ham.on('swiperight',function(e)
 {
@@ -35,6 +43,10 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
+  }
+  else
+  {
+      map.style.left=0+'px';
   }
 
 });
@@ -46,6 +58,10 @@ ham.on('swipedown',function(e)
     {
         map.style.top=(mt+e.distance)+'px';
     }
+    else
+    {
+        map.style.top=0+'px';
+    }
 });
 ham.on('swipeleft',function(e)
 {
@@ -56,6 +72,10 @@ ham.on('swipeleft',function(e)
     {
         map.style.left=(ml-e.distance)+'px';
     }
+    else
+    {
+        map.style.left=mr+'px';
+    }
 });
 ham.on('swipeup',function(e)
 {
@@ -65,5 +85,9 @@ ham.on('swipeup',function(e)
     if((mb+e.distance)<0)
     {
         map.style.top=(mt-e.distance)+'px';
+    }
+    else
+    {
+        map.style.left=mb+'px';
     }
 });
