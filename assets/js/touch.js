@@ -5,13 +5,20 @@ var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-var pointers={};
+var pointers=[];
 var mp=0; //mark-counter
-// function shift()
-// {
-//     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-//     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-// }
+function shift()
+{
+    var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+    pointers.forEach(function (value,index)
+    {
+       var mark=value[0];
+       mark.style.left=value[1]+(cw-value[3]);
+       mark.style.top=value[2]+(ch-value[4]);
+    });
+    
+}
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
@@ -29,6 +36,7 @@ ham.on('pinchmove',function(e)
             map.style.height=h+'px';
             map.style.left=-l+'px';
             map.style.top=-t+'px';
+            shift();
         }
         else
         {
@@ -36,6 +44,7 @@ ham.on('pinchmove',function(e)
             map.style.height=dheight+'px';
             map.style.top=0+'px';
             map.style.left=0+'px';
+            shift();
         }
 });
 ham.on('swiperight',function(e)
@@ -45,10 +54,12 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
+      shift();
   }
   else
   {
       map.style.left=0+'px';
+      shift();
   }
 
 });
@@ -59,10 +70,12 @@ ham.on('swipedown',function(e)
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
+        shift();
     }
     else
     {
         map.style.top=0+'px';
+        shift();
     }
 });
 ham.on('swipeleft',function(e)
@@ -73,10 +86,12 @@ ham.on('swipeleft',function(e)
     if((mr+e.distance)<0)
     {
         map.style.left=(ml-e.distance)+'px';
+        shift();
     }
     else
     {
         map.style.left=mr+'px';
+        shift();
     }
 });
 ham.on('swipeup',function(e)
@@ -87,10 +102,12 @@ ham.on('swipeup',function(e)
     if((mb+e.distance)<0)
     {
         map.style.top=(mt-e.distance)+'px';
+        shift();
     }
     else
     {
         map.style.left=mb+'px';
+        shift();
     }
 });
 ham.on('tap',function(e)
