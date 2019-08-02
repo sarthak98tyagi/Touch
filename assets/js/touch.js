@@ -66,5 +66,4 @@ ham.on('swipeup',function(e)
     {
         map.style.top=(mt-e.distance)+'px';
     }
-
 });
