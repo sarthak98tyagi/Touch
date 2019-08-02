@@ -32,9 +32,9 @@ ham.on('swiperight',function(e)
 {
   e.preventDefault();
   var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
-  if(ml<0)
+  if((ml+e.distance)<0)
   {
-      map.style.left=0+'px';
+      map.style.left=(ml+e.distance)+'px';
   }
 
 });
@@ -42,28 +42,29 @@ ham.on('swipedown',function(e)
 {
     e.preventDefault();
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    if(mt<0)
+    if((mt+e.distance)<0)
     {
-        map.style.top=0+'px';
+        map.style.top=(mt+e.distance)+'px';
     }
-
 });
 ham.on('swipeleft',function(e)
 {
     e.preventDefault();
     var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
-    if(mr<0)
+    var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
+    if((mr+e.distance)<0)
     {
-        map.style.left=mr+'px';
+        map.style.left=(ml-e.distance)+'px';
     }
 });
 ham.on('swipeup',function(e)
 {
     e.preventDefault();
     var mb=parseInt(getComputedStyle(map).getPropertyValue("bottom"));
-    if(mb<0)
+    var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    if((mb+e.distance)<0)
     {
-        map.style.top=mb+'px';
+        map.style.top=(mt-e.distance)+'px';
     }
 
 });
