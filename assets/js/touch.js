@@ -38,7 +38,7 @@ ham.on('swiperight',function(e)
   }
 
 });
-ham.on('swipedown',function(e,direction='DIRECTION_ALL')
+ham.on('swipedown',function(e)
 {
     e.preventDefault();
     var mt=-parseInt(getComputedStyle(map).getPropertyValue("top"));
@@ -48,4 +48,12 @@ ham.on('swipedown',function(e,direction='DIRECTION_ALL')
     }
 
 });
-
+ham.on('swipeleft',function(e)
+{
+    e.preventDefault();
+    var mr=-parseInt(getComputedStyle(map).getPropertyValue("right"));
+    if(mr>0)
+    {
+        map.style.right=0+'px';
+    }
+});
