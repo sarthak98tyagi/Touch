@@ -14,8 +14,8 @@ function shift()
     pointers.forEach(function (value,index)
     {
        var mark=holder.children[index+1];
-       mark.style.left=value[1]+(cw-value[3]);
-       mark.style.top=value[2]+(ch-value[4]);
+       mark.style.left=value[0]+(cw-value[2]);
+       mark.style.top=value[1]+(ch-value[3]);
     });
     
 }
