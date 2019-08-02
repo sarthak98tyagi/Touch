@@ -87,7 +87,7 @@ ham.on('swipeleft',function(e)
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     if((mr+e.distance)<0)
     {
-        map.style.left=(mr+e.distance)+'px';
+        map.style.left=(ml-e.distance)+'px';
         shift();
     }
     else
@@ -103,7 +103,7 @@ ham.on('swipeup',function(e)
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
     if((mb+e.distance)<0)
     {
-        map.style.top=(mb+e.distance)+'px';
+        map.style.top=(mt-e.distance)+'px';
         shift();
     }
     else
