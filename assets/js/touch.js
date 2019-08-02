@@ -29,12 +29,9 @@ ham.on('pinchmove',function(e)
             var tm=(mt+Math.abs(mt-t));
             var xgap=(w-lm)+(w-dwidth);
             var ygap=(h-tm)+(h-dheight);
-            if(lm<(w-dwidth) && tm<(h-dheight))
-            {
                 console.log("!!!");
                 map.style.marginLeft=-lm+'px';
                 map.style.marginTop=-tm+'px';
-            }
 
         }
 });
