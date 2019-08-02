@@ -13,8 +13,7 @@ function shift()
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
     pointers.forEach(function (value,index)
     {
-       var mark=holder.children[1];
-       console.log(mark);
+       var mark=holder.children[index+1];
        mark.style.left=value[1]+(cw-value[3]);
        mark.style.top=value[2]+(ch-value[4]);
     });
@@ -118,10 +117,11 @@ ham.on('tap',function(e)
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
     var x=e.center['x'];
     var y=e.center['y'];
-    pointers[mp]=[document.createElement("div"),x,y,cw,ch];
-    pointers[mp][0].className="mark";
-    pointers[mp][0].style.left=x+'px';
-    pointers[mp][0].style.top=y+'px';
-    holder.appendChild(pointers[mp][0]);
+    var mark=document.createElement("div");
+    pointers[mp]=[x,y,cw,ch];
+    mark.className="mark";
+    mark.style.left=x+'px';
+    mark.style.top=y+'px';
+    holder.appendChild(mark);
     mp=mp+1;
 });
