@@ -6,6 +6,7 @@ var dwidth=parseInt(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
+ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var mleft=50;
 var mtop=50;
 ham.on('pinchmove',function(e)
