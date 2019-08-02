@@ -92,6 +92,5 @@ ham.on('tap',function(e)
     e.preventDefault();
     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    console.log("!!");
-    console.log(e.deltaX,e.deltaY);
+    console.log(e.center);
 });
