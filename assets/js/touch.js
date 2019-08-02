@@ -13,6 +13,7 @@ function shift()
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
     pointers.forEach(function (value,index)
     {
+        console.log(value);
        var mark=holder.children[index+1];
        console.log(value[0]+(cw-value[2]));
        console.log(value[1]+cw-value[3]);
