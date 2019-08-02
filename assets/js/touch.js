@@ -13,28 +13,20 @@ ham.on('pinchmove',function(e)
     e.preventDefault();
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*e.scale);
-    var h=(height*e.scale);
+    var w=(width*e.scale)-width;
+    var h=(height*e.scale)-height;
+    var x=e.center['x'];
+    var y=e.center['y'];
+    var l=(x*e.scale)/2;
+    var t=(y*e.scale)/2;
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-        if( w>= dwidth && h>= dheight)
+    var lm=(ml+Math.abs(ml-l));
+    var tm=(mt+Math.abs(mt-t));
+        if( (w-lm) > dwidth && (h-tm) > dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            var x=e.center['x'];
-            var y=e.center['y'];
-            // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-            // var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-            // var xgap=w-(width*e.scale);
-            // var ygap=h-(height*e.scale);
-            var l=(x*e.scale)/2;
-            var t=(y*e.scale)/2;
-            // var w=parseInt(getComputedStyle(map).getPropertyValue("width"));
-            //  var h=parseInt(getComputedStyle(map).getPropertyValue("height"));
-            var lm=(ml+Math.abs(ml-l));
-            var tm=(mt+Math.abs(mt-t));
-            // var xgap=(w-lm)+(w-dwidth);
-            // var ygap=(h-tm)+(h-dheight);
             map.style.left=-lm+'px';
             map.style.top=-tm+'px';
 
