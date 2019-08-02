@@ -13,8 +13,8 @@ ham.on('pinchmove',function(e)
     e.preventDefault();
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*e.scale)-width;
-    var h=(height*e.scale)-height;
+    var w=(width*e.scale);
+    var h=(height*e.scale);
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
         if( (w-ml)>= dwidth && (h-mt)>= dheight)
