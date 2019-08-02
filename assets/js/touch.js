@@ -87,7 +87,7 @@ ham.on('swipeup',function(e)
         map.style.left=mb+'px';
     }
 });
-ham.on('tap',function (e)
+ham.on('tap',function(e)
 {
     e.preventDefault();
     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
