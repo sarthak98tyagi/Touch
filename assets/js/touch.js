@@ -101,9 +101,9 @@ ham.on('tap',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     pointers[mp]=[document.createElement("div"),x,y,cw,ch];
-    pointer[mp][0].className="mark";
-    pointer[mp][0].style.left=x+'px';
-    pointer[mp][0].style.top=y+'px';
-    holder.appendChild(pointer[mp][0]);
+    pointers[mp][0].className="mark";
+    pointers[mp][0].style.left=x+'px';
+    pointers[mp][0].style.top=y+'px';
+    holder.appendChild(pointers[mp][0]);
     mp=mp+1;
 });
