@@ -17,7 +17,7 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-        if( (w-ml)>= dwidth && (h-mt)>= dheight)
+        if( w>= dwidth && h>= dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
