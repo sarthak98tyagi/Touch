@@ -17,19 +17,18 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale)-height;
     var x=e.center['x'];
     var y=e.center['y'];
-    var l=(x*e.scale)/2;
-    var t=(y*e.scale)/2;
+    var l=(x*e.scale);
+    var t=(y*e.scale);
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    var lm=(ml+Math.abs(ml-l));
-    var tm=(mt+Math.abs(mt-t));
+    var lm=(ml-l);
+    var tm=(mt-t);
         if( (w-lm) > dwidth && (h-tm) > dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
             map.style.left=-lm+'px';
             map.style.top=-tm+'px';
-
         }
 });
 ham.on('swiperight',function(e)
