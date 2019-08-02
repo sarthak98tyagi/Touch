@@ -11,8 +11,6 @@ function shift()
 {
     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    var mark=holder.children[1];
-    console.log(mark);
     pointers.forEach(function (value,index)
     {
        var mark=holder.children[1];
