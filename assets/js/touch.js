@@ -9,14 +9,15 @@ var pointers=[];
 var mp=0; //mark-counter
 function shift()
 {
-    var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    pointers.forEach(function (value,index)
-    {
-       var mark=value[0];
-       mark.style.left=value[1]+(cw-value[3]);
-       mark.style.top=value[2]+(ch-value[4]);
-    });
+    console.log("Hello");
+    // var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    // var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+    // pointers.forEach(function (value,index)
+    // {
+    //    var mark=value[0];
+    //    mark.style.left=value[1]+(cw-value[3]);
+    //    mark.style.top=value[2]+(ch-value[4]);
+    // });
     
 }
 ham.on('pinchmove',function(e)
