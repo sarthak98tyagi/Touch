@@ -54,7 +54,7 @@ ham.on('swipeleft',function(e)
     var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
     var ml=-parseInt(getComputedStyle(map).getPropertyValue("left"));
     console.log(mr);
-    if(mr>0)
+    if(mr<0)
     {
         map.style.left=mr+'px';
     }
