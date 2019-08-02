@@ -24,4 +24,5 @@ body
     width: 20px;
     height: 20px;
     background: red;
+    border-radius: 50%;
 }

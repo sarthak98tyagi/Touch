@@ -5,8 +5,13 @@ var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-var pointers=[];
+var pointers={};
 var mp=0; //mark-counter
+// function shift()
+// {
+//     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+//     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+// }
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
@@ -95,11 +100,10 @@ ham.on('tap',function(e)
     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
     var x=e.center['x'];
     var y=e.center['y'];
-    pointers[mp]=[x,y,cw,ch];
+    pointers[mp]=[document.createElement("div"),x,y,cw,ch];
+    pointer[mp][0].className="mark";
+    pointer[mp][0].style.left=x+'px';
+    pointer[mp][0].style.top=y+'px';
+    holder.appendChild(pointer[mp][0]);
     mp=mp+1;
-    var mark=document.createElement("div");
-    mark.className="mark";
-    mark.style.left=x+'px';
-    mark.style.top=y+'px';
-    holder.appendChild(mark);
 });
