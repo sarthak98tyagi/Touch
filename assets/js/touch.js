@@ -21,14 +21,14 @@ ham.on('pinchmove',function(e)
     var t=(y*e.scale);
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    var lm=(ml-l);
-    var tm=(mt-t);
+    var lm=l;
+    var tm=t;
         if( (w-lm) > dwidth && (h-tm) > dheight)
         {
             map.style.width=(width*e.scale)+'px';
             map.style.height=(height*e.scale)+'px';
-            map.style.left=lm+'px';
-            map.style.top=tm+'px';
+            map.style.left=-lm+'px';
+            map.style.top=-tm+'px';
         }
 });
 ham.on('swiperight',function(e)
