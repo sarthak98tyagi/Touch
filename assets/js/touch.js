@@ -19,10 +19,6 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var l=(x*e.scale);
     var t=(y*e.scale);
-    var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
-    var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    var lm=ml+Math.abs(ml-l);
-    var tm=mt+Math.abs(mt-t);
         if( (w-l) >= dwidth && (h-t) >= dheight)
         {
             map.style.width=w+'px';
@@ -34,7 +30,6 @@ ham.on('pinchmove',function(e)
 ham.on('swiperight',function(e)
 {
   e.preventDefault();
-  console.log(parseInt(getComputedStyle(map).getPropertyValue("right")));
   var ml=-parseInt(getComputedStyle(map).getPropertyValue("left"));
   if(ml>0)
   {
@@ -42,10 +37,9 @@ ham.on('swiperight',function(e)
   }
 
 });
-ham.on('swipedown',function(e)
+ham.on('swipedown',function(e,direction='DIRECTION_ALL')
 {
     e.preventDefault();
-    console.log(parseInt(getComputedStyle(map).getPropertyValue("bottom")));
     var mt=-parseInt(getComputedStyle(map).getPropertyValue("top"));
     if(mt>0)
     {
