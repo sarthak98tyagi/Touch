@@ -78,7 +78,6 @@ ham.on('swipedown',function(e)
 ham.on('swipeleft',function(e)
 {
     e.preventDefault();
-    console.log("#");
     var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     if((mr+e.distance)<=0)
@@ -105,7 +104,7 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.bottom=0+'px';
+        map.style.bottom=(mt+mb)+'px';
         shift();
     }
 });
