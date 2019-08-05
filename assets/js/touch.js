@@ -14,8 +14,8 @@ function shift()
     {
 
         var mark=holder.children[index+1];
-        var al=parseInt(getComputedStyle(mark).getPropertyValue("left"));
-        var at=parseInt(getComputedStyle(mark).getPropertyValue("top"));
+        var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
+        var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
         var nx=value[0]+al;
         var ny=value[1]+at;
         mark.style.left=nx+'px';
