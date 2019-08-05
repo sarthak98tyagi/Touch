@@ -14,10 +14,15 @@ function shift()
     var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
     pointers.forEach(function (value,index)
     {
-        console.log(value);
-       var mark=holder.children[index+1];
-       mark.style.left=al+(value[0])+'px';
-       mark.style.top=at+(value[1])+'px';
+        var nx=value[0]-al;
+        var ny=value[1]-at;
+        var dx=value[4]-al;
+        var dy=-value[5]-at;
+        var mark=holder.children[index+1];
+        mark.style.left=(value[2]-dx)+'px';
+        mark.style.top=(value[3]-dy)+'px';
+        value[2]=nx;
+        value[3]=ny;
     });
 }
 ham.on('pinchmove',function(e)
@@ -113,7 +118,7 @@ ham.on('tap',function(e)
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
-    pointers[mp]=[xmark,ymark];
+    pointers[mp]=[xmark,ymark,x,y,cl,ct];
     mark.className="mark";
     mark.style.left=x+'px';
     mark.style.top=y+'px';
