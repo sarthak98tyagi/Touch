@@ -16,8 +16,8 @@ function shift()
     {
         var nx=value[0]-al;
         var ny=value[1]-at;
-        var dx=value[4]-al;
-        var dy=-value[5]-at;
+        var dx=al-value[4];
+        var dy=-at-value[5];
         var mark=holder.children[index+1];
         mark.style.left=(value[2]+dx)+'px';
         mark.style.top=(value[3]+dy)+'px';
