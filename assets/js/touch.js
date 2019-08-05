@@ -89,7 +89,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.left=mr+'px';
+        map.style.left=(ml+mr)+'px';
 
     }
 });
