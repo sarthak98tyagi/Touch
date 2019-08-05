@@ -10,8 +10,8 @@ var mp=0; //mark-counter
 function shift()
 {
 
-    var al=map.style.left;
-    var at=map.style.top;
+    var al=parseFloat(map.style.left);
+    var at=parseFloat(map.style.top);
     pointers.forEach(function (value,index)
     {
 
