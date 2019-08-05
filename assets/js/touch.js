@@ -83,10 +83,12 @@ ham.on('swipedown',function(e)
 ham.on('swipeleft',function(e)
 {
     e.preventDefault();
+    console.log("#");
     var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     if((mr+e.distance)<=0)
     {
+        console.log("!!!");
         map.style.right=(mr+e.distance)+'px';
         shift();
     }
