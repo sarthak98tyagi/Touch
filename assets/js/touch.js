@@ -9,15 +9,12 @@ var pointers=[];
 var mp=0; //mark-counter
 function shift(al)
 {
-    // var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
-    var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    console.log(al,at);
+    var at=getComputedStyle(map).getPropertyValue("top");
     pointers.forEach(function (value,index)
     {
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
-        // console.log(nx,ny);
         mark.style.left=nx+'px';
         mark.style.right=ny+'px';
     });
@@ -46,11 +43,11 @@ ham.on('pinchmove',function(e)
 ham.on('swiperight',function(e)
 {
   e.preventDefault();
-  var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
+  var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
-      shift();
+      shift(ml+e.distance);
   }
   else
   {
@@ -62,52 +59,54 @@ ham.on('swiperight',function(e)
 ham.on('swipedown',function(e)
 {
     e.preventDefault();
-    var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    var mt=parseFloat(getComputedStyle(map).getPropertyValue("top"));
+    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
-        shift();
+        shift(ml);
 
     }
     else
     {
         map.style.top=0+'px';
-        shift();
+        shift(ml);
     }
 });
 ham.on('swipeleft',function(e)
 {
     e.preventDefault();
-    var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
-    var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
+    var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mr+e.distance)<=0)
     {
 
         map.style.left=(ml-e.distance)+'px';
-        shift();
+        shift(ml);
 
     }
     else
     {
         map.style.left=(ml+mr)+'px';
-        shift();
+        shift(ml);
 
     }
 });
 ham.on('swipeup',function(e)
 {
     e.preventDefault();
-    var mb=parseInt(getComputedStyle(map).getPropertyValue("bottom"));
-    var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
+    var mt=parseFloat(getComputedStyle(map).getPropertyValue("top"));
+    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mb+e.distance)<=0)
     {
         map.style.top=(mb-e.distance)+'px';
-        shift();
+        shift(ml);
     }
     else
     {
         map.style.bottom=(mt+mb)+'px';
-        shift();
+        shift(ml);
 
     }
 });
@@ -116,8 +115,8 @@ ham.on('tap',function(e)
     e.preventDefault();
     var x=e.center['x'];
     var y=e.center['y'];
-    var cl=parseInt(getComputedStyle(map).getPropertyValue("left"));
-    var ct=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
