@@ -115,6 +115,7 @@ ham.on('tap',function(e)
     demo.className="mark";
     demo.style.left=x+'px';
     demo.style.top=y+'px';
+    holder.appendChild(demo);
     console.log("Original Position is- Left: "+x+"Top: "+y);
     // var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
     // var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
