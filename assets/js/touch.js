@@ -8,20 +8,18 @@ ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers=[];
 var mp=0; //mark-counter
 var demo;
-// function shift()
-// {
-//     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-//     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-//     pointers.forEach(function (value,index)
-//     {
-//         console.log(value);
-//        var mark=holder.children[index+1];
-//        console.log(value[0]+(cw-value[2]));
-//        console.log(value[1]+cw-value[3]);
-//        mark.style.left=value[0]+(cw-value[2])+'px';
-//        mark.style.top=value[1]+(ch-value[3])+'px';
-//     });
-// }
+function shift()
+{
+    var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
+    var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    pointers.forEach(function (value,index)
+    {
+        console.log(value);
+       var mark=holder.children[index+1];
+       mark.style.left=al+(value[0])+'px';
+       mark.style.top=at+(value[1])+'px';
+    });
+}
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
@@ -35,13 +33,12 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            console.log("Increase Factor is: "+e.scale);
-            console.log("Difference is: "+(width-w));
-            console.log("Changed Positions are"+getComputedStyle(demo).getPropertyValue("left")+"@"+getComputedStyle(demo).getPropertyValue("height"));
+            shift();
         }
         else
         {
             map.style.left=0+'px';
+            shift();
 
         }
 });
@@ -109,23 +106,17 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
-    demo=document.createElement("div");
     var x=e.center['x'];
     var y=e.center['y'];
-    demo.className="mark";
-    demo.style.left=x+'px';
-    demo.style.top=y+'px';
-    holder.appendChild(demo);
-    console.log("Original Position is- Left: "+x+"Top: "+y);
-    // var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    // var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    // var x=e.center['x'];
-    // var y=e.center['y'];
-    // var mark=document.createElement("div");
-    // pointers[mp]=[x,y,cw,ch];
-    // mark.className="mark";
-    // mark.style.left=x+'px';
-    // mark.style.top=y+'px';
-    // holder.appendChild(mark);
-    // mp=mp+1;
+    var cl=parseInt(getComputedStyle(map).getPropertyValue("left"));
+    var ct=parseInt(getComputedStyle(map).getPropertyValue("top"));
+    var xmark=Math.abs(cl)+x;
+    var ymark=Math.abs(ct)+y;
+    var mark=document.createElement("div");
+    pointers[mp]=[xmark,ymark];
+    mark.className="mark";
+    mark.style.left=x+'px';
+    mark.style.top=y+'px';
+    holder.appendChild(mark);
+    mp=mp+1;
 });
