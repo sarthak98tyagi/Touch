@@ -20,6 +20,7 @@ function shift()
         var ny=value[1]+at;
         mark.style.left=nx+'px';
         mark.style.right=ny+'px';
+
     });
 }
 ham.on('pinchmove',function(e)
@@ -51,11 +52,12 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
+      shift();
   }
   else
   {
       map.style.left=0+'px';
-
+      shift();
   }
 
 });
@@ -66,11 +68,13 @@ ham.on('swipedown',function(e)
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
+        shift();
 
     }
     else
     {
         map.style.top=0+'px';
+        shift();
     }
 });
 ham.on('swipeleft',function(e)
@@ -82,11 +86,13 @@ ham.on('swipeleft',function(e)
     {
 
         map.style.left=(ml-e.distance)+'px';
+        shift();
 
     }
     else
     {
         map.style.left=(ml+mr)+'px';
+        shift();
 
     }
 });
@@ -98,10 +104,12 @@ ham.on('swipeup',function(e)
     if((mb+e.distance)<=0)
     {
         map.style.top=(mb-e.distance)+'px';
+        shift();
     }
     else
     {
         map.style.bottom=(mt+mb)+'px';
+        shift();
 
     }
 });
@@ -115,7 +123,7 @@ ham.on('tap',function(e)
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
-    pointers[mp]=[xmark,ymark,x,y];
+    pointers[mp]=[xmark,ymark];
     mark.className="mark";
     mark.style.left=x+'px';
     mark.style.top=y+'px';
