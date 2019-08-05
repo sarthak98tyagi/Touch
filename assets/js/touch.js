@@ -44,7 +44,7 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=dwidth+'px';
             // map.style.height=dheight+'px';
-            map.style.top=0+'px';
+            //map.style.top=0+'px';
             map.style.left=0+'px';
             shift();
         }
