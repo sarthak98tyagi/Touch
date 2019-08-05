@@ -85,9 +85,9 @@ ham.on('swipeleft',function(e)
     e.preventDefault();
     var mr=parseInt(getComputedStyle(map).getPropertyValue("right"));
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
-    if((mr+e.distance)<0)
+    if((mr+e.distance)<=0)
     {
-        map.style.left=(ml-e.distance)+'px';
+        map.style.right=(mr+e.distance)+'px';
         shift();
     }
     else
@@ -101,9 +101,9 @@ ham.on('swipeup',function(e)
     e.preventDefault();
     var mb=parseInt(getComputedStyle(map).getPropertyValue("bottom"));
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    if((mb+e.distance)<0)
+    if((mb+e.distance)<=0)
     {
-        map.style.top=(mt-e.distance)+'px';
+        map.style.top=(mb+e.distance)+'px';
         shift();
     }
     else
