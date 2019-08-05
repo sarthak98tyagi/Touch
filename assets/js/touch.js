@@ -7,7 +7,6 @@ ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers=[];
 var mp=0; //mark-counter
-var demo;
 function shift()
 {
 
@@ -17,14 +16,10 @@ function shift()
         var mark=holder.children[index+1];
         var al=parseInt(getComputedStyle(mark).getPropertyValue("left"));
         var at=parseInt(getComputedStyle(mark).getPropertyValue("top"));
-        var tx=Math.abs(al+(value[0]-value[2]));
-        var ty=Math.abs(at+(value[1]-value[3]));
-        var nx=value[0]-tx;
-        var ny=value[1]-ty;
+        var nx=value[0]+al;
+        var ny=value[1]+at;
         mark.style.left=nx+'px';
-        mark.style.top=ny+'px';
-        value[2]=nx;
-        value[3]=ny;
+        mark.style.right=ny+'px';
     });
 }
 ham.on('pinchmove',function(e)
