@@ -7,16 +7,14 @@ ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers=[];
 var mp=0; //mark-counter
-function shift()
+function shift(al)
 {
-    var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
+    // var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
     console.log(al,at);
     pointers.forEach(function (value,index)
     {
         var mark=holder.children[index+1];
-
-        console.log(al,at);
         var nx=value[0]+al;
         var ny=value[1]+at;
         // console.log(nx,ny);
@@ -37,12 +35,13 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
+            shift(-l);
         }
         else
         {
             map.style.left=0+'px';
+            shift(0);
         }
-     shift();
 });
 ham.on('swiperight',function(e)
 {
@@ -56,7 +55,7 @@ ham.on('swiperight',function(e)
   else
   {
       map.style.left=0+'px';
-      shift();
+      shift(0);
   }
 
 });
