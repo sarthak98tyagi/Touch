@@ -9,9 +9,8 @@ var pointers=[];
 var mp=0; //mark-counter
 function shift()
 {
-
     var al=parseFloat(map.style.left);
-    var at=parseFloat(map.style.top);
+    var at=parseFloat(getComputedStyle(map).getPropertyValue("top"));
     pointers.forEach(function (value,index)
     {
 
