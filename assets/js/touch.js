@@ -84,7 +84,7 @@ ham.on('swipeleft',function(e)
     if((mr+e.distance)<=0)
     {
 
-        map.style.left=(ml-mr+e.distance)+'px';
+        map.style.left=(ml-e.distance)+'px';
 
     }
     else
