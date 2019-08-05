@@ -85,7 +85,6 @@ ham.on('swipeleft',function(e)
     {
 
         map.style.left=(ml-e.distance)+'px';
-        console.log(getComputedStyle(map).getPropertyValue("left"));
         shift();
 
     }
@@ -114,20 +113,20 @@ ham.on('swipeup',function(e)
 
     }
 });
-// ham.on('tap',function(e)
-// {
-//     e.preventDefault();
-//     var x=e.center['x'];
-//     var y=e.center['y'];
-//     var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
-//     var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
-//     var xmark=Math.abs(cl)+x;
-//     var ymark=Math.abs(ct)+y;
-//     var mark=document.createElement("div");
-//     pointers[mp]=[xmark,ymark];
-//     mark.className="mark";
-//     mark.style.left=x+'px';
-//     mark.style.top=y+'px';
-//     holder.appendChild(mark);
-//     mp=mp+1;
-// });
+ham.on('tap',function(e)
+{
+    e.preventDefault();
+    var x=e.center['x'];
+    var y=e.center['y'];
+    var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
+    var xmark=Math.abs(cl)+x;
+    var ymark=Math.abs(ct)+y;
+    var mark=document.createElement("div");
+    pointers[mp]=[xmark,ymark];
+    mark.className="mark";
+    mark.style.left=x+'px';
+    mark.style.top=y+'px';
+    holder.appendChild(mark);
+    mp=mp+1;
+});
