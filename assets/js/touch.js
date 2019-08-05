@@ -16,6 +16,7 @@ function shift()
         var mark=holder.children[index+1];
 
         console.log(al,at,value[0],value[1]);
+        console.log(getComputedStyle(document.getElementById("map")).getPropertyValue("left"));
         var nx=value[0]+al;
         var ny=value[1]+at;
         console.log(nx,ny);
