@@ -10,8 +10,8 @@ var mp=0; //mark-counter
 function shift()
 {
 
-    var at=map.style.left;
-    var al=getComputedStyle(map).getPropertyValue("left");
+    var al=map.style.left;
+    var at=getComputedStyle(map).getPropertyValue("left");
     console.log(al,at);
     // pointers.forEach(function (value,index)
     // {
