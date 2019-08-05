@@ -9,18 +9,16 @@ var pointers=[];
 var mp=0; //mark-counter
 function shift()
 {
-
     pointers.forEach(function (value,index)
     {
-
         var mark=holder.children[index+1];
         var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
         var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
         var nx=value[0]+al;
         var ny=value[1]+at;
+        console.log(nx,ny);
         mark.style.left=nx+'px';
         mark.style.right=ny+'px';
-
     });
 }
 ham.on('pinchmove',function(e)
