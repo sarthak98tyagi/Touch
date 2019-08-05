@@ -10,8 +10,8 @@ var mp=0; //mark-counter
 function shift()
 {
 
-    var at=document.getComputedStyle(map).getPropertyValue("top");
-    var al=document.getComputedStyle(map).getPropertyValue("left");
+    var at=getComputedStyle(map).getPropertyValue("top");
+    var al=getComputedStyle(map).getPropertyValue("left");
     console.log(al,at);
     // pointers.forEach(function (value,index)
     // {
@@ -50,6 +50,7 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
+      console.log(getComputedStyle(map).getPropertyValue("left"));
       shift();
   }
   else
