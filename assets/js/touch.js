@@ -120,10 +120,11 @@ ham.on('tap',function(e)
     e.preventDefault();
     var x=e.center['x'];
     var y=e.center['y'];
-    var cl=parseFloat(map.style.left);
-    var ct=parseFloat(map.style.top);
+    var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
+    console.log(map.style.left);
     var mark=document.createElement("div");
     pointers[mp]=[xmark,ymark];
     mark.className="mark";
