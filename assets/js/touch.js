@@ -14,6 +14,7 @@ function shift()
         var mark=holder.children[index+1];
         var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
         var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
+        console.log(al,at,value[0],value[1]);
         var nx=value[0]+al;
         var ny=value[1]+at;
         console.log(nx,ny);
@@ -34,14 +35,15 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            shift();
+
         }
         else
         {
             map.style.left=0+'px';
-            shift();
+
 
         }
+     shift();   
 });
 ham.on('swiperight',function(e)
 {
