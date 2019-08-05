@@ -35,16 +35,11 @@ ham.on('pinchmove',function(e)
         if( (w-l) >= dwidth )
         {
             map.style.width=w+'px';
-            // map.style.height=h+'px';
             map.style.left=-l+'px';
-            // map.style.top=-t+'px';
             shift();
         }
         else
         {
-            // map.style.width=dwidth+'px';
-            // map.style.height=dheight+'px';
-            //map.style.top=0+'px';
             map.style.left=0+'px';
             shift();
         }
@@ -88,14 +83,14 @@ ham.on('swipeleft',function(e)
     var ml=parseInt(getComputedStyle(map).getPropertyValue("left"));
     if((mr+e.distance)<=0)
     {
-        console.log("!!!");
+        console.log(mr);
         map.style.right=(mr+e.distance)+'px';
-        shift();
+
     }
     else
     {
         map.style.right=0+'px';
-        shift();
+
     }
 });
 ham.on('swipeup',function(e)
