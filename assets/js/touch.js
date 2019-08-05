@@ -19,8 +19,8 @@ function shift()
         var dx=value[4]-al;
         var dy=-value[5]-at;
         var mark=holder.children[index+1];
-        mark.style.left=(value[2]-dx)+'px';
-        mark.style.top=(value[3]-dy)+'px';
+        mark.style.left=(value[2]+dx)+'px';
+        mark.style.top=(value[3]+dy)+'px';
         value[2]=nx;
         value[3]=ny;
     });
