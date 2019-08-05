@@ -89,7 +89,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.right=0+'px';
+        map.style.left=mr+'px';
 
     }
 });
@@ -100,7 +100,7 @@ ham.on('swipeup',function(e)
     var mt=parseInt(getComputedStyle(map).getPropertyValue("top"));
     if((mb+e.distance)<=0)
     {
-        map.style.top=(mb+e.distance)+'px';
+        map.style.top=(mb-e.distance)+'px';
         shift();
     }
     else
