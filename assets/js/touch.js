@@ -86,6 +86,7 @@ ham.on('swipeleft',function(e)
     {
 
         map.style.left=(ml-e.distance)+'px';
+        console.log(getComputedStyle(map).getPropertyValue("left"));
         shift();
 
     }
