@@ -10,17 +10,19 @@ var mp=0; //mark-counter
 var demo;
 function shift()
 {
-    var al=parseInt(getComputedStyle(map).getPropertyValue("left"));
-    var at=parseInt(getComputedStyle(map).getPropertyValue("top"));
+
     pointers.forEach(function (value,index)
     {
-        var nx=value[0]-al;
-        var ny=value[1]-at;
-        var dx=al-value[4];
-        var dy=-at-value[5];
+
         var mark=holder.children[index+1];
-        mark.style.left=(value[2]+dx)+'px';
-        mark.style.top=(value[3]+dy)+'px';
+        var al=parseInt(getComputedStyle(mark).getPropertyValue("left"));
+        var at=parseInt(getComputedStyle(mark).getPropertyValue("top"));
+        var tx=Math.abs(al+(value[0]-value[2]));
+        var ty=Math.abs(at+(value[1]-value[3]));
+        var nx=value[0]-tx;
+        var ny=value[1]-ty;
+        mark.style.left=nx+'px';
+        mark.style.top=ny+'px';
         value[2]=nx;
         value[3]=ny;
     });
@@ -115,10 +117,10 @@ ham.on('tap',function(e)
     var y=e.center['y'];
     var cl=parseInt(getComputedStyle(map).getPropertyValue("left"));
     var ct=parseInt(getComputedStyle(map).getPropertyValue("top"));
-    var xmark=cl+x;
-    var ymark=ct+y;
+    var xmark=Math.abs(cl)+x;
+    var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
-    pointers[mp]=[xmark,ymark,x,y,cl,ct];
+    pointers[mp]=[xmark,ymark,x,y];
     mark.className="mark";
     mark.style.left=x+'px';
     mark.style.top=y+'px';
