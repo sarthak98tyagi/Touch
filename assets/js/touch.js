@@ -7,27 +7,26 @@ ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers=[];
 var mp=0; //mark-counter
-function shift()
-{
-    var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
-    pointers.forEach(function (value,index)
-    {
-        console.log(value);
-       var mark=holder.children[index+1];
-       console.log(value[0]+(cw-value[2]));
-       console.log(value[1]+cw-value[3]);
-       mark.style.left=value[0]+(cw-value[2])+'px';
-       mark.style.top=value[1]+(ch-value[3])+'px';
-    });
-}
+var demo;
+// function shift()
+// {
+//     var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+//     var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+//     pointers.forEach(function (value,index)
+//     {
+//         console.log(value);
+//        var mark=holder.children[index+1];
+//        console.log(value[0]+(cw-value[2]));
+//        console.log(value[1]+cw-value[3]);
+//        mark.style.left=value[0]+(cw-value[2])+'px';
+//        mark.style.top=value[1]+(ch-value[3])+'px';
+//     });
+// }
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
     var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    // var height=parseInt(getComputedStyle(map).getPropertyValue("height"));
     var w=(width*e.scale);
-    // var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
     var l=(x*e.scale);
@@ -36,12 +35,14 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            shift();
+            console.log("Increase Factor is: "+e.scale);
+            console.log("Difference is: "+(width-w));
+            console.log("Changed Positions are"+getComputedStyle(demo).getPropertyValue("left")+"@"+getComputedStyle(demo).getPropertyValue("height"));
         }
         else
         {
             map.style.left=0+'px';
-            shift();
+
         }
 });
 ham.on('swiperight',function(e)
@@ -51,12 +52,11 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
-      shift();
   }
   else
   {
       map.style.left=0+'px';
-      shift();
+
   }
 
 });
@@ -67,12 +67,11 @@ ham.on('swipedown',function(e)
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
-        shift();
+
     }
     else
     {
         map.style.top=0+'px';
-        shift();
     }
 });
 ham.on('swipeleft',function(e)
@@ -100,26 +99,32 @@ ham.on('swipeup',function(e)
     if((mb+e.distance)<=0)
     {
         map.style.top=(mb-e.distance)+'px';
-        shift();
     }
     else
     {
         map.style.bottom=(mt+mb)+'px';
-        shift();
+
     }
 });
 ham.on('tap',function(e)
 {
     e.preventDefault();
-    var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
-    var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+    demo=document.createElement("div");
     var x=e.center['x'];
     var y=e.center['y'];
-    var mark=document.createElement("div");
-    pointers[mp]=[x,y,cw,ch];
-    mark.className="mark";
-    mark.style.left=x+'px';
-    mark.style.top=y+'px';
-    holder.appendChild(mark);
-    mp=mp+1;
+    demo.className="mark";
+    demo.style.left=x+'px';
+    demo.style.top=y+'px';
+    console.log("Original Position is- Left: "+x+"Top: "+y);
+    // var cw=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    // var ch=parseInt(getComputedStyle(map).getPropertyValue("height"));
+    // var x=e.center['x'];
+    // var y=e.center['y'];
+    // var mark=document.createElement("div");
+    // pointers[mp]=[x,y,cw,ch];
+    // mark.className="mark";
+    // mark.style.left=x+'px';
+    // mark.style.top=y+'px';
+    // holder.appendChild(mark);
+    // mp=mp+1;
 });
