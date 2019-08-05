@@ -14,6 +14,7 @@ function shift()
     var at=map.style.top;
     pointers.forEach(function (value,index)
     {
+        console.log("!!");
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
