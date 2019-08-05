@@ -47,7 +47,7 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
-      shift(ml+e.distance);
+      shift((ml+e.distance));
   }
   else
   {
