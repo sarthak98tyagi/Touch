@@ -118,8 +118,8 @@ ham.on('tap',function(e)
     e.preventDefault();
     var x=e.center['x'];
     var y=e.center['y'];
-    var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
-    var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
+    var cl=parseFloat(map.style.left);
+    var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
