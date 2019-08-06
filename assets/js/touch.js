@@ -13,21 +13,22 @@ function shift()
 {
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
+    console.log(at);
     pointers.forEach(function (value,index)
     {
 
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
-        console.log(value[0],value[1],al,at,nx,ny);
+        // console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
-        mark.style.right=ny+'px';
+        mark.style.top=ny+'px';
     });
 }
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
-    var width=parseInt(getComputedStyle(map).getPropertyValue("width"));
+    var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var w=(width*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
@@ -52,7 +53,6 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
-      console.log(getComputedStyle(map).getPropertyValue("left"));
       shift();
   }
   else
@@ -123,9 +123,9 @@ ham.on('tap',function(e)
     var y=e.center['y'];
     var cl=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     var ct=parseFloat(getComputedStyle(map).getPropertyValue("top"));
+    console.log(ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
-    console.log(map.style.left);
     var mark=document.createElement("div");
     pointers[mp]=[xmark,ymark];
     mark.className="mark";
