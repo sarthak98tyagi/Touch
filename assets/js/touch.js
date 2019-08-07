@@ -31,17 +31,16 @@ function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
     var ah=inheight*factor;
+    console.log(ah);
     pointers.forEach(function(value,index)
     {
         tmpw[index]=temp===0?value[1]:tmpw[index];
         var mark=holder.children[index+1];
        var nx=(value[0]+al)*factor;
        var ny=(tmpw[index]*ah)/inheight;
-       console.log(tmpw[index]);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
        tmpw[index]=ny;
-       console.log(nx,ny);
     });
     inheight=ah;
     temp=temp+1;
