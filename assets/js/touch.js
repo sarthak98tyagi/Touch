@@ -33,12 +33,11 @@ function scaleshift(factor)
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
-       var nx=value[0]+al;
+       var nx=(value[0]+al)*factor;
        var ny=(value[1]*ah)/inheight;
        console.log(nx,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
-        inheight=ah;
     });
 }
 ham.on('pinchmove',function(e)
