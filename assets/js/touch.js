@@ -13,14 +13,15 @@ function shift()
 {
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
+    console.log(map.style.bottom);
     pointers.forEach(function (value,index)
     {
 
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
-        // console.log(valuenx,ny);
-        console.log(value[0],value[1],al,at,nx,ny);
+        // console.log(nx,ny);
+        // console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
         mark.style.top=ny+'px';
     });
@@ -123,6 +124,7 @@ ham.on('tap',function(e)
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
+    console.log(parseFloat(map.style.bottom));
     // console.log(ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
