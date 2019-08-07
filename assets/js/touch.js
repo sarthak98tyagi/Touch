@@ -29,7 +29,7 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left)*factor;
-    var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+    var ah=inheight*factor;
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
@@ -37,7 +37,8 @@ function scaleshift(factor)
        var ny=(value[1]*ah)/inheight;
        console.log(factor,ny);
        mark.style.left=nx+'px';
-       mark.style.top=ny+'px'
+       mark.style.top=ny+'px';
+        inheight=ah;
     });
 }
 ham.on('pinchmove',function(e)
