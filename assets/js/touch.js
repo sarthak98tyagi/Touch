@@ -13,7 +13,6 @@ function shift()
 {
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
-    console.log(map.style.bottom);
     pointers.forEach(function (value,index)
     {
 
@@ -124,8 +123,6 @@ ham.on('tap',function(e)
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
-    console.log(parseFloat(map.style.bottom));
-    // console.log(ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
