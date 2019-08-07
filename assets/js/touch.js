@@ -13,7 +13,7 @@ var mp=0; //mark-counter
 var tmpw=[];
 function gh()
 {
-    return(getComputedStyle(document.getElementById('map')).getPropertyValue('height'));
+    console.log(getComputedStyle(map).getPropertyValue('height'));
 }
 function shift()
 {
@@ -33,8 +33,7 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
-    var ah=gh();
-    console.log(ah);
+    gh();
     pointers.forEach(function(value,index)
     {
         var mark=holder.children[index+1];
