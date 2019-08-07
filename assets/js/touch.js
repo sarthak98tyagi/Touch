@@ -10,8 +10,11 @@ var pointers=[];
 map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
-var temp=0;
 var tmpw=[];
+function gh()
+{
+    return(document.getElementById('map').clientHeight);
+}
 function shift()
 {
     var al=parseFloat(map.style.left);
@@ -31,10 +34,8 @@ function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
     var ah=inheight*factor;
-    console.log(ah);
     pointers.forEach(function(value,index)
     {
-        tmpw[index]=temp===0?value[1]:tmpw[index];
         var mark=holder.children[index+1];
        var nx=(value[0]+al)*factor;
        var ny=(tmpw[index]*ah)/inheight;
@@ -42,8 +43,7 @@ function scaleshift(factor)
        mark.style.top=ny+'px';
        tmpw[index]=ny;
     });
-    inheight=ah;
-    temp=temp+1;
+
 }
 ham.on('pinchmove',function(e)
 {
@@ -153,4 +153,5 @@ ham.on('tap',function(e)
     mark.style.top=y+'px';
     holder.appendChild(mark);
     mp=mp+1;
+    console.log(gh());
 });
