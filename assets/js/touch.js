@@ -19,8 +19,8 @@ function shift()
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
-        console.log(nx,ny);
-        // console.log(value[0],value[1],al,at,nx,ny);
+        // console.log(valuenx,ny);
+        console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
         mark.style.top=ny+'px';
     });
