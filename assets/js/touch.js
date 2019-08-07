@@ -11,10 +11,6 @@ map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
 var tmpw=[];
-function gh()
-{
-    console.log(getComputedStyle(map).getPropertyValue('height'));
-}
 function shift()
 {
     var al=parseFloat(map.style.left);
@@ -33,17 +29,15 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
-    gh();
+    var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     pointers.forEach(function(value,index)
     {
         var mark=holder.children[index+1];
-       var nx=(value[0]+al)*factor;
-       var ny=(tmpw[index]*ah)/inheight;
+       var nx=(value[0]+al);
+       var ny=(value[1]*ah)/inheight;
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
-       tmpw[index]=ny;
     });
-
 }
 ham.on('pinchmove',function(e)
 {
