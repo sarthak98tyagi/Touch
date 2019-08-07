@@ -35,8 +35,7 @@ function scaleshift(factor)
        var ny=value[1]*factor;
        console.log(factor,ny);
        mark.style.left=nx+'px';
-       mark.style.top=ny+'px';
-       value[1]=ny;
+       mark.style.top=ny+'px'
     });
 }
 ham.on('pinchmove',function(e)
