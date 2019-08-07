@@ -10,6 +10,7 @@ var pointers=[];
 map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
+var temp;
 function shift()
 {
     var al=parseFloat(map.style.left);
@@ -29,7 +30,7 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
-    var ah=inheight*factor;
+    var ah=map.clientHeight;
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
