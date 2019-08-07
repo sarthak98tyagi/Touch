@@ -41,6 +41,7 @@ function scaleshift(factor)
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
        tmpw[index]=ny;
+       console.log(nx,ny);
     });
     inheight=ah;
     temp=temp+1;
