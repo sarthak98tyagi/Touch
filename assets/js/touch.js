@@ -11,13 +11,13 @@ map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
 var temp;
+var tmpw;
 function shift()
 {
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
     pointers.forEach(function (value,index)
     {
-
         var mark=holder.children[index+1];
         var nx=value[0]+al;
         var ny=value[1]+at;
@@ -29,18 +29,20 @@ function shift()
 }
 function scaleshift(factor)
 {
+     tmpw=temp===0?value[1]:tmpw;
     var al=parseFloat(map.style.left);
-    var ah=map.clientHeight;
-    console.log(document.getElementById('map').offsetHeight);
+    var ah=inheight*factor;
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
        var nx=(value[0]+al)*factor;
-       var ny=(value[1]*ah)/inheight;
+       var ny=(tmpw*ah)/inheight;
        console.log(nx,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
+    tmpw=ny;
+    inheight=ah;
 }
 ham.on('pinchmove',function(e)
 {
