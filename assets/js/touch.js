@@ -119,6 +119,7 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
+    console.log(e.center['y']);
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
