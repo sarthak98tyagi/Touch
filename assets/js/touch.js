@@ -31,7 +31,7 @@ function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
     var ah=map.clientHeight;
-    console.log(map.clientHeight,map.offsetHeight);
+    console.log(document.defaultView.getComputedStyle(map).getPropertyValue('height'));
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
