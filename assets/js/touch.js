@@ -140,9 +140,9 @@ ham.on('tap',function(e)
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
-    console.log(cl,ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
+    console.log(xmark,ymark);
     var mark=document.createElement("div");
     pointers[mp]=[xmark,ymark];
     mark.className="mark";
