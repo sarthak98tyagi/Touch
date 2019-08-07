@@ -33,6 +33,7 @@ ham.on('pinchmove',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     var l=(x*e.scale);
+    console.log(e.scale);
     var t=(y*e.scale);
         if( (w-l) >= dwidth )
         {
@@ -45,7 +46,7 @@ ham.on('pinchmove',function(e)
             map.style.left=0+'px';
             shift();
         }
-        console.log(map.style.height);
+
 });
 ham.on('swiperight',function(e)
 {

@@ -28,3 +28,11 @@ body
     right:0;
     transition: all 0.3s;
 }
+/*.mark:before*/
+/*{*/
+    /*content: '\f3c5';*/
+    /*display: inline-block;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*color: white;*/
+/*}*/
