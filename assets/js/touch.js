@@ -33,7 +33,8 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left);
-    var ah=inheight*factor;
+    var ah=gh();
+    console.log(ah);
     pointers.forEach(function(value,index)
     {
         var mark=holder.children[index+1];
@@ -53,7 +54,6 @@ ham.on('pinchmove',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     var l=(x*e.scale);
-    console.log(e.scale);
     var t=(y*e.scale);
         if( (w-l) >= dwidth )
         {
@@ -153,5 +153,4 @@ ham.on('tap',function(e)
     mark.style.top=y+'px';
     holder.appendChild(mark);
     mp=mp+1;
-    console.log(gh());
 });
