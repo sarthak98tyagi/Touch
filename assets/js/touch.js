@@ -33,6 +33,7 @@ function scaleshift(factor)
        var mark=holder.children[index+1];
        var nx=value[0]+al;
        var ny=value[1]*factor;
+       console.log(factor,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
@@ -51,7 +52,7 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            scaleshift(e.scale);
+            // scaleshift(e.scale);
         }
         // else
         // {
