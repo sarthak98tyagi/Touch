@@ -38,7 +38,7 @@ function scaleshift(factor)
 
        var mark=holder.children[index+1];
        var nx=(value[0]+al)*factor;
-       var ny=(tmpw*ah)/inheight;
+       var ny=(tmpw[index]*ah)/inheight;
        console.log(nx,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
