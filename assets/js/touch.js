@@ -31,9 +31,9 @@ function scaleshift(factor)
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
-       var nx=value[0]*factor;
-       var ny=value[1]*factor;
-       console.log(factor,ny);
+       var nx=value[0];
+       var ny=value[1];
+       console.log(nx,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px'
     });
