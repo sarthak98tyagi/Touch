@@ -29,14 +29,12 @@ function shift()
 }
 function scaleshift(factor)
 {
-
     var al=parseFloat(map.style.left);
     var ah=inheight*factor;
     pointers.forEach(function(value,index)
     {
-        tmpw[index]=temp===0?value[1]:tmpw;
-
-       var mark=holder.children[index+1];
+        tmpw[index]=temp===0?value[1]:tmpw[index];
+        var mark=holder.children[index+1];
        var nx=(value[0]+al)*factor;
        var ny=(tmpw[index]*ah)/inheight;
        console.log(tmpw[index]);
@@ -148,7 +146,6 @@ ham.on('tap',function(e)
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
-    console.log(xmark,ymark);
     var mark=document.createElement("div");
     pointers[mp]=[xmark,ymark];
     mark.className="mark";
