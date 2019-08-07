@@ -45,6 +45,7 @@ function scaleshift(factor)
        tmpw[index]=ny;
     });
     inheight=ah;
+    temp=temp+1;
 }
 ham.on('pinchmove',function(e)
 {
