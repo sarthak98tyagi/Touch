@@ -13,7 +13,7 @@ function shift()
 {
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
-    console.log(at);
+    // console.log(at);
     pointers.forEach(function (value,index)
     {
 
