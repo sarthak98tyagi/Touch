@@ -12,7 +12,7 @@ var mp=0; //mark-counter
 function shift()
 {
     var al=parseFloat(map.style.left);
-    var at=parseFloat(map.style.bottom);
+    var at=parseFloat(map.style.top);
     pointers.forEach(function (value,index)
     {
 
@@ -22,7 +22,7 @@ function shift()
         // console.log(valuenx,ny);
         console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
-        mark.style.bottom=ny+'px';
+        mark.style.top=ny+'px';
     });
 }
 ham.on('pinchmove',function(e)
@@ -122,7 +122,7 @@ ham.on('tap',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
-    var ct=parseFloat(map.style.bottom);
+    var ct=parseFloat(map.style.top);
     // console.log(ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
