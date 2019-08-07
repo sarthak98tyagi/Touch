@@ -35,7 +35,7 @@ function scaleshift(factor)
        var mark=holder.children[index+1];
        var nx=value[0]+al;
        var ny=(value[1]*ah)/inheight;
-       console.log(ah,ny);
+       console.log(factor,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px'
     });
