@@ -25,6 +25,18 @@ function shift()
         mark.style.top=ny+'px';
     });
 }
+function scaleshift(factor)
+{
+    var al=parseFloat(map.style.left);
+    pointers.forEach(function(value,index)
+    {
+       var mark=holder.children[index+1];
+       var nx=value[0]+al;
+       var ny=value[1]*factor;
+       mark.style.left=nx+'px';
+       mark.style.top=ny+'px';
+    });
+}
 ham.on('pinchmove',function(e)
 {
     e.preventDefault();
@@ -39,13 +51,13 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            shift();
+            scaleshift(e.scale);
         }
-        else
-        {
-            map.style.left=0+'px';
-            shift();
-        }
+        // else
+        // {
+        //     map.style.left=0+'px';
+        //     shift();
+        // }
 
 });
 ham.on('swiperight',function(e)
@@ -62,7 +74,6 @@ ham.on('swiperight',function(e)
       map.style.left=0+'px';
       shift();
   }
-
 });
 ham.on('swipedown',function(e)
 {
