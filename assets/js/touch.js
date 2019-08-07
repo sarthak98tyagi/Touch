@@ -52,7 +52,7 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
-            // scaleshift(e.scale);
+            scaleshift(e.scale);
         }
         // else
         // {
