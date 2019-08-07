@@ -13,14 +13,13 @@ var mp=0; //mark-counter
 function shift()
 {
     var al=parseFloat(map.style.left);
-    var ah=getComputedStyle('map').getPropertyValue('height');
-
+    var at=parseFloat(map.style.top);
     pointers.forEach(function (value,index)
     {
 
         var mark=holder.children[index+1];
         var nx=value[0]+al;
-        var ny=(value[1]*ah)/inheight;
+        var ny=value[1]+at;
         // console.log(nx,ny);
         // console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
@@ -30,11 +29,12 @@ function shift()
 function scaleshift(factor)
 {
     var al=parseFloat(map.style.left)*factor;
+    var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     pointers.forEach(function(value,index)
     {
        var mark=holder.children[index+1];
        var nx=value[0]+al;
-       var ny=value[1];
+       var ny=(value[1]*ah)/inheight;
        console.log(nx,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px'
