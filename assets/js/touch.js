@@ -13,7 +13,7 @@ var mp=0; //mark-counter
 var tmpw=[];
 function gh()
 {
-    return(document.getElementById('map').offsetHeight);
+    return(getComputedStyle(document.getElementById('map')).getPropertyValue('height'));
 }
 function shift()
 {
