@@ -38,7 +38,7 @@ function scaleshift(factor)
        mark.style.top=ny+'px'
     });
 }
-ham.on('pinchstart',function(e)
+ham.on('pinchmove',function(e)
 {
     e.preventDefault();
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
