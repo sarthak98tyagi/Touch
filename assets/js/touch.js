@@ -36,6 +36,7 @@ function scaleshift(factor)
        console.log(factor,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
+       value[1]=ny;
     });
 }
 ham.on('pinchmove',function(e)
