@@ -1,7 +1,8 @@
 var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
-var dwidth=parseInt(getComputedStyle(holder).getPropertyValue("width"));
-var dheight=parseInt(getComputedStyle(holder).getPropertyValue("height"));
+var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
+var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
+var inheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
@@ -12,13 +13,14 @@ var mp=0; //mark-counter
 function shift()
 {
     var al=parseFloat(map.style.left);
-    var at=parseFloat(map.style.top);
+    var ah=getComputedStyle('map').getPropertyValue('height');
+
     pointers.forEach(function (value,index)
     {
 
         var mark=holder.children[index+1];
         var nx=value[0]+al;
-        var ny=value[1]+at;
+        var ny=(value[1]*ah)/inheight;
         // console.log(nx,ny);
         // console.log(value[0],value[1],al,at,nx,ny);
         mark.style.left=nx+'px';
