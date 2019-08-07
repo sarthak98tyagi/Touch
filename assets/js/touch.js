@@ -65,7 +65,7 @@ ham.on('pinchmove',function(e)
 ham.on('swiperight',function(e)
 {
   e.preventDefault();
-  var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+  var ml=parseFloat(map.style.left);
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
@@ -80,8 +80,8 @@ ham.on('swiperight',function(e)
 ham.on('swipedown',function(e)
 {
     e.preventDefault();
-    var mt=parseFloat(getComputedStyle(map).getPropertyValue("top"));
-    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var mt=parseFloat(map.style.top);
+    var ml=parseFloat(map.style.left);
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
@@ -98,7 +98,7 @@ ham.on('swipeleft',function(e)
 {
     e.preventDefault();
     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
-    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var ml=parseFloat(map.style.left);
     if((mr+e.distance)<=0)
     {
 
@@ -117,8 +117,8 @@ ham.on('swipeup',function(e)
 {
     e.preventDefault();
     var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
-    var mt=parseFloat(getComputedStyle(map).getPropertyValue("top"));
-    var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
+    var mt=parseFloat(map.style.top);
+    // var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mb+e.distance)<=0)
     {
         map.style.top=(mb-e.distance)+'px';
