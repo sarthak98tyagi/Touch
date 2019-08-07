@@ -136,11 +136,11 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
-    console.log(e.center['y']);
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
+    console.log(cl,ct);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
