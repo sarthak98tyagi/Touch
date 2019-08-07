@@ -10,7 +10,7 @@ var pointers=[];
 map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
-var temp;
+var temp=0;
 var tmpw=[];
 function shift()
 {
