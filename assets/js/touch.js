@@ -45,6 +45,7 @@ ham.on('pinchmove',function(e)
             map.style.left=0+'px';
             shift();
         }
+        console.log(map.style.height);
 });
 ham.on('swiperight',function(e)
 {
