@@ -27,7 +27,7 @@ function shift()
 function scaleshift(factor)
 {
     var cw=map.style.width;
-    console.log(cw,pw,factor);
+    console.log(cw,factor);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
     var al=parseFloat(map.style.left);
     pointers.forEach(function(value,index)
