@@ -28,9 +28,9 @@ function scaleshift(factor=1)
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
+    console.log(cw,ah,al,at);
     pointers.forEach(function(value,index)
     {
-       // var ws=factor===1?value[0]:((value[0]*cw)/value[2]);
         var ws=(value[0]*cw)/value[2];
         console.log(ws);
         var mark=holder.children[index+1];
