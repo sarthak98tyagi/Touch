@@ -32,6 +32,7 @@ function scaleshift(factor=1)
     {
        // var ws=factor===1?value[0]:((value[0]*cw)/value[2]);
         var ws=(value[0]*cw)/value[2];
+        console.log(ws);
         var mark=holder.children[index+1];
        var nx=ws+al;
        var ny=((value[1]*ah)/value[3])+at;
