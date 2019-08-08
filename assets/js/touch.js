@@ -30,7 +30,7 @@ function scaleshift(factor=1)
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
-    console.log(cw,ah,al,at);
+    // console.log(cw,ah,al,at);
     pointers.forEach(function(value,index)
     {
         var ws=(value[0]*cw)/value[2];
@@ -54,6 +54,7 @@ ham.on('pinchmove',function(e)
     var t=(y*e.scale);
     var top=parseFloat(map.style.top);
     var ch=h<mheight?top===0:true;
+    console.log(h,mheight,top);
         if( (w-l) >= dwidth && w<3000 && ch)
         {
             map.style.width=w+'px';
