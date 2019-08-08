@@ -46,6 +46,7 @@ ham.on('pinchmove',function(e)
     var w=(width*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
+    console.log(map.style.top);
     var l=(x*e.scale);
     var t=(y*e.scale);
         if( (w-l) >= dwidth && w<3000)
