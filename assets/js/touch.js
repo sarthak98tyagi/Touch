@@ -30,7 +30,7 @@ function scaleshift(factor)
     var pw=getComputedStyle(map).getPropertyValue('width');
     console.log(cw,pw);
     var ah=parseInt(getComputedStyle(map).getPropertyValue('height'))*factor;
-    var al=parseFloat(map.style.left)+Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('width')*factor)+map.style.left);
+    var al=parseFloat(map.style.left);
     pointers.forEach(function(value,index)
     {
         value[1]=(cw*value[0])/pw;
