@@ -118,7 +118,7 @@ ham.on('swipeup',function(e)
     // var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mb+e.distance)<=0)
     {
-        map.style.top=(mb-e.distance)+'px';
+        map.style.top=(mt-e.distance)+'px';
         scaleshift();
     }
     else
