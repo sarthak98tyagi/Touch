@@ -2,6 +2,7 @@ var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
+var inwidth=parseFloat(getComputedStyle(map).getPropertyValue("width"));
 var inheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
@@ -26,14 +27,14 @@ function shift()
 function scaleshift(factor)
 {
     var cw=map.style.width;
-    var pw=getComputedStyle(map).getPropertyValue('width');
     console.log(cw,pw,factor);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
     var al=parseFloat(map.style.left);
     pointers.forEach(function(value,index)
     {
+       var ws=(value[0]*cw)/inwidth;
         var mark=holder.children[index+1];
-       var nx=(value[0])+al;
+       var nx=ws+al;
        var ny=(value[1]*ah)/inheight;
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
