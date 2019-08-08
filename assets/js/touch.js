@@ -140,8 +140,8 @@ ham.on('tap',function(e)
     console.log(xmark);
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
-    var inwidth=getComputedStyle(map).getPropertyValue('width');
-    var inheight=getComputedStyle(map).getPropertyValue('height');
+    var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+    var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     pointers[mp]=[xmark,ymark,inwidth,inheight];
     mark.className="mark";
     mark.style.left=x+'px';
