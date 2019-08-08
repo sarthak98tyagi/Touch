@@ -30,7 +30,7 @@ function scaleshift(factor=1)
     var at=parseFloat(map.style.top);
     pointers.forEach(function(value,index)
     {
-       var ws=factor===1?value[0]:(value[0]*cw)/value[2];
+       var ws=factor===1?value[0]:((value[0]*cw)/value[2]);
         var mark=holder.children[index+1];
        var nx=ws+al;
        var ny=((value[1]*ah)/value[3])+at;
@@ -84,13 +84,13 @@ ham.on('swipedown',function(e)
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
-        shift();
+        scaleshift();
 
     }
     else
     {
         map.style.top=0+'px';
-        shift();
+        scaleshift();
     }
 });
 ham.on('swipeleft',function(e)
@@ -121,12 +121,12 @@ ham.on('swipeup',function(e)
     if((mb+e.distance)<=0)
     {
         map.style.top=(mb-e.distance)+'px';
-        shift();
+        scaleshift();
     }
     else
     {
         map.style.bottom=(mt+mb)+'px';
-        shift();
+        scaleshift();
 
     }
 });
