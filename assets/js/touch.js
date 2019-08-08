@@ -33,8 +33,8 @@ function scaleshift(factor)
        var ws=(value[0]*cw)/value[2];
         var mark=holder.children[index+1];
        var nx=ws+al;
-       console.log(ws);
        var ny=((value[1]*ah)/value[3])+at;
+       console.log(at,ny);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
