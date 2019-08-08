@@ -29,10 +29,9 @@ function scaleshift(factor)
     var pw=getComputedStyle(map).getPropertyValue('width');
     console.log(cw,pw);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
-    var al=parseFloat(map.style.left);
+    var al=parseFloat(map.style.left)+(cw-pw);
     pointers.forEach(function(value,index)
     {
-        value[0]=value[0]*factor;
         var mark=holder.children[index+1];
        var nx=(value[0])+al;
        var ny=(value[1]*ah)/inheight;
