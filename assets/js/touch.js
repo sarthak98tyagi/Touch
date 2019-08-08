@@ -33,7 +33,7 @@ function scaleshift(factor)
     var al=parseFloat(map.style.left);
     pointers.forEach(function(value,index)
     {
-        value[1]=(cw*value[0])/pw;
+        // value[1]=(cw*value[0])/pw;
         var mark=holder.children[index+1];
        var nx=value[0]+al;
        var ny=(value[1]*ah)/inheight;
