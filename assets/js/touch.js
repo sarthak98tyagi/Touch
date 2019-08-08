@@ -51,7 +51,8 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var l=(x*e.scale);
     var t=(y*e.scale);
-        if( (w-l) >= dwidth && w<3000)
+    var top=parseFloat(map.style.top);
+        if( (w-l) >= dwidth && top<(h/2))
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
