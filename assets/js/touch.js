@@ -2,6 +2,7 @@ var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
+var mheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
@@ -51,8 +52,9 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var l=(x*e.scale);
     var t=(y*e.scale);
-    var top=-parseFloat(map.style.top);
-        if( (w-l) >= dwidth && w<3000)
+    var top=parseFloat(map.style.top);
+    var ch=h<mheight?top===0:true;
+        if( (w-l) >= dwidth && w<3000 && ch)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
