@@ -35,6 +35,7 @@ function scaleshift(factor)
         var mark=holder.children[index+1];
        var nx=(value[0])+al;
        var ny=(value[1]*ah)/inheight;
+       console.log(nx);
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
@@ -138,6 +139,7 @@ ham.on('tap',function(e)
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
+    console.log(xmark);
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
     pointers[mp]=[xmark,ymark];
