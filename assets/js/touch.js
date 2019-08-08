@@ -22,7 +22,7 @@ function shift()
         mark.style.top=ny+'px';
     });
 }
-function scaleshift(factor)
+function scaleshift(factor=1)
 {
     var cw=parseFloat(map.style.width);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
@@ -68,12 +68,12 @@ ham.on('swiperight',function(e)
   if((ml+e.distance)<0)
   {
       map.style.left=(ml+e.distance)+'px';
-      shift();
+      scaleshift();
   }
   else
   {
       map.style.left=0+'px';
-      shift();
+      scaleshift();
   }
 });
 ham.on('swipedown',function(e)
@@ -102,13 +102,13 @@ ham.on('swipeleft',function(e)
     {
 
         map.style.left=(ml-e.distance)+'px';
-        shift();
+        scaleshift();
 
     }
     else
     {
         map.style.left=(ml+mr)+'px';
-        shift();
+        scaleshift();
 
     }
 });
