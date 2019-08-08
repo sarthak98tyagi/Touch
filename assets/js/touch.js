@@ -2,8 +2,6 @@ var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
-var inwidth=parseFloat(getComputedStyle(map).getPropertyValue("width"));
-var inheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 var ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
@@ -31,11 +29,11 @@ function scaleshift(factor)
     var al=parseFloat(map.style.left);
     pointers.forEach(function(value,index)
     {
-       var ws=(value[0]*cw)/inwidth;
+       var ws=(value[0]*cw)/value[2];
         var mark=holder.children[index+1];
        var nx=ws+al;
        console.log(ws);
-       var ny=(value[1]*ah)/inheight;
+       var ny=(value[1]*ah)/value[3];
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
@@ -142,7 +140,9 @@ ham.on('tap',function(e)
     console.log(xmark);
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
-    pointers[mp]=[xmark,ymark];
+    var inwidth=getComputedStyle(map).getPropertyValue('width');
+    var inheight=getComputedStyle(map).getPropertyValue('height');
+    pointers[mp]=[xmark,ymark,inwidth,inheight];
     mark.className="mark";
     mark.style.left=x+'px';
     mark.style.top=y+'px';
