@@ -27,13 +27,14 @@ function scaleshift(factor)
     var cw=parseFloat(map.style.width);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
     var al=parseFloat(map.style.left);
+    var at=parseFloat(map.style.top);
     pointers.forEach(function(value,index)
     {
        var ws=(value[0]*cw)/value[2];
         var mark=holder.children[index+1];
        var nx=ws+al;
        console.log(ws);
-       var ny=(value[1]*ah)/value[3];
+       var ny=((value[1]*ah)/value[3])+at;
        mark.style.left=nx+'px';
        mark.style.top=ny+'px';
     });
