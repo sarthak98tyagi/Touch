@@ -52,7 +52,7 @@ ham.on('pinchmove',function(e)
     var l=(x*e.scale);
     var t=(y*e.scale);
     var top=parseFloat(map.style.top);
-        if( (w-l) >= dwidth && top<(h/2))
+        if( (w-l) >= dwidth && top<(h/3))
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
