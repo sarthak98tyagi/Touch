@@ -30,10 +30,13 @@ body
 }
 .mark::before
 {
+    position: absolute;
     content: '\f3c5';
     display: inline-block;
     font-family: "Font Awesome\ 5 Free";
-    transform: translateY(-50%);
+    top: -50px;
+    left: -9px;
     font-weight: 900;
+    font-size: 50px;
     color: green;
 }
