@@ -44,13 +44,14 @@ ham.on('pinchmove',function(e)
 {
     e.preventDefault();
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+    var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var w=(width*e.scale);
+    var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
     var l=(x*e.scale);
-    var t=Math.abs(parseFloat(map.style.top));
-
-        if( (w-l) >= dwidth && w<3000 && t<vh)
+    var t=(y*e.scale);
+        if( (w-l) >= dwidth && w<3000 && (h-t) >= dheight)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
