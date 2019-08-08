@@ -9,19 +9,19 @@ var pointers=[];
 map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
-function shift()
-{
-    var al=parseFloat(map.style.left);
-    var at=parseFloat(map.style.top);
-    pointers.forEach(function (value,index)
-    {
-        var mark=holder.children[index+1];
-        var nx=value[0]+al;
-        var ny=value[1]+at;
-        mark.style.left=nx+'px';
-        mark.style.top=ny+'px';
-    });
-}
+// function shift()
+// {
+//     var al=parseFloat(map.style.left);
+//     var at=parseFloat(map.style.top);
+//     pointers.forEach(function (value,index)
+//     {
+//         var mark=holder.children[index+1];
+//         var nx=value[0]+al;
+//         var ny=value[1]+at;
+//         mark.style.left=nx+'px';
+//         mark.style.top=ny+'px';
+//     });
+// }
 function scaleshift(factor=1)
 {
     var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
@@ -32,13 +32,11 @@ function scaleshift(factor=1)
     pointers.forEach(function(value,index)
     {
         var ws=(value[0]*cw)/value[2];
-        console.log(ws);
         var mark=holder.children[index+1];
-       var nx=ws+al;
-       var ny=((value[1]*ah)/value[3])+at;
-       console.log(at,ny);
-       mark.style.left=nx+'px';
-       mark.style.top=ny+'px';
+        var nx=ws+al;
+        var ny=((value[1]*ah)/value[3])+at;
+        mark.style.left=nx+'px';
+        mark.style.top=ny+'px';
     });
 }
 ham.on('pinchmove',function(e)
@@ -56,12 +54,6 @@ ham.on('pinchmove',function(e)
             map.style.left=-l+'px';
             scaleshift(e.scale);
         }
-        // else
-        // {
-        //     map.style.left=0+'px';
-        //     shift();
-        // }
-
 });
 ham.on('swiperight',function(e)
 {
@@ -140,7 +132,6 @@ ham.on('tap',function(e)
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
-    console.log(xmark);
     var ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
     var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));

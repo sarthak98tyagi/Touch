@@ -23,16 +23,17 @@ body
     position: absolute;
     width: 20px;
     height: 20px;
-    background: red;
     border-radius: 50%;
     right:0;
+    background: transparent;
     transition: all 0.3s;
 }
-/*.mark:before*/
-/*{*/
-    /*content: '\f3c5';*/
-    /*display: inline-block;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*color: white;*/
-/*}*/
+.mark::before
+{
+    content: '\f3c5';
+    display: inline-block;
+    font-family: "Font Awesome\ 5 Free";
+    transform: translateY(-50%);
+    font-weight: 900;
+    color: green;
+}
