@@ -8,6 +8,7 @@ ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers=[];
 map.style.top='0px';
 map.style.left='0px';
+var vh=document.documentElement.clientHeight;
 var mp=0; //mark-counter
 // function shift()
 // {
@@ -46,10 +47,10 @@ ham.on('pinchmove',function(e)
     var w=(width*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    console.log(map.style.top);
     var l=(x*e.scale);
-    var t=(y*e.scale);
-        if( (w-l) >= dwidth && w<3000)
+    var t=Math.abs(parseFloat(map.style.top));
+
+        if( (w-l) >= dwidth && w<3000 && t<vh)
         {
             map.style.width=w+'px';
             map.style.left=-l+'px';
