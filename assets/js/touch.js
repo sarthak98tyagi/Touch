@@ -1,6 +1,6 @@
 var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
-var pin=document.getElementsByClassName('mark');
+// var pin=document.getElementsByClassName('mark');
 var screen=document.getElementById('screen');
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
@@ -24,7 +24,7 @@ function scaleshift(factor=1)
     Object.entries(pointers).forEach(function(value,index)
     {
         var ws=(pointers[index][0]*cw)/pointers[index][2];
-        var mark=holder.children[index+1];
+        var mark=document.getElementById(index);
         var nx=ws+al;
         var ny=((pointers[index][1]*ah)/pointers[index][3])+at;
         mark.style.left=nx+'px';
@@ -179,8 +179,9 @@ ham.on('tap',function(e)
     mark.style.left=x+'px';
     mark.style.top=y+'px';
     holder.appendChild(mark);
-    pham[mp]=new Hammer(pin[mp]);
-    pham[mp].on('tap',function(e)
+    var pin=document.getElementById(mp);
+    pham=new Hammer(pin);
+    pham.on('tap',function(e)
     {
         var popup=document.createElement("div");
         popup.innerText=pointers[e.target.id][4];
@@ -194,7 +195,8 @@ ham.on('tap',function(e)
 function remove(e)
 {
  var tg=Number(e.target.parentElement.id);
- holder.children[tg+1].style.display='none';
- // var c=holder.removeChild(holder.children[tg+1]);
+ delete(pointers[tg]);
+ var del=document.getElementById(tg);
+ var c=holder.removeChild(del);
  screen.removeChild(e.target.parentElement);
 }
