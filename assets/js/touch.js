@@ -22,10 +22,10 @@ function scaleshift(factor=1)
     var at=parseFloat(map.style.top);
     Object.entries(pointers).forEach(function(value,index)
     {
-        var ws=(value[1][0]*cw)/value[1][2];
+        var ws=(pointers[index][0]*cw)/pointers[index][2];
         var mark=holder.children[index+1];
         var nx=ws+al;
-        var ny=((value[1][1]*ah)/value[1][3])+at;
+        var ny=((pointers[index][1]*ah)/pointers[index][3])+at;
         mark.style.left=nx+'px';
         mark.style.top=ny+'px';
     });
