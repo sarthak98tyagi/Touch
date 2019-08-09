@@ -1,6 +1,7 @@
 var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
 var pin=document.getElementsByClassName('mark');
+var screen=document.getElementById('screen');
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
 var mheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -181,7 +182,19 @@ ham.on('tap',function(e)
     pham[mp]=new Hammer(pin[mp]);
     pham[mp].on('tap',function(e)
     {
-       console.log(pointers[e.target.id][4]);
+        var popup=document.createElement("div");
+        popup.innerText=pointers[e.target.id][4];
+        popup.id=e.target.id;
+        popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
+        popup.className="popup";
+        screen.appendChild(popup);
     });
     mp=mp+1;
 });
+function remove(e)
+{
+ var tg=Number(e.target.parentElement.id);
+ holder.children[tg+1].style.display='none';
+ // var c=holder.removeChild(holder.children[tg+1]);
+ screen.removeChild(e.target.parentElement);
+}

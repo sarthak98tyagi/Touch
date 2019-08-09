@@ -46,3 +46,21 @@ body
     top: 5px;
     left: 10px;
 }
+.popup
+{
+    position: fixed;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    border-radius: 20px;
+    color: darkred;
+    background: aliceblue;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
