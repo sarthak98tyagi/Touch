@@ -6,7 +6,7 @@ var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
 var mheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 var ham= new Hammer(map);
-var pham=[];
+var pham;
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers={};
@@ -23,10 +23,10 @@ function scaleshift(factor=1)
     var at=parseFloat(map.style.top);
     Object.entries(pointers).forEach(function(value,index)
     {
-        var ws=(pointers[index][0]*cw)/pointers[index][2];
+        var ws=(values[1][0]*cw)/values[1][2];
         var mark=document.getElementById(index);
         var nx=ws+al;
-        var ny=((pointers[index][1]*ah)/pointers[index][3])+at;
+        var ny=((values[1][1]*ah)/values[1][3])+at;
         mark.style.left=nx+'px';
         mark.style.top=ny+'px';
     });
