@@ -9,7 +9,7 @@ var ham= new Hammer(map);
 var pham;
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-ham.get('pan').set({direction: Hammer.DIRECTION_ALL});
+ham.get('pan').set({ direction: Hammer.DIRECTION_ALL });
 var pointers={};
 map.style.top='0px';
 map.style.left='0px';
