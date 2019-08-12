@@ -210,7 +210,7 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         pham.on('swipe',function(e)
         {
-            console.log('!!');
+            console.log(e.center);
         });
     });
     mp=mp+1;
