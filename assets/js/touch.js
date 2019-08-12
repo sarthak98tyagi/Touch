@@ -209,8 +209,8 @@ ham.on('tap',function(e)
     pham.on('press',function(e)
     {
         pham.element.style.background="yellow";
-        pham.get('pinch').set({enable:false});
-        pham.get('swipe').set({enable:false});
+        ham.get('pinch').set({enable:false});
+        ham.get('swipe').set({enable:false});
         pham.on('panmove',function(e)
         {
             console.log(e.center);
