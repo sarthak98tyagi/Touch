@@ -209,7 +209,10 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
-        alert(e.target.id);
+        pham.on('swipe',function(e)
+        {
+            console.log(e.center['x'],e.center['y']);
+        });
     });
     mp=mp+1;
 });
