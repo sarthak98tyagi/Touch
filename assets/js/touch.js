@@ -84,7 +84,7 @@ function neg(e)
 }
 ham.on('pinchmove',function(e)
 {
-
+    cnt=1;
     e.preventDefault();
     console.log('Hello');
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
@@ -106,7 +106,8 @@ ham.on('pinchmove',function(e)
 });
 ham.on('swiperight',function(e)
 {
-  e.preventDefault();
+    cnt=1;
+    e.preventDefault();
   var ml=parseFloat(map.style.left);
   if((ml+e.distance)<0)
   {
@@ -121,6 +122,7 @@ ham.on('swiperight',function(e)
 });
 ham.on('swipedown',function(e)
 {
+    cnt=1;
     e.preventDefault();
     var mt=parseFloat(map.style.top);
     var ml=parseFloat(map.style.left);
@@ -138,6 +140,7 @@ ham.on('swipedown',function(e)
 });
 ham.on('swipeleft',function(e)
 {
+    cnt=1;
     e.preventDefault();
     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
     var ml=parseFloat(map.style.left);
@@ -155,6 +158,7 @@ ham.on('swipeleft',function(e)
 });
 ham.on('swipeup',function(e)
 {
+    cnt=1;
     e.preventDefault();
     var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
     var mt=parseFloat(map.style.top);
