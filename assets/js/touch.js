@@ -213,7 +213,9 @@ ham.on('tap',function(e)
         ham.get('swipe').set({enable:false});
         pham.on('panend',function(e)
         {
-            console.log(e.center);
+            e.target.left=e.center['x']+'px';
+            e.target.top=e.center['y']+'px';
+            // pointers[e.target.id]=
         });
     });
     mp=mp+1;
