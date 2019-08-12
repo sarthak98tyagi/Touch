@@ -17,6 +17,7 @@ body
     min-width: 100%;
     /*min-height: 100%;*/
     transition: all .3s ease-in-out;
+    cursor: pointer;
 }
 .mark
 {
@@ -63,4 +64,12 @@ body
     justify-content: space-between;
     padding: 20px;
     transition: all 0.3s ease-in-out;
+}
+.close
+{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 20px;
+    color: darkred;
 }

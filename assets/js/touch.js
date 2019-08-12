@@ -12,24 +12,30 @@ ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers={};
 map.style.top='0px';
 map.style.left='0px';
-var vh=document.documentElement.clientHeight;
 var mp=0; //mark-counter
 var message=['One','Two','Three','Four','Five','Six'];
+var cnt=0;
 function scaleshift(factor=1)
 {
     var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
+    if(cnt===0)
+    {
+        ah=ah/factor;
+    }
     var al=parseFloat(map.style.left);
     var at=parseFloat(map.style.top);
     Object.entries(pointers).forEach(function(value,index)
     {
-        console.log(index);
-        var ws=(pointers[index][0]*cw)/pointers[index][2];
-        var mark=document.getElementById(index);
-        var nx=ws+al;
-        var ny=((pointers[index][1]*ah)/pointers[index][3])+at;
-        mark.style.left=nx+'px';
-        mark.style.top=ny+'px';
+        if(value[1][0])
+        {
+            var ws=(value[1][0]*cw)/value[1][2];
+            var mark=document.getElementById(value[0]);
+            var nx=ws+al;
+            var ny=((value[1][1]*ah)/value[1][3])+at;
+            mark.style.left=nx+'px';
+            mark.style.top=ny+'px';
+        }
     });
 }
 function pos(e)
@@ -50,8 +56,9 @@ function pos(e)
     {
         map.style.width=w+'px';
         map.style.left=-l+'px';
-        scaleshift(1.25);
+        scaleshift(scale);
     }
+    cnt=1;
 }
 function neg(e)
 {
@@ -73,9 +80,11 @@ function neg(e)
         map.style.left=-l+'px';
         scaleshift(scale);
     }
+    cnt=1;
 }
 ham.on('pinchmove',function(e)
 {
+
     e.preventDefault();
     console.log('Hello');
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
@@ -184,10 +193,12 @@ ham.on('tap',function(e)
     pham=new Hammer(pin);
     pham.on('tap',function(e)
     {
+        ham.set({enable:false});
         var popup=document.createElement("div");
         popup.innerText=pointers[e.target.id][4];
         popup.id=e.target.id;
         popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
+        popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
         popup.className="popup";
         screen.appendChild(popup);
     });
@@ -200,4 +211,10 @@ function remove(e)
  var del=document.getElementById(tg);
  var c=holder.removeChild(del);
  screen.removeChild(e.target.parentElement);
+ ham.set({enable:true});
+}
+function cancel(e)
+{
+    screen.removeChild(e.target.parentElement);
+    ham.set({enable:true});
 }
