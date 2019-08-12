@@ -211,15 +211,12 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         pham.get('pinch').set({enable:false});
         pham.get('swipe').set({enable:false});
-        ham.on('panmove',function(e)
+        pham.on('panmove',function(e)
         {
             console.log(e.center);
             e.target.style.left=e.center['x']+'px';
             e.target.style.top=e.center['y']+'px';
         });
-        // pham.on('panup',function(e){
-        //    console.log('!!!');
-        // });
     });
     mp=mp+1;
 });
