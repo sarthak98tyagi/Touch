@@ -211,12 +211,11 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         pham.get('pinch').set({enable:false});
         pham.get('swipe').set({enable:false});
-        pham.on('panmove',function(e)
+        ham.on('panmove',function(e)
         {
             console.log(e.center);
             e.target.style.left=e.center['x']+'px';
             e.target.style.top=e.center['y']+'px';
-            // pointers[e.target.id]=
         });
         // pham.on('panup',function(e){
         //    console.log('!!!');
