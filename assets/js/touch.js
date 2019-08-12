@@ -178,7 +178,6 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
-    console.log(e.deltaTime);
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
@@ -209,10 +208,9 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
-        console.log(e.target.id);
         pham.on('swipe',function(e)
         {
-            console.log(e.scale);
+            console.log('!!');
         });
     });
     mp=mp+1;
