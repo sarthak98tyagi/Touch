@@ -86,7 +86,6 @@ ham.on('pinchmove',function(e)
 {
     cnt=1;
     e.preventDefault();
-    console.log('Hello');
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var w=(width*e.scale);
@@ -208,6 +207,7 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
+        pham.style.background="yellow";
         pham.on('swipe',function(e)
         {
             console.log('!!');
