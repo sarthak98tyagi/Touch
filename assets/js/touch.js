@@ -207,7 +207,7 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
-        pham.style.background="yellow";
+        pham.element.style.background="yellow";
         pham.on('swipe',function(e)
         {
             console.log('!!');
