@@ -194,7 +194,7 @@ ham.on('tap',function(e)
     holder.appendChild(mark);
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
-    pham.get('pan').set({ direction: Hammer.DIRECTION_All });
+    // pham.get('pan').set({ direction: Hammer.DIRECTION_All });
     pham.on('tap',function(e)
     {
         ham.set({enable:false});
@@ -208,11 +208,13 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
+        e.preventDefault();
         pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
         pham.on('pan',function(e)
         {
+            e.preventDefault();
             console.log(e.center);
             e.target.style.left=e.center['x']+'px';
             e.target.style.top=e.center['y']+'px';
