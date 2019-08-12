@@ -211,9 +211,9 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    nw.on('press',function(e)
+    ham.on('press',function(e)
     {
-        nw.element.style.background="yellow";
+        ham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
         nw.on('panmove',function(e)
