@@ -194,7 +194,7 @@ ham.on('tap',function(e)
     holder.appendChild(mark);
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
-    pham.get('panmove').set({ direction: Hammer.DIRECTION_All });
+    pham.get('pan').set({ direction: Hammer.DIRECTION_All });
     pham.on('tap',function(e)
     {
         ham.set({enable:false});
