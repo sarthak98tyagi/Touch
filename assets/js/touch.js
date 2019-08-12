@@ -10,6 +10,7 @@ var pham;
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 ham.get('pan').set({ direction: Hammer.DIRECTION_All });
+
 var pointers={};
 map.style.top='0px';
 map.style.left='0px';
@@ -195,6 +196,10 @@ ham.on('tap',function(e)
     holder.appendChild(mark);
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
+    var nw= new Hammer.Manager(pin);
+
+    nw.add(new Hammer.Pan({ direction: Hammer.DIRECTION_VERTICAL }));
+
     pham.on('tap',function(e)
     {
         ham.set({enable:false});
@@ -206,12 +211,12 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    pham.on('press',function(e)
+    nw.on('press',function(e)
     {
-        pham.element.style.background="yellow";
+        nw.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
-        pham.on('panmove',function(e)
+        nw.on('panmove',function(e)
         {
             console.log(e.center);
             e.target.style.left=e.center['x']+'px';
