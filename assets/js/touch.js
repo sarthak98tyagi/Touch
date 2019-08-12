@@ -207,6 +207,10 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
+    ham.on('press',function(e)
+    {
+        alert(e.target.id);
+    });
     mp=mp+1;
 });
 function remove(e)
@@ -224,7 +228,3 @@ function cancel(e)
     ham.set({enable:true});
 }
 /*Dragging*/
-ham.on('press',function()
-{
-    alert("Hello");
-});
