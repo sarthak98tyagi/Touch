@@ -178,6 +178,7 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
+    console.log(e.deltaTime);
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=parseFloat(map.style.left);
@@ -222,3 +223,8 @@ function cancel(e)
     screen.removeChild(e.target.parentElement);
     ham.set({enable:true});
 }
+/*Dragging*/
+ham.on('press',function()
+{
+    alert("Hello");
+});
