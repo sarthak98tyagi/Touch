@@ -207,7 +207,7 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    ham.on('press',function(e)
+    pham.on('press',function(e)
     {
         alert(e.target.id);
     });
