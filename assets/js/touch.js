@@ -211,7 +211,7 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
-        pham.on('pan',function(e)
+        pham.on('panend',function(e)
         {
             console.log(e.center);
         });
