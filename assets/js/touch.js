@@ -210,34 +210,34 @@ ham.on('tap',function(e)
     pham.on('press',function(e)
     {
         console.log(e.target.id);
-        pham.set({enable:false});
-        ham.set({ enable: false});
-        e.target.style.background="yellow";
-        var motion=function(e)
-        {
-            e.preventDefault();
-            // if(move===1)
-            // {
-            if(e.targetTouches.length===1)
-            {
-                var dim=e.targetTouches[0];
-                e.target.style.left=dim.clientX+'px';
-                e.target.style.top=dim.clientY+'px';
-            }
-        };
-        e.target.addEventListener('touchmove',motion);
-        e.target.addEventListener('touchend',function(e)
-        {
-            e.preventDefault();
-            e.target.style.background="transparent";
-            pham.set({enable:true});
-            ham.set({enable:true});
-            // move=0;
-            e.target.removeEventListener('touchmove',motion);
-        });
-
-    });
-    mp=mp+1;
+    //     pham.set({enable:false});
+    //     ham.set({ enable: false});
+    //     e.target.style.background="yellow";
+    //     var motion=function(e)
+    //     {
+    //         e.preventDefault();
+    //         // if(move===1)
+    //         // {
+    //         if(e.targetTouches.length===1)
+    //         {
+    //             var dim=e.targetTouches[0];
+    //             e.target.style.left=dim.clientX+'px';
+    //             e.target.style.top=dim.clientY+'px';
+    //         }
+    //     };
+    //     e.target.addEventListener('touchmove',motion);
+    //     e.target.addEventListener('touchend',function(e)
+    //     {
+    //         e.preventDefault();
+    //         e.target.style.background="transparent";
+    //         pham.set({enable:true});
+    //         ham.set({enable:true});
+    //         // move=0;
+    //         e.target.removeEventListener('touchmove',motion);
+    //     });
+    //
+    // });
+    // mp=mp+1;
 });
 function remove(e)
 {
