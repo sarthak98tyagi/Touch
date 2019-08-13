@@ -207,34 +207,30 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    pham.on('press',function(e) {
+    pham.on('press',function(e)
+    {
         console.log(e.target.id);
-        //     pham.set({enable:false});
-        //     ham.set({ enable: false});
-        //     e.target.style.background="yellow";
-        //     var motion=function(e)
-        //     {
-        //         e.preventDefault();
-        //         // if(move===1)
-        //         // {
-        //         if(e.targetTouches.length===1)
-        //         {
-        //             var dim=e.targetTouches[0];
-        //             e.target.style.left=dim.clientX+'px';
-        //             e.target.style.top=dim.clientY+'px';
-        //         }
-        //     };
-        //     e.target.addEventListener('touchmove',motion);
-        //     e.target.addEventListener('touchend',function(e)
-        //     {
-        //         e.preventDefault();
-        //         e.target.style.background="transparent";
-        //         pham.set({enable:true});
-        //         ham.set({enable:true});
-        //         // move=0;
-        //         e.target.removeEventListener('touchmove',motion);
-        //     });
-        //
+            pham.set({enable:false});
+            ham.set({ enable: false});
+            e.target.style.background="yellow";
+            e.target.addEventListener('touchmove',function(e){
+                e.preventDefault();
+                if(e.targetTouches.length===1)
+                {
+                    var dim=e.targetTouches[0];
+                    e.target.style.left=dim.clientX+'px';
+                    e.target.style.top=dim.clientY+'px';
+                }
+            });
+            e.target.addEventListener('touchend',function(e)
+            {
+                e.preventDefault();
+                e.target.style.background="transparent";
+                pham.set({enable:true});
+                ham.set({enable:true});
+
+            });
+
         });
         mp=mp+1;
 });
