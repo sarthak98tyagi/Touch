@@ -226,9 +226,9 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-
+            e.target.style.left=e.targetTouches[0].clientX+'px';
+            e.target.style.left=e.targetTouches[0].clientY+'px';
         });
-        e.stopPropagation();
     });
     mp=mp+1;
 });
