@@ -212,7 +212,7 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
-        ham.addEventListener('touchstart',function()
+        pin.addEventListener('touchstart',function()
         {
             console.log('!!');
         });
