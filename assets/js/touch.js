@@ -212,9 +212,14 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
-        pin.addEventListener('touchstart',function()
+        ham.get('tap').set({enable:false});
+        pin.addEventListener('touchstart',function(e)
         {
-            console.log('!!');
+            e.preventDefault();
+            map.addEventListener('touchmove',function(e){
+                e.preventDefault();
+                console.log(e.clientX+" "+e.clientY);
+            });
         });
         // pham.on('touchmove',function(e)     /*usinh hammerjs drag lagging
         // {
