@@ -221,9 +221,9 @@ ham.on('tap',function(e)
                 e.target.style.top=dim.clientY+'px';
             }
         });
-        e.target.addEventListener('touchend',function()
+        e.target.addEventListener('touchend',function(e)
         {
-           console.log("!!");
+           console.log(e.target);
            pham.set({enable:true});
            ham.set({enable:true});
         });
