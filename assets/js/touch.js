@@ -226,7 +226,6 @@ ham.on('tap',function(e)
                     e.target.style.top=dim.clientY+'px';
                 }
             // }
-            e.stopPropagation();
         });
         e.target.addEventListener('touchend',function(e)
         {
@@ -235,7 +234,6 @@ ham.on('tap',function(e)
             pham.set({enable:true});
             ham.set({enable:true});
             // move=0;
-            e.stopPropagation();
         });
 
     });
