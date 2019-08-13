@@ -207,13 +207,14 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
-
+        e.preventDefault();
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e)
         {
-
+            console.log('!!');
+            e.preventDefault();
             // console.log(e.target.id);
             if(e.targetTouches.length===1)
             {
@@ -225,7 +226,7 @@ ham.on('tap',function(e)
         });
         e.target.addEventListener('touchend',function(e)
         {
-            
+            e.preventDefault();
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
