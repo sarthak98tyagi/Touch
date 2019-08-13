@@ -208,11 +208,11 @@ ham.on('tap',function(e)
     pham.on('press',function(e)
     {
         e.preventDefault();
-        pham.get('press').set({ enable: false });
-        ham.get('pinch').set({ enable: false });
-        ham.get('swipe').set({ enable: false });
-        ham.get('tap').set({ enable: false });
-        pham.get('tap').set({ enable: false });
+        // pham.get('press').set({ enable: false });
+        ham.get('pinch').set({enable:false});
+        ham.get('swipe').set({enable:false});
+        ham.get('tap').set({enable:false});
+        // pham.get('tap').set({ enable: false });
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
