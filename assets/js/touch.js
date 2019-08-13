@@ -222,9 +222,9 @@ ham.on('tap',function(e)
                     e.target.style.top=dim.clientY+'px';
                 }
             });
-        ham.set({ enable: true});
-        pham.set({enable: true});
-        e.target.style.background="transparent";
+        // ham.set({ enable: true});
+        // pham.set({enable: true});
+        // e.target.style.background="transparent";
     });
         mp=mp+1;
 });
