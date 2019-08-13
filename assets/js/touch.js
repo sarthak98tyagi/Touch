@@ -209,7 +209,7 @@ ham.on('tap',function(e)
 
     pham.on('press',function(e)
     {
-        e.preventDefault();
+        console.log(e.target.id);
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
