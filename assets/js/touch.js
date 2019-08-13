@@ -234,7 +234,19 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-            e.target.removeEventListener('touchmove',true);
+            e.target.removeEventListener('touchmove',function(e)
+            {
+                // move=1;
+                e.preventDefault();
+                // if(move===1)
+                // {
+                if(e.targetTouches.length===1)
+                {
+                    var dim=e.targetTouches[0];
+                    e.target.style.left=dim.clientX+'px';
+                    e.target.style.top=dim.clientY+'px';
+
+                }
             // move=0;
         });
 
