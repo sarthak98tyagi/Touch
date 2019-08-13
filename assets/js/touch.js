@@ -208,11 +208,11 @@ ham.on('tap',function(e)
     pham.on('press',function(e)
     {
         e.preventDefault();
-        pham.get('press').set({ enable:false });
-        ham.get('pinch').set({ enable:false });
-        ham.get('swipe').set({ enable:false });
-        ham.get('tap').set({ enable:false });
-        pham.get('tap').set({ enable:false });
+        pham.get('press').set({ enable: false });
+        ham.get('pinch').set({ enable: false });
+        ham.get('swipe').set({ enable: false });
+        ham.get('tap').set({ enable: false });
+        pham.get('tap').set({ enable: false });
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
@@ -226,11 +226,11 @@ ham.on('tap',function(e)
         });
         e.target.addEventListener('touchend',function(e)
         {
-            ham.get('pinch').set({ enable:true });
-            ham.get('swipe').set({ enable:true });
-            ham.get('tap').set({ enable:true });
-            pham.get('tap').set({ enable:true });
-            pham.get('press').set({ enable:true });
+            ham.get('pinch').set({ enable: true });
+            ham.get('swipe').set({ enable: true });
+            ham.get('tap').set({ enable: true });
+            pham.get('tap').set({ enable: true });
+            pham.get('press').set({ enable: true });
         });
     });
     mp=mp+1;
