@@ -195,33 +195,44 @@ ham.on('tap',function(e)
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
     // pham.get('pan').set({ direction: Hammer.DIRECTION_All });
+    // pham.on('tap',function(e)
+    // {
+    //     ham.set({enable:false});
+    //     var popup=document.createElement("div");
+    //     popup.innerText=pointers[e.target.id][4];
+    //     popup.id=e.target.id;
+    //     popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
+    //     popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
+    //     popup.className="popup";
+    //     screen.appendChild(popup);
+    // });
     pham.on('tap',function(e)
     {
-        ham.set({enable:false});
-        var popup=document.createElement("div");
-        popup.innerText=pointers[e.target.id][4];
-        popup.id=e.target.id;
-        popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
-        popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
-        popup.className="popup";
-        screen.appendChild(popup);
-    });
-    pham.on('press',function(e)
-    {
         e.preventDefault();
-        pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
         ham.get('tap').set({enable:false});
-        pin.addEventListener('touchstart',function(e)
-        {
+        pham.get('tap').set({enable:false});
+        e.target.style.background="yellow";
+        e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
-            map.addEventListener('touchmove',function(e){
-                e.preventDefault();
-                console.log(e.clientX+" "+e.clientY);
-            });
+            // console.log(e.target.id);
+            if(e.targetTouches.length===1)
+            {
+                var dim=e.targetTouches[0];
+                e.target.style.left=dim.clientX+'px';
+                e.target.style.top=dim.clientY+'px';
+            }
         });
-        // pham.on('touchmove',function(e)     /*usinh hammerjs drag lagging
+        // pin.addEventListener('touchend',function()
+        // {
+        //     pham.element.style.background="transparent";
+        //     ham.get('pinch').set({enable:true});
+        //     ham.get('swipe').set({enable:true});
+        //     ham.get('tap').set({enable:true});
+        // });
+
+        // pham.on('touchmove',function(e)     /*using hammerjs drag lagging and vertical bug
         // {
         //     e.preventDefault();
         //     console.log(e.center);
