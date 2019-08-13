@@ -212,13 +212,17 @@ ham.on('tap',function(e)
         pham.element.style.background="yellow";
         ham.get('pinch').set({enable:false});
         ham.get('swipe').set({enable:false});
-        pham.on('panmove',function(e)
+        ham.addEventListener('touchstart',function()
         {
-            e.preventDefault();
-            console.log(e.center);
-            e.target.style.left=e.center['x']+'px';
-            e.target.style.top=e.center['y']+'px';
+            console.log('!!');
         });
+        // pham.on('touchmove',function(e)     /*usinh hammerjs drag lagging
+        // {
+        //     e.preventDefault();
+        //     console.log(e.center);
+        //     e.target.style.left=e.center['x']+'px';
+        //     e.target.style.top=e.center['y']+'px';
+        // });
     });
     mp=mp+1;
 });
