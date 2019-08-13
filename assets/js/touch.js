@@ -219,14 +219,9 @@ ham.on('tap',function(e)
                 var dim=e.targetTouches[0];
                 e.target.style.left=dim.clientX+'px';
                 e.target.style.top=dim.clientY+'px';
-                e.target.addEventListener('touchend',function(e)
-                {
-                   pham.set({ enable:true});
-                   pham.set({ enable:true});
-                });
             }
         });
-       
+
     });
     mp=mp+1;
 });
