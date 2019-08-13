@@ -220,14 +220,14 @@ ham.on('tap',function(e)
                 e.target.style.left=dim.clientX+'px';
                 e.target.style.top=dim.clientY+'px';
             }
+            e.stopPropagation();
         });
         e.target.addEventListener('touchend',function(e)
         {
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-            e.target.style.left=e.targetTouches[0].clientX+'px';
-            e.target.style.left=e.targetTouches[0].clientY+'px';
+            e.stopPropagation();
         });
     });
     mp=mp+1;
