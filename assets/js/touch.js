@@ -211,7 +211,6 @@ ham.on('tap',function(e)
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
-        setTimeout(
         e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
             // console.log(e.target.id);
@@ -221,7 +220,7 @@ ham.on('tap',function(e)
                 e.target.style.left=dim.clientX+'px';
                 e.target.style.top=dim.clientY+'px';
             }
-        }),500);
+        });
         e.target.addEventListener('touchend',function(e)
         {
             e.target.style.background="transparent";
