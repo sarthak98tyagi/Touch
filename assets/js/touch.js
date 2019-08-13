@@ -208,11 +208,11 @@ ham.on('tap',function(e)
     pham.on('press',function(e)
     {
         e.preventDefault();
-        ham.get('pinch').set({enable:false});
-        ham.get('swipe').set({enable:false});
-        ham.get('tap').set({enable:false});
-        pham.get('tap').set({ enable:false });
         pham.get('press').set({ enable:false });
+        ham.get('pinch').set({ enable:false });
+        ham.get('swipe').set({ enable:false });
+        ham.get('tap').set({ enable:false });
+        pham.get('tap').set({ enable:false });
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
@@ -224,21 +224,14 @@ ham.on('tap',function(e)
                 e.target.style.top=dim.clientY+'px';
             }
         });
-        // pin.addEventListener('touchend',function()
-        // {
-        //     pham.element.style.background="transparent";
-        //     ham.get('pinch').set({enable:true});
-        //     ham.get('swipe').set({enable:true});
-        //     ham.get('tap').set({enable:true});
-        // });
-
-        // pham.on('touchmove',function(e)     /*using hammerjs drag lagging and vertical bug
-        // {
-        //     e.preventDefault();
-        //     console.log(e.center);
-        //     e.target.style.left=e.center['x']+'px';
-        //     e.target.style.top=e.center['y']+'px';
-        // });
+        e.target.addEventListener('touchend',function(e)
+        {
+            ham.get('pinch').set({ enable:true });
+            ham.get('swipe').set({ enable:true });
+            ham.get('tap').set({ enable:true });
+            pham.get('tap').set({ enable:true });
+            pham.get('press').set({ enable:true });
+        });
     });
     mp=mp+1;
 });
@@ -256,4 +249,4 @@ function cancel(e)
     screen.removeChild(e.target.parentElement);
     ham.set({enable:true});
 }
-/*Dragging*/
+
