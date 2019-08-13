@@ -235,7 +235,7 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-            e.target.touchmove=null;
+            e.target.touchmove.stopPropagation();
             // move=0;
         });
 
