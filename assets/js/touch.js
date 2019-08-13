@@ -213,21 +213,19 @@ ham.on('tap',function(e)
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
-        e.target.addEventListener('touchmove',function(e)
+        var motion=function(e)
         {
-            // move=1;
             e.preventDefault();
             // if(move===1)
             // {
-                if(e.targetTouches.length===1)
-                {
-                    var dim=e.targetTouches[0];
-                    e.target.style.left=dim.clientX+'px';
-                    e.target.style.top=dim.clientY+'px';
-                }
-                // }
-
-        });
+            if(e.targetTouches.length===1)
+            {
+                var dim=e.targetTouches[0];
+                e.target.style.left=dim.clientX+'px';
+                e.target.style.top=dim.clientY+'px';
+            }
+        };
+        e.target.addEventListener('touchmove',motion);
         e.target.addEventListener('touchend',function(e)
         {
             e.preventDefault();
@@ -235,8 +233,9 @@ ham.on('tap',function(e)
             pham.set({enable:true});
             ham.set({enable:true});
             // move=0;
+            e.target.removeEventListener('touchmove',motion);
         });
-        e.target.removeEventListener('touchmove',function(){});
+
     });
     mp=mp+1;
 });
