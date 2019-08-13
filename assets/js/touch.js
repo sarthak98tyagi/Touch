@@ -15,6 +15,7 @@ map.style.left='0px';
 var mp=0; //mark-counter
 var message=['One','Two','Three','Four','Five','Six'];
 var cnt=0;
+var move=0;
 function scaleshift(factor=1)
 {
     var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
@@ -205,7 +206,7 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    var move;
+
     pham.on('press',function(e)
     {
         move=1;
@@ -232,8 +233,9 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
+            move=0;
         });
-        move=0;
+
     });
     mp=mp+1;
 });
