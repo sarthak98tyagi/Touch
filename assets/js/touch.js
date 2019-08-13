@@ -224,8 +224,9 @@ ham.on('tap',function(e)
         e.target.addEventListener('touchend',function()
         {
            console.log("!!");
+           pham.set({enable:true});
+           ham.set({enable:true});
         });
-
     });
     mp=mp+1;
 });
