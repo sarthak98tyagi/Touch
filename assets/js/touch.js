@@ -209,24 +209,23 @@ ham.on('tap',function(e)
 
     pham.on('press',function(e)
     {
-
         e.preventDefault();
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e)
         {
-            move=1;
+            // move=1;
             e.preventDefault();
-            if(move===1)
-            {
+            // if(move===1)
+            // {
                 if(e.targetTouches.length===1)
                 {
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
                 }
-            }
+            // }
         });
         e.target.addEventListener('touchend',function(e)
         {
@@ -234,7 +233,7 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-            move=0;
+            // move=0;
         });
 
     });
