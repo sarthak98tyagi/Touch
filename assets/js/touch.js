@@ -225,8 +225,8 @@ ham.on('tap',function(e)
             e.target.addEventListener('touchend',function(e)
             {
                 e.preventDefault();
-                pham.set({ enable: true});
-                // ham.set({ enable: true});
+                ham.set({ enable: true});
+                pham.set({enable: true});
                 console.log("!!!!");
                 e.target.style.background="transparent";
 
