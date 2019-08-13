@@ -205,7 +205,7 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    var move=0;
+    var move;
     pham.on('press',function(e)
     {
         move=1;
@@ -225,10 +225,6 @@ ham.on('tap',function(e)
                     e.target.style.top=dim.clientY+'px';
                 }
             }
-
-            // console.log(e.target.id);
-
-
         });
         e.target.addEventListener('touchend',function(e)
         {
@@ -236,9 +232,8 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
-            move=0;
         });
-
+        move=0;
     });
     mp=mp+1;
 });
