@@ -194,19 +194,18 @@ ham.on('tap',function(e)
     holder.appendChild(mark);
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
-    // pham.get('pan').set({ direction: Hammer.DIRECTION_All });
-    // pham.on('tap',function(e)
-    // {
-    //     ham.set({enable:false});
-    //     var popup=document.createElement("div");
-    //     popup.innerText=pointers[e.target.id][4];
-    //     popup.id=e.target.id;
-    //     popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
-    //     popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
-    //     popup.className="popup";
-    //     screen.appendChild(popup);
-    // });
     pham.on('tap',function(e)
+    {
+        ham.set({enable:false});
+        var popup=document.createElement("div");
+        popup.innerText=pointers[e.target.id][4];
+        popup.id=e.target.id;
+        popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
+        popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
+        popup.className="popup";
+        screen.appendChild(popup);
+    });
+    pham.on('press',function(e)
     {
         e.preventDefault();
         ham.get('pinch').set({enable:false});
