@@ -228,7 +228,7 @@ ham.on('tap',function(e)
             ham.set({enable:true});
 
         });
-        e.target.touchmove= null;
+        e.stopPropagation();
     });
     mp=mp+1;
 });
