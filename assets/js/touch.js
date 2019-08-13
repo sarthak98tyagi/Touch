@@ -175,83 +175,76 @@ ham.on('swipeup',function(e)
 
     }
 });
-ham.on('tap',function(e)
-{
+ham.on('tap',function(e) {
     e.preventDefault();
-    var x=e.center['x'];
-    var y=e.center['y'];
-    var cl=parseFloat(map.style.left);
-    var ct=parseFloat(map.style.top);
-    var xmark=Math.abs(cl)+x;
-    var ymark=Math.abs(ct)+y;
-    var mark=document.createElement("div");
-    mark.id=mp;
-    var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-    var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-    pointers[mp]=[xmark,ymark,inwidth,inheight,message[mp]];
-    mark.className="mark";
-    mark.style.left=x+'px';
-    mark.style.top=y+'px';
+    var x = e.center['x'];
+    var y = e.center['y'];
+    var cl = parseFloat(map.style.left);
+    var ct = parseFloat(map.style.top);
+    var xmark = Math.abs(cl) + x;
+    var ymark = Math.abs(ct) + y;
+    var mark = document.createElement("div");
+    mark.id = mp;
+    var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+    var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+    pointers[mp] = [xmark, ymark, inwidth, inheight, message[mp]];
+    mark.className = "mark";
+    mark.style.left = x + 'px';
+    mark.style.top = y + 'px';
     holder.appendChild(mark);
-    var pin=document.getElementById(mp);
-    pham=new Hammer(pin);
-    pham.on('tap',function(e)
-    {
+    var pin = document.getElementById(mp);
+    pham = new Hammer(pin);
+    pham.on('tap', function (e) {
 
-        ham.set({enable:false});
-        var popup=document.createElement("div");
-        popup.innerText=pointers[e.target.id][4];
-        popup.id=e.target.id;
-        popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
-        popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
-        popup.className="popup";
+        ham.set({enable: false});
+        var popup = document.createElement("div");
+        popup.innerText = pointers[e.target.id][4];
+        popup.id = e.target.id;
+        popup.innerHTML += '<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
+        popup.innerHTML += '<i class="fas fa-times close" onclick="cancel(event)"></i>';
+        popup.className = "popup";
         screen.appendChild(popup);
     });
-    pham.on('press',function(e)
-    {
+    pham.on('press', function (e) {
         console.log(e.target.id);
-        pham.set({enable:false});
-        ham.set({ enable: false});
-        e.target.style.background="yellow";
-        e.target.addEventListener('touchmove',function(e)
-        {
+        pham.set({enable: false});
+        ham.set({enable: false});
+        e.target.style.background = "yellow";
+        e.target.addEventListener('touchmove', function (e) {
             // move=1;
             e.preventDefault();
             // if(move===1)
             // {
-                if(e.targetTouches.length===1)
-                {
-                    var dim=e.targetTouches[0];
-                    e.target.style.left=dim.clientX+'px';
-                    e.target.style.top=dim.clientY+'px';
+            if (e.targetTouches.length === 1) {
+                var dim = e.targetTouches[0];
+                e.target.style.left = dim.clientX + 'px';
+                e.target.style.top = dim.clientY + 'px';
 
-                }
-                // }
+            }
+            // }
         });
-        e.target.addEventListener('touchend',function(e)
-        {
+        e.target.addEventListener('touchend', function (e) {
             e.preventDefault();
-            e.target.style.background="transparent";
-            pham.set({enable:true});
-            ham.set({enable:true});
-            e.target.removeEventListener('touchmove',function(e)
-            {
+            e.target.style.background = "transparent";
+            pham.set({enable: true});
+            ham.set({enable: true});
+            e.target.removeEventListener('touchmove', function (e) {
                 // move=1;
                 e.preventDefault();
                 // if(move===1)
                 // {
-                if(e.targetTouches.length===1)
-                {
-                    var dim=e.targetTouches[0];
-                    e.target.style.left=dim.clientX+'px';
-                    e.target.style.top=dim.clientY+'px';
+                if (e.targetTouches.length === 1) {
+                    var dim = e.targetTouches[0];
+                    e.target.style.left = dim.clientX + 'px';
+                    e.target.style.top = dim.clientY + 'px';
 
                 }
-            // move=0;
-        });
+                // move=0;
+            });
 
+        });
+        mp = mp + 1;
     });
-    mp=mp+1;
 });
 function remove(e)
 {
