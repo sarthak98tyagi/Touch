@@ -209,13 +209,14 @@ ham.on('tap',function(e)
 
     pham.on('press',function(e)
     {
-        move=1;
+
         e.preventDefault();
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e)
         {
+            move=1;
             e.preventDefault();
             if(move===1)
             {
