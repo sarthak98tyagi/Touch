@@ -224,7 +224,7 @@ ham.on('tap',function(e)
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
-                    console.log("!!");
+
                 }
 
             // }
@@ -235,6 +235,7 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
+            e.target.touchmove=null;
             // move=0;
         });
 
