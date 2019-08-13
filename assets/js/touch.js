@@ -225,10 +225,10 @@ ham.on('tap',function(e)
             e.target.addEventListener('touchend',function(e)
             {
                 e.preventDefault();
+                console.log("!!!!");
                 e.target.style.background="transparent";
                 pham.set({enable:true});
                 ham.set({enable:true});
-
             });
 
         });
