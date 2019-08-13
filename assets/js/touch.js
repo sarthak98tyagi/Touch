@@ -197,7 +197,7 @@ ham.on('tap',function(e)
     pham=new Hammer(pin);
     pham.on('tap',function(e)
     {
-        
+
         ham.set({enable:false});
         var popup=document.createElement("div");
         popup.innerText=pointers[e.target.id][4];
@@ -226,6 +226,7 @@ ham.on('tap',function(e)
                     e.target.style.top=dim.clientY+'px';
                 }
             // }
+            e.stopPropagation();
         });
         e.target.addEventListener('touchend',function(e)
         {
@@ -234,6 +235,7 @@ ham.on('tap',function(e)
             pham.set({enable:true});
             ham.set({enable:true});
             // move=0;
+            e.stopPropagation();
         });
 
     });
