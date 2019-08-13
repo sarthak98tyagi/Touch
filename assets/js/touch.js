@@ -205,13 +205,13 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-    pham.on('press',function(event)
+    pham.on('press',function(e)
     {
-        event.preventDefault();
+        e.preventDefault();
         pham.set({enable:false});
         ham.set({ enable: false});
-        event.target.style.background="yellow";
-        event.target.addEventListener('touchmove',function(e){
+        e.target.style.background="yellow";
+        e.target.addEventListener('touchmove',function(e){
             e.preventDefault();
             // console.log(e.target.id);
             if(e.targetTouches.length===1)
@@ -221,14 +221,14 @@ ham.on('tap',function(e)
                 e.target.style.top=dim.clientY+'px';
             }
         });
-        event.target.addEventListener('touchend',function(e)
+        e.target.addEventListener('touchend',function(e)
         {
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
 
         });
-        event.stopPropagation();
+        e.stopPropagation();
     });
     mp=mp+1;
 });
