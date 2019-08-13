@@ -221,6 +221,10 @@ ham.on('tap',function(e)
                 e.target.style.top=dim.clientY+'px';
             }
         });
+        e.target.addEventListener('touchend',function()
+        {
+           console.log("!!");
+        });
 
     });
     mp=mp+1;
