@@ -227,8 +227,8 @@ ham.on('tap',function(e)
                 e.preventDefault();
                 console.log("!!!!");
                 e.target.style.background="transparent";
-                pham.set({enable:true});
-                ham.set({enable:true});
+                // pham.set({ enable: true});
+                // ham.set({ enable: true});
             });
 
         });
