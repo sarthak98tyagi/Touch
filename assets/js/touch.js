@@ -223,11 +223,8 @@ ham.on('tap',function(e)
         });
         e.target.addEventListener('touchend',function(e)
         {
-            ham.get('pinch').set({ enable: true });
-            ham.get('swipe').set({ enable: true });
-            ham.get('tap').set({ enable: true });
-            pham.get('tap').set({ enable: true });
-            pham.get('press').set({ enable: true });
+            pham.set({enable:true});
+            ham.set({enable:true});
         });
     });
     mp=mp+1;
