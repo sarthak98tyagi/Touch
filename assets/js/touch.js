@@ -205,23 +205,29 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
+    var move=0;
     pham.on('press',function(e)
     {
+        move=1;
         e.preventDefault();
         pham.set({enable:false});
         ham.set({ enable: false});
         e.target.style.background="yellow";
         e.target.addEventListener('touchmove',function(e)
         {
-            console.log('!!');
             e.preventDefault();
-            // console.log(e.target.id);
-            if(e.targetTouches.length===1)
+            if(move===1)
             {
-                var dim=e.targetTouches[0];
-                e.target.style.left=dim.clientX+'px';
-                e.target.style.top=dim.clientY+'px';
+                if(e.targetTouches.length===1)
+                {
+                    var dim=e.targetTouches[0];
+                    e.target.style.left=dim.clientX+'px';
+                    e.target.style.top=dim.clientY+'px';
+                }
             }
+
+            // console.log(e.target.id);
+
 
         });
         e.target.addEventListener('touchend',function(e)
@@ -230,7 +236,9 @@ ham.on('tap',function(e)
             e.target.style.background="transparent";
             pham.set({enable:true});
             ham.set({enable:true});
+            move=0;
         });
+
     });
     mp=mp+1;
 });
