@@ -225,6 +225,7 @@ ham.on('tap',function(e)
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
                 }
+                console.log("!!");
             // }
         });
         e.target.addEventListener('touchend',function(e)
