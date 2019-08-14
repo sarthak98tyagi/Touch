@@ -224,14 +224,18 @@ ham.on('tap',function(e)
                     e.target.style.top=dim.clientY+'px';
                 }
             });
-            e.target.addEventListener('touchend',function(e){
-                if(start)
-                {
-                    ham.set({ enable: true});
-                    pham.set({enable: true});
-                    e.target.style.background="transparent";
-                }
-            })
+            if(start)
+            {
+                ham.set({ enable: true});
+                pham.set({enable: true});
+                e.target.style.background="transparent";
+            }
+            // e.target.addEventListener('touchend',function(e){
+            //     if(start)
+            //     {
+            //
+            //     }
+            // })
     });
         mp=mp+1;
 });
