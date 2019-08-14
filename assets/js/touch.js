@@ -226,6 +226,7 @@ ham.on('tap',function(e)
             });
             if(start)
             {
+                console.log('!!');
                 ham.set({ enable: true});
                 pham.set({enable: true});
                 e.target.style.background="transparent";
