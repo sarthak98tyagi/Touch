@@ -225,22 +225,17 @@ ham.on('tap',function(e)
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
-                    end=1;
+                    var cl=parseFloat(map.style.left);
+                    var ct=parseFloat(map.style.top);
+                    var xmark=Math.abs(cl)+dim.clientX;
+                    var ymark=Math.abs(ct)+dim.clientY;
+                    var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                    var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                    pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
                 }
 
             });
-            e.target.addEventListener("touchend", function(e)
-            {
-                if(end)
-                {
-                    console.log('!!');
-                    ham.set({enable: true});
-                    pham.set({enable: true});
-                    e.target.style.background = "transparent";
-                }
 
-
-            });
 
     });
         mp=mp+1;

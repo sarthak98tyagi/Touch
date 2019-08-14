@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="223" column="26" selection-start-line="223" selection-start-column="26" selection-end-line="223" selection-end-column="26" />
+            <state relative-caret-position="298">
+              <caret line="233" column="94" lean-forward="true" selection-start-line="233" selection-start-column="94" selection-end-line="233" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -136,12 +136,12 @@
       <workItem from="1564390766571" duration="78057000" />
       <workItem from="1564995759080" duration="108576000" />
       <workItem from="1565685961578" duration="20654000" />
-      <workItem from="1565764269056" duration="1833000" />
+      <workItem from="1565764269056" duration="2347000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243529000" />
+    <option name="totallyTimeSpent" value="244043000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -168,18 +168,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/touch.js</url>
-          <line>242</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../twelvth/index.html">
@@ -234,8 +222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="223" column="26" selection-start-line="223" selection-start-column="26" selection-end-line="223" selection-end-column="26" />
+        <state relative-caret-position="298">
+          <caret line="233" column="94" lean-forward="true" selection-start-line="233" selection-start-column="94" selection-end-line="233" selection-end-column="94" />
         </state>
       </provider>
     </entry>
