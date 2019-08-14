@@ -225,7 +225,7 @@ ham.on('tap',function(e)
                 }
             });
             e.target.addEventListener('touchend',function(e){
-                if(start===0)
+                if(start)
                 {
                     ham.set({ enable: true});
                     pham.set({enable: true});
