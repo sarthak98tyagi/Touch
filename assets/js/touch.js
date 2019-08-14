@@ -208,10 +208,10 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
-
+    var move=0;
     pham.on('press',function(e)
     {
-            var move=1;
+            move=1;
             console.log(e.target.id);
             pham.set({enable:false});
             ham.set({ enable: false});
