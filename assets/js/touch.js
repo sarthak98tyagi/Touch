@@ -222,8 +222,9 @@ ham.on('tap',function(e)
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
+                    start=0;
                 }
-                start=0
+
             });
             e.target.addEventListener("touchend", function(e)
             {
