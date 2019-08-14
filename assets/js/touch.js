@@ -240,7 +240,7 @@ ham.on('tap',function(e)
                                 {
                                     console.log('!!');
                                     var ml=parseFloat(map.style.left);
-                                    map.style.left=(ml-(dim.clientX-k))+'px';
+                                    map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
                                     scaleshift();
                                 }
                         }
