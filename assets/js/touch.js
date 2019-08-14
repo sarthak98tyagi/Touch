@@ -238,8 +238,8 @@ ham.on('tap',function(e)
                             ham.set({ enable:true});
                             e.target.style.background="transparent";
                         }
+                        move=0;
                     }
-                    move=0;
 
                 });
 
