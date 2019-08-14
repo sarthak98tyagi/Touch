@@ -221,7 +221,7 @@ ham.on('tap',function(e)
                 e.target.addEventListener('touchmove',function(e)
                 {
                     e.preventDefault();
-                    if(e.targetTouches.length===1)
+                    if(e.targetTouches.length===1 && move)
                     {
 
                         var dim=e.targetTouches[0];
