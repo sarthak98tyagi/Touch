@@ -225,14 +225,13 @@ ham.on('tap',function(e)
                 }
             });
             e.target.addEventListener('touchend',function(e){
-                if(start)
+                if(!start)
                 {
                     ham.set({ enable: true});
                     pham.set({enable: true});
                     e.target.style.background="transparent";
                 }
             })
-        
     });
         mp=mp+1;
 });
