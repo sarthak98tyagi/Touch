@@ -213,12 +213,12 @@ ham.on('tap',function(e)
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
-            var start=0;
+            var start=1;
             e.target.addEventListener('touchmove',function(e){
                 e.preventDefault();
                 if(e.targetTouches.length===1)
                 {
-                    start=1;
+                    
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
@@ -228,14 +228,14 @@ ham.on('tap',function(e)
             });
             e.target.addEventListener("touchend", function(e)
             {
-                if(start)
+                if(!start)
                 {
                     console.log('!!');
-                    ham.set({ enable: true});
+                    ham.set({enable: true});
                     pham.set({enable: true});
-                    e.target.style.background="transparent";
+                    e.target.style.background = "transparent";
                 }
-                
+
 
             });
 
