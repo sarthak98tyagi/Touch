@@ -245,8 +245,6 @@ ham.on('tap',function(e)
                 }
             }
             )
-
-
     });
         mp=mp+1;
 });
