@@ -244,8 +244,7 @@ ham.on('tap',function(e)
                     move=0;
                     e.target.style.background="transparent";
                 }
-            }
-            )
+            });
     });
         mp=mp+1;
 });
