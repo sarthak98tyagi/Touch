@@ -213,19 +213,19 @@ ham.on('tap',function(e)
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
-            var start;
+            var start=0;
             e.target.addEventListener('touchmove',function(e){
                 e.preventDefault();
                 if(e.targetTouches.length===1)
                 {
-                    start=true;
+                    start=1;
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
                 }
             });
             e.target.addEventListener('touchend',function(e){
-                if(!start)
+                if(start===0)
                 {
                     ham.set({ enable: true});
                     pham.set({enable: true});
