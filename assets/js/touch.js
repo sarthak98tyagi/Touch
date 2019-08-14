@@ -240,7 +240,7 @@ ham.on('tap',function(e)
                     }
                 });
             }
-            move=0;
+            
 
     });
         mp=mp+1;
