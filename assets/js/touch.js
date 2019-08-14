@@ -209,22 +209,30 @@ ham.on('tap',function(e)
     });
     pham.on('press',function(e)
     {
-        console.log(e.target.id);
+            console.log(e.target.id);
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
+            var start;
             e.target.addEventListener('touchmove',function(e){
                 e.preventDefault();
                 if(e.targetTouches.length===1)
                 {
+                    start=true;
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
                 }
             });
-        // ham.set({ enable: true});
-        // pham.set({enable: true});
-        // e.target.style.background="transparent";
+            e.target.addEventListener('touchend',function(e){
+                if(start)
+                {
+                    ham.set({ enable: true});
+                    pham.set({enable: true});
+                    e.target.style.background="transparent";
+                }
+            })
+        
     });
         mp=mp+1;
 });
