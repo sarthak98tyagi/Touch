@@ -230,16 +230,16 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                                if((dim.clientX-k)>(-30))
-                                {   var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+                                if((dim.clientX-k)>(-20))
+                                {
+                                    var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     console.log(mr);
-                                    if((mr+Math.abs(dim.clientX-k)+30)<=0)
+                                    if((mr+Math.abs(dim.clientX-k))<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
                                         scaleshift();
                                     }
-
                                 }
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
