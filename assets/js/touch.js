@@ -234,6 +234,7 @@ ham.on('tap',function(e)
                         pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
                         pham.set({enable:true});
                         ham.set({ enable:true});
+                        console.log(inwidth+" "+inheight+" "+dim.clientX+" "+dim.clientY);
 
                     }
                 });
