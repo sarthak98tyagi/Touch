@@ -231,9 +231,9 @@ ham.on('tap',function(e)
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                                 if((dim.clientX-k)>(-30))
-                                {   var mr=parseFloat(map.style.right);
+                                {   var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     console.log(mr);
-                                    if((mr-Math.abs(dim.clientX-k))<=0)
+                                    if((mr+Math.abs(dim.clientX-k))<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
