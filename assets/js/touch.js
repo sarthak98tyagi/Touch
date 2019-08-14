@@ -211,33 +211,38 @@ ham.on('tap',function(e)
 
     pham.on('press',function(e)
     {
-
+            var move=1;
             console.log(e.target.id);
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
-            var end=0;
-            e.target.addEventListener('touchmove',function(e){
-                e.preventDefault();
-                if(e.targetTouches.length===1)
+            if(move)
+            {
+                e.target.addEventListener('touchmove',function(e)
                 {
-                    end=0;
-                    var dim=e.targetTouches[0];
-                    e.target.style.left=dim.clientX+'px';
-                    e.target.style.top=dim.clientY+'px';
-                    var cl=parseFloat(map.style.left);
-                    var ct=parseFloat(map.style.top);
-                    var xmark=Math.abs(cl)+dim.clientX;
-                    var ymark=Math.abs(ct)+dim.clientY;
-                    var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                    var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                    pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
-                    pham.set({enable:true});
-                    ham.set({ enable:true});
-                    e.target.style.background="transparent";
-                }
+                    e.preventDefault();
+                    if(e.targetTouches.length===1)
+                    {
+                        end=0;
+                        var dim=e.targetTouches[0];
+                        e.target.style.left=dim.clientX+'px';
+                        e.target.style.top=dim.clientY+'px';
+                        var cl=parseFloat(map.style.left);
+                        var ct=parseFloat(map.style.top);
+                        var xmark=Math.abs(cl)+dim.clientX;
+                        var ymark=Math.abs(ct)+dim.clientY;
+                        var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                        pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
+                        pham.set({enable:true});
+                        ham.set({ enable:true});
+                        e.target.style.background="transparent";
+                    }
 
-            });
+                });
+            }
+            move=0;
+            
 
 
     });
