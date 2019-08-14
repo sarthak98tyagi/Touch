@@ -237,7 +237,7 @@ ham.on('tap',function(e)
                         // console.log(document.documentElement.clientWidth+" "+document.documentElement.clientHeight+" "+dim.clientX+" "+dim.clientY);
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                                console.log(dim.clientX-k);
+                                console.log(dim.clientX);
                         }
                     }
                 });
