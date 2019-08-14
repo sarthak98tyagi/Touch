@@ -239,14 +239,8 @@ ham.on('tap',function(e)
                             e.target.style.background="transparent";
                         }
                     }
+                    move=0;
                 });
-            console.log('!!');
-                move=0;
-
-
-
-
-
     });
         mp=mp+1;
 });
