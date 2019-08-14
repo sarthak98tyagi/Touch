@@ -237,11 +237,12 @@ ham.on('tap',function(e)
                         // e.target.style.background="transparent";
                     }
                 });
-            e.target.addEventListener('touchend',function()
+            e.target.addEventListener('touchend',function(e)
             {
                 if(move)
                 {
                     move=0;
+                    e.target.style.background="transparent";
                 }
             }
             )
