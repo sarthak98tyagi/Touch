@@ -223,6 +223,7 @@ ham.on('tap',function(e)
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
                 }
+                console.log('!!');
             });
             if(start)
             {
@@ -231,12 +232,7 @@ ham.on('tap',function(e)
                 pham.set({enable: true});
                 e.target.style.background="transparent";
             }
-            // e.target.addEventListener('touchend',function(e){
-            //     if(start)
-            //     {
-            //
-            //     }
-            // })
+
     });
         mp=mp+1;
 });
