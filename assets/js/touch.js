@@ -216,9 +216,7 @@ ham.on('tap',function(e)
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
-            if(move)
-            {
-                e.target.addEventListener('touchmove',function(e)
+            e.target.addEventListener('touchmove',function(e)
                 {
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
@@ -236,11 +234,18 @@ ham.on('tap',function(e)
                         pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
                         pham.set({enable:true});
                         ham.set({ enable:true});
-                        e.target.style.background="transparent";
+                        // e.target.style.background="transparent";
                     }
                 });
+            e.target.addEventListener('touchend',function()
+            {
+                if(move)
+                {
+                    move=0;
+                }
             }
-            
+            )
+
 
     });
         mp=mp+1;
