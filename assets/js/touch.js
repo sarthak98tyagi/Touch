@@ -234,9 +234,12 @@ ham.on('tap',function(e)
                                 if((dim.clientX-k)>(-30))
                                 {   var mr=parseFloat(map.style.right);
                                     if((mr+Math.abs(dim.clientX-k))<=0)
-                                    var ml=parseFloat(map.style.left);
-                                    map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
-                                    scaleshift();
+                                    {
+                                        var ml=parseFloat(map.style.left);
+                                        map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
+                                        scaleshift();
+                                    }
+
                                 }
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
