@@ -236,7 +236,11 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                                console.log(dim.clientX-k);
+                                if((dim.clientX-k)>0)
+                                {
+                                    map.style.left=(ml-(dim.clientX-k))+'px';
+                                    scaleshift();
+                                }
                         }
                     }
                 });
