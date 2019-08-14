@@ -232,6 +232,7 @@ ham.on('tap',function(e)
                         {
                                 if((dim.clientX-k)>(-30))
                                 {   var mr=parseFloat(map.style.right);
+                                    console.log(mr);
                                     if((mr-Math.abs(dim.clientX-k))<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
