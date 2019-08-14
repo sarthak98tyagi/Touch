@@ -232,7 +232,8 @@ ham.on('tap',function(e)
                         var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
                         var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
-
+                        pham.set({enable:true});
+                        ham.set({ enable:true});
 
                     }
                 });
@@ -241,8 +242,6 @@ ham.on('tap',function(e)
                 if(move)
                 {
                     move=0;
-                    pham.set({enable:true});
-                    ham.set({ enable:true});
                     e.target.style.background="transparent";
                 }
             });
