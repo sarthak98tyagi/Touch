@@ -207,28 +207,28 @@ ham.on('tap',function(e)
         popup.className="popup";
         screen.appendChild(popup);
     });
+    var end=0;
     pham.on('press',function(e)
     {
             console.log(e.target.id);
             pham.set({enable:false});
             ham.set({ enable: false});
             e.target.style.background="yellow";
-            var start=1;
             e.target.addEventListener('touchmove',function(e){
                 e.preventDefault();
                 if(e.targetTouches.length===1)
                 {
-                    
+
                     var dim=e.targetTouches[0];
                     e.target.style.left=dim.clientX+'px';
                     e.target.style.top=dim.clientY+'px';
-                    start=0;
+                    end=1;
                 }
 
             });
             e.target.addEventListener("touchend", function(e)
             {
-                if(!start)
+                if(end)
                 {
                     console.log('!!');
                     ham.set({enable: true});
