@@ -233,8 +233,7 @@ ham.on('tap',function(e)
                         pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
                         pham.set({enable:true});
                         ham.set({ enable:true});
-                        var k=dim.clientX;
-                        // console.log(document.documentElement.clientWidth+" "+document.documentElement.clientHeight+" "+dim.clientX+" "+dim.clientY);
+                        var k=document.documentElement.clientWidth;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                                 console.log(dim.clientX,k);
@@ -243,10 +242,9 @@ ham.on('tap',function(e)
                 });
             e.target.addEventListener('touchend',function(e)
             {
-                if(move)
-                {
-                    move=0;
-                    e.target.style.background="transparent";
+                if(move) {
+                    move = 0;
+                    e.target.style.background = "transparent";
                 }
             });
     });
