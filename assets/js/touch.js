@@ -236,6 +236,7 @@ ham.on('tap',function(e)
                         {
 
                                     var dis=Math.abs(k-dim.clientX);
+                                    console.log(getComputedStyle(map).getPropertyValue("right")+"!");
                                     if((mr+dis)<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
