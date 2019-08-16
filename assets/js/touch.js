@@ -230,12 +230,13 @@ ham.on('tap',function(e)
                         ham.set({ enable:true});
                         var w=parseFloat(map.style.width);
                         var k=document.documentElement.clientWidth;
+                        var mr=w-dim.clientX-k;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                                     var dis=Math.abs(k-dim.clientX);
                                     var ml=parseFloat(map.style.left);
                                     console.log(-(ml-dis),k);
-                                    if(-(ml-dis)<(w+k))
+                                    if((mr+dis)<=0)
                                     {
 
                                         map.style.left=(ml-dis)+'px';
