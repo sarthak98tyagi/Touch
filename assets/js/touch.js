@@ -263,8 +263,7 @@ ham.on('tap',function(e)
                             if((ll+ldis)<=0)
                             {
                                 var lr=w+parseFloat(map.style.left)-k;
-                                console.log(lr);
-                                // map.style.right=(lr-ldis)+'px';
+                                map.style.left=(ll+ldis)+'px';
                                 scaleshift();
                             }
                         }
