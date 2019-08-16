@@ -261,9 +261,11 @@ ham.on('tap',function(e)
                             console.log("!!");
                             var ll=parseFloat(map.style.left);
                             var ldis=30-dim.clientX;
+                            console.log(ll,ldis);
                             if((ll+ldis)<=0)
                             {
                                 var lr=w+ll-k;
+                                console.log("!!!");
                                 map.style.right=(lr-ldis)+'px';
                                 scaleshift();
                             }
