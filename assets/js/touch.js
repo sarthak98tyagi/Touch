@@ -93,9 +93,10 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
+    console.log(x,y);
     var l=(x*e.scale);
     var t=(y*e.scale);
-    console.log(l);
+    console.log(l,t);
     var top=parseFloat(map.style.top);
     var ch=h<mheight?top===0:true;
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
@@ -109,17 +110,17 @@ ham.on('swiperight',function(e)
 {
     cnt=1;
     e.preventDefault();
-  var ml=parseFloat(map.style.left);
-  if((ml+e.distance)<0)
-  {
+    var ml=parseFloat(map.style.left);
+    if((ml+e.distance)<0)
+   {
       map.style.left=(ml+e.distance)+'px';
       scaleshift();
-  }
-  else
-  {
+   }
+   else
+   {
       map.style.left=0+'px';
       scaleshift();
-  }
+   }
 });
 ham.on('swipedown',function(e)
 {
@@ -131,7 +132,6 @@ ham.on('swipedown',function(e)
     {
         map.style.top=(mt+e.distance)+'px';
         scaleshift();
-
     }
     else
     {
