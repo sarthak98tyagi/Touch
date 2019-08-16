@@ -216,7 +216,7 @@ ham.on('tap',function(e)
             pham.set({enable:false});
             ham.set({enable:false});
             e.target.style.background="yellow";
-            e.target.addEventListener('touchmove',function(e)
+            e.target.addEventListener('touchmove',function(e)     /*drag module*/
                 {
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
@@ -243,6 +243,7 @@ ham.on('tap',function(e)
                                         scaleshift();
                                     }
                         }
+                        console.log(dim.clientX-document.documentElement.clientWidth);
                         var mb=h+parseFloat(map.style.top)-l;
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
