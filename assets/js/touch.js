@@ -258,14 +258,12 @@ ham.on('tap',function(e)
                         }
                         if(dim.clientX<30)
                         {
-                            console.log("!!");
                             var ll=parseFloat(map.style.left);
                             var ldis=30-dim.clientX;
-                            console.log(ll,ldis);
                             if((ll+ldis)<=0)
                             {
                                 var lr=w+ll-k;
-                                console.log("!!!");
+                                console.log(lr);
                                 map.style.right=(lr-ldis)+'px';
                                 scaleshift();
                             }
