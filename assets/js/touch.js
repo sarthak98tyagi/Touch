@@ -237,7 +237,7 @@ ham.on('tap',function(e)
                                     if((mr+dis)<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
-                                        map.style.left=(ml-dis)+'px';
+                                        map.style.right=(mr+dis)+'px';
                                         scaleshift();
                                     }
                         }
