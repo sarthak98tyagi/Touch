@@ -232,10 +232,11 @@ ham.on('tap',function(e)
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+                                    console.log(mr);
                                     var dis=Math.abs(k-dim.clientX);
-                                    if((mr+dis)<=(-k))
+                                    if((mr+dis)<=0)
                                     {
-                                        console.log(mr+dis);
+
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-dis)+'px';
                                         scaleshift();
