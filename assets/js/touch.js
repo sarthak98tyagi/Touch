@@ -230,8 +230,7 @@ ham.on('tap',function(e)
                         ham.set({ enable:true});
                         var w=parseFloat(map.style.width);
                         var k=document.documentElement.clientWidth;
-                        console.log(k+"!");
-                        var mr=w-parsefloat(map.style.left)-k;
+                        var mr=w-parseFloat(map.style.left)-k;
                         console.log(mr);
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
