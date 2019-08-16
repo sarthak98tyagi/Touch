@@ -233,11 +233,11 @@ ham.on('tap',function(e)
                         {
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     var dis=Math.abs(k-dim.clientX);
-                                    console.log(mr);
                                     if((mr+dis)<=0)
                                     {
+                                        console.log(mr+dis);
                                         var ml=parseFloat(map.style.left);
-                                        map.style.right=(mr+dis)+'px';
+                                        map.style.left=(ml-dis)+'px';
                                         scaleshift();
                                     }
                         }
