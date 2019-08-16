@@ -235,7 +235,7 @@ ham.on('tap',function(e)
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                                     var dis=Math.abs(k-dim.clientX);
-                                    if((mr+dis)<=0)
+                                    if((-mr+dis)<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-dis)+'px';
