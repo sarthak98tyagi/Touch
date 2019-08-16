@@ -93,12 +93,11 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    console.log(x,y);
+    console.log(x,y,e.scale);
     var l=(x*e.scale);
     var t=(y*e.scale);
-    console.log(l,t);
     var top=parseFloat(map.style.top);
-    var ch=h<mheight?top===0:true;
+    // var ch=h<mheight?top===0:true;
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
@@ -182,6 +181,7 @@ ham.on('tap',function(e)
     e.preventDefault();
     var x=e.center['x'];
     var y=e.center['y'];
+    console.log(x,y);
     var cl=parseFloat(map.style.left);
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
