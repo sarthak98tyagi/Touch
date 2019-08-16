@@ -262,7 +262,7 @@ ham.on('tap',function(e)
                             var ldis=30-dim.clientX;
                             if((ll+ldis)<=0)
                             {
-                                var lr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
+                                var lr=w+parseFloat(map.style.left)-k;
                                 console.log(lr);
                                 map.style.right=(lr-ldis)+'px';
                                 scaleshift();
