@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="245" column="86" selection-start-line="245" selection-start-column="86" selection-end-line="245" selection-end-column="86" />
+            <state relative-caret-position="391">
+              <caret line="255" column="25" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -137,12 +137,12 @@
       <workItem from="1564995759080" duration="108576000" />
       <workItem from="1565685961578" duration="20654000" />
       <workItem from="1565764269056" duration="10995000" />
-      <workItem from="1565943497647" duration="13014000" />
+      <workItem from="1565943497647" duration="13787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265705000" />
+    <option name="totallyTimeSpent" value="266478000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -223,8 +223,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="245" column="86" selection-start-line="245" selection-start-column="86" selection-end-line="245" selection-end-column="86" />
+        <state relative-caret-position="391">
+          <caret line="255" column="25" selection-start-line="255" selection-start-column="25" selection-end-line="255" selection-end-column="25" />
         </state>
       </provider>
     </entry>

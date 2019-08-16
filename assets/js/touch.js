@@ -228,24 +228,24 @@ ham.on('tap',function(e)
                         var ct=parseFloat(map.style.top);
                         pham.set({enable:true});
                         ham.set({ enable:true});
-                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                        var k=document.documentElement.clientWidth;
-                        var l=document.documentElement.clientHeight;
-                        var mr=w+parseFloat(map.style.left)-k;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                                    var dis=Math.abs(k-dim.clientX);
-                                    if((-mr+dis)<=0)
-                                    {
-                                        var ml=parseFloat(map.style.left);
-                                        map.style.left=(ml-dis)+'px';
-                                        scaleshift();
-                                    }
+                            var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                            var k=document.documentElement.clientWidth;
+                            var mr=w+parseFloat(map.style.left)-k;
+                            var dis=Math.abs(k-dim.clientX);
+                            if((-mr+dis)<=0)
+                            {
+                                var ml=parseFloat(map.style.left);
+                                map.style.left=(ml-dis)+'px';
+                                scaleshift();
+                            }
                         }
-                        var mb=h+parseFloat(map.style.top)-l;
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
+                            var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                            var l=document.documentElement.clientHeight;
+                            var mb=h+parseFloat(map.style.top)-l;
                             var vdis=Math.abs(l-dim.clientY);
                             if((-mb+vdis)<=0)
                             {
