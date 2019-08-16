@@ -95,6 +95,7 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var l=(x*e.scale);
     var t=(y*e.scale);
+    console.log(l);
     var top=parseFloat(map.style.top);
     var ch=h<mheight?top===0:true;
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
@@ -211,10 +212,9 @@ ham.on('tap',function(e)
     var move=0;
     pham.on('press',function(e)
     {
-
             move=1;
             pham.set({enable:false});
-            ham.set({ enable: false});
+            ham.set({enable:false});
             e.target.style.background="yellow";
             e.target.addEventListener('touchmove',function(e)
                 {
@@ -234,7 +234,7 @@ ham.on('tap',function(e)
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     console.log(mr);
                                     console.log(mr+Math.abs(dim.clientX-k));
-                                    if((mr+Math.abs(dim.clientX-k))<=(-30))
+                                    if((mr+Math.abs(dim.clientX-k))<=(-35))
                                     {
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
