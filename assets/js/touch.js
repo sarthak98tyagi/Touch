@@ -229,7 +229,9 @@ ham.on('tap',function(e)
                         pham.set({enable:true});
                         ham.set({ enable:true});
                         var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         var k=document.documentElement.clientWidth;
+                        var l=document.documentElement.clientHeight;
                         var mr=w+parseFloat(map.style.left)-k;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
@@ -240,6 +242,17 @@ ham.on('tap',function(e)
                                         map.style.left=(ml-dis)+'px';
                                         scaleshift();
                                     }
+                        }
+                        var mb=h+parseFloat(map.style.top)-l;
+                        if((document.documentElement.clientHeight-dim.clientY)<30)
+                        {
+                            var vdis=Math.abs(l-dim.clientX);
+                            if((-mb+vdis)<=0)
+                            {
+                                var mt=parseFloat(map.style.top);
+                                map.style.top=(mt-vdis)+'px';
+                                scaleshift();
+                            }
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
                         var ymark=Math.abs(ct)+dim.clientY;
