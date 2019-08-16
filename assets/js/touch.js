@@ -220,12 +220,15 @@ ham.on('tap',function(e)
                 {
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
-                    {  var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+                    {
                         var dim=e.targetTouches[0];
                         e.target.style.left=dim.clientX+'px';
                         e.target.style.top=dim.clientY+'px';
+                        console.log(getComputedStyle(map).getPropertyValue("right"));
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
+                        var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+                        console.log(mr);
                         pham.set({enable:true});
                         ham.set({ enable:true});
                         var k=document.documentElement.clientWidth;
@@ -233,7 +236,7 @@ ham.on('tap',function(e)
                         {
 
                                     var dis=Math.abs(k-dim.clientX);
-                                    if((mr+dis+dim.clientX)<=0)
+                                    if((mr+dis)<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-dis)+'px';
