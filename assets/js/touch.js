@@ -233,10 +233,10 @@ ham.on('tap',function(e)
                         {
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     console.log(30-(k-dim.clientX));
-                                    if((mr+Math.abs(dim.clientX-k))<=0)
+                                    if((mr+(30-(k-dim.clientX)))<=0)
                                     {
                                         var ml=parseFloat(map.style.left);
-                                        map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
+                                        map.style.left=(ml-(30-(k-dim.clientX)))+'px';
                                         scaleshift();
                                     }
                         }
