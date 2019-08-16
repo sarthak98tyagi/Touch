@@ -246,7 +246,7 @@ ham.on('tap',function(e)
                         var mb=h+parseFloat(map.style.top)-l;
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
-                            var vdis=Math.abs(l-dim.clientX);
+                            var vdis=Math.abs(l-dim.clientY);
                             if((-mb+vdis)<=0)
                             {
                                 var mt=parseFloat(map.style.top);
