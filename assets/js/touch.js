@@ -243,7 +243,6 @@ ham.on('tap',function(e)
                                         scaleshift();
                                     }
                         }
-                        console.log(dim.clientX-document.documentElement.clientWidth);
                         var mb=h+parseFloat(map.style.top)-l;
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
