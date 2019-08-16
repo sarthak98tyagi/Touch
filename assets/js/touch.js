@@ -94,8 +94,8 @@ ham.on('pinchmove',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     console.log(x,y,e.scale);
-    var l=(x*e.scale);
-    var t=(y*e.scale);
+    var l=(x/e.scale);
+    var t=(y/e.scale);
     var top=parseFloat(map.style.top);
     // var ch=h<mheight?top===0:true;
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
