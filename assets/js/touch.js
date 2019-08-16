@@ -228,7 +228,7 @@ ham.on('tap',function(e)
                         var ct=parseFloat(map.style.top);
                         pham.set({enable:true});
                         ham.set({ enable:true});
-                        var w=parseFloat(map.style.width);
+                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
                         var k=document.documentElement.clientWidth;
                         var mr=w-parseFloat(map.style.left)-k;
                         console.log(w,parseFloat(map.style.left),k,mr);
