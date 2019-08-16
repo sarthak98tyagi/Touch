@@ -152,7 +152,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.left=(ml+mr)+'px';
+        map.style.right=(ml+mr)+'px';
         scaleshift();
 
     }
