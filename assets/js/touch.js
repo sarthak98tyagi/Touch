@@ -264,7 +264,7 @@ ham.on('tap',function(e)
                             {
                                 var lr=w+parseFloat(map.style.left)-k;
                                 console.log(lr);
-                                map.style.right=(lr-ldis)+'px';
+                                // map.style.right=(lr-ldis)+'px';
                                 scaleshift();
                             }
                         }
