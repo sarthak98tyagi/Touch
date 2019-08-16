@@ -143,11 +143,8 @@ ham.on('swipeleft',function(e)
 {
     cnt=1;
     e.preventDefault();
-    var w=parseFloat(map.style.width);
-    var cw=document.documentElement.clientWidth;
-    // var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+    var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
     var ml=parseFloat(map.style.left);
-    var mr=w+ml-cw;
     if((mr+e.distance)<=0)
     {
         map.style.left=(ml-e.distance)+'px';
@@ -155,7 +152,7 @@ ham.on('swipeleft',function(e)
     }
     else
     {
-        map.style.right=(ml+mr)+'px';
+        map.style.left=(ml+mr)+'px';
         scaleshift();
 
     }
