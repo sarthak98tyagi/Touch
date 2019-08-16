@@ -233,9 +233,8 @@ ham.on('tap',function(e)
                         {
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     var dis=Math.abs(k-dim.clientX);
-                                    if((mr+dis<=0))
+                                    if((mr+dis)<=0)
                                     {
-
                                         var ml=parseFloat(map.style.left);
                                         map.style.left=(ml-dis)+'px';
                                         scaleshift();
