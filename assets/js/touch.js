@@ -262,8 +262,17 @@ ham.on('tap',function(e)
                             var ldis=30-dim.clientX;
                             if((ll+ldis)<=0)
                             {
-                                var lr=w+parseFloat(map.style.left)-k;
                                 map.style.left=(ll+ldis)+'px';
+                                scaleshift();
+                            }
+                        }
+                        if(dim.clientY<30)
+                        {
+                            var tl=parseFloat(map.style.top);
+                            var tdis=30-dim.clientY;
+                            if((tl+tdis)<=0)
+                            {
+                                map.style.top=(tl+tdis)+'px';
                                 scaleshift();
                             }
                         }
