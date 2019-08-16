@@ -230,8 +230,6 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                                if((dim.clientX-k)>(-20))
-                                {
                                     var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
                                     console.log(mr);
                                     console.log(mr+Math.abs(dim.clientX-k));
@@ -241,7 +239,6 @@ ham.on('tap',function(e)
                                         map.style.left=(ml-Math.abs(dim.clientX-k))+'px';
                                         scaleshift();
                                     }
-                                }
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
                         var ymark=Math.abs(ct)+dim.clientY;
@@ -252,7 +249,8 @@ ham.on('tap',function(e)
                 });
             e.target.addEventListener('touchend',function(e)
             {
-                if(move) {
+                if(move)
+                {
                     move = 0;
                     e.target.style.background = "transparent";
                 }
