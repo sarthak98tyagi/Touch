@@ -259,7 +259,7 @@ ham.on('tap',function(e)
                         if(dim.clientX<30)
                         {
                             console.log("!!");
-                            var ll=map.style.left;
+                            var ll=parseFloat(map.style.left);
                             var ldis=30-dim.clientX;
                             if((ll+ldis)<=0)
                             {
