@@ -228,31 +228,46 @@ ham.on('tap',function(e)
                         var ct=parseFloat(map.style.top);
                         pham.set({enable:true});
                         ham.set({ enable:true});
+                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        var k=document.documentElement.clientWidth;
+                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                        var l=document.documentElement.clientHeight;
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                            var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                            var k=document.documentElement.clientWidth;
-                            var mr=w+parseFloat(map.style.left)-k;
-                            var dis=Math.abs(k-dim.clientX);
-                            if((-mr+dis)<=0)
+
+                            var rr=w+parseFloat(map.style.left)-k;
+                            var rdis=Math.abs(k-dim.clientX);
+                            if((-rr+rdis)<=0)
                             {
-                                var ml=parseFloat(map.style.left);
-                                map.style.left=(ml-dis)+'px';
+                                var rl=parseFloat(map.style.left);
+                                map.style.left=(rl-rdis)+'px';
                                 scaleshift();
                             }
                         }
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
-                            var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                            var l=document.documentElement.clientHeight;
-                            var mb=h+parseFloat(map.style.top)-l;
-                            var vdis=Math.abs(l-dim.clientY);
-                            if((-mb+vdis)<=0)
+
+                            var bb=h+parseFloat(map.style.top)-l;
+                            var bdis=Math.abs(l-dim.clientY);
+                            if((-bb+bdis)<=0)
                             {
-                                var mt=parseFloat(map.style.top);
-                                map.style.top=(mt-vdis)+'px';
+                                var bt=parseFloat(map.style.top);
+                                map.style.top=(bt-bdis)+'px';
                                 scaleshift();
                             }
+                        }
+                        if(dim.clientX<30)
+                        {
+                            console.log("!!");
+                            var ll=map.style.left;
+                            var ldis=30-dim.clientX;
+                            if((ll+ldis)<=0)
+                            {
+                                var lr=w+ll-k;
+                                map.style.right=(lr-ldis)+'px';
+                                scaleshift();
+                            }
+
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
                         var ymark=Math.abs(ct)+dim.clientY;
