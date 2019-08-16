@@ -104,7 +104,7 @@ ham.on('pinchmove',function(e)
         {
             map.style.width=w+'px';
             map.style.left=-orgl+'px';
-            map.style.top=-orgt+'px'
+            map.style.top=-orgt+'px';
             scaleshift(e.scale);
         }
 });
