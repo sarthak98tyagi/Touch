@@ -93,15 +93,18 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
+    var orgl=Math.abs(parseFloat(map.style.left))+x;
+    var orgt=Math.abs(parseFloat(map.style.top))+y;
     console.log(x,y,e.scale);
     var l=(x/e.scale);
     var t=(y/e.scale);
     var top=parseFloat(map.style.top);
     // var ch=h<mheight?top===0:true;
-        if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
+        if( (w-orgl) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
-            map.style.left=-l+'px';
+            map.style.left=-orgl+'px';
+            map.style.top=-orgt+'px'
             scaleshift(e.scale);
         }
 });
