@@ -94,12 +94,15 @@ ham.on('pinchmove',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     var cl=Math.abs(parseFloat(map.style.left));
+    var ct=Math.abs(parseFloat(map.style.top));
     var tl=cl*e.scale;
-        if( (w-tl) >= dwidth)
+    var tt=ct*e.scale;
+        if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             console.log('!!');
             map.style.width=w+'px';
             map.style.left=-tl+'px';
+            map.style.top=-tt+'px';
             scaleshift(e.scale);
         }
 });
