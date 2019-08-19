@@ -99,7 +99,7 @@ map.addEventListener('touchmove',function(e)
 {
     if(e.targetTouches.length===2)
     {
-        console.log(e.targetTouches[0].clientX);
+        console.log(x1-e.targetTouches[0].clientX);
     }
 });
 // ham.on('pinchmove',function(e)
