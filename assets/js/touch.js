@@ -85,7 +85,12 @@ function neg(e)
 }
 map.addEventListener('touchmove',function(e)
 {
-    console.log(e.targetTouches.length);
+    if(e.targetTouches.length===2)
+    {
+        var t1=e.targetTouches[0];
+        var t2=e.targetTouches[1];
+        console.log(t1.clientX,t1.clientY,t2.clientX,t2.clientY);
+    }
 });
 // ham.on('pinchmove',function(e)
 // {
