@@ -97,8 +97,8 @@ ham.on('pinchmove',function(e)
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=(xcor/width)*w;
     var nycor=(ycor/height)*h;
-    var tl=(nxcor-x);
-    var tt=(nycor-y);
+    var tl=(nxcor-x)+50;
+    var tt=(nycor-y)+50;
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
 
