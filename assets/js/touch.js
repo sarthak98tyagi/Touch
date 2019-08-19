@@ -93,7 +93,7 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    console.log(x,y);
+    console.log(e.scale);
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=(xcor/width)*w;
