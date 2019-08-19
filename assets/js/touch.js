@@ -91,7 +91,7 @@ ham.on('pinchmove',function(e)
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     e.scale=e.scale>1.2?1.2:e.scale;
     var w=width*e.scale;
-    var h=(height*e.scale);
+    var h=height*e.scale;
     var x=e.center['x'];
     var y=e.center['y'];
     console.log(e.scale);
@@ -99,6 +99,7 @@ ham.on('pinchmove',function(e)
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=((xcor/width)*w);
     var nycor=((ycor/height)*h);
+    console.log(getComputedStyle(map).getPropertyValue('right'));
     var tl=(nxcor-x);
     var tt=(nycor-y);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
