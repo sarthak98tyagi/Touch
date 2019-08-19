@@ -95,15 +95,15 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var orgl=Math.abs(parseFloat(map.style.left))+x;
     var orgt=Math.abs(parseFloat(map.style.top))+y;
-    console.log(x,y,e.scale);
-    var l=(x/e.scale);
+    console.log(orgl,orgt);
+    var l=-org1+100;
     var t=(y/e.scale);
     var top=parseFloat(map.style.top);
-    // var ch=h<mheight?top===0:true;
-        if( (w-orgl) >= dwidth && w<3000 && (-top)<mheight)
+    //var ch=h<mheight?top===0:true;
+        if( (w+l) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
-            map.style.left=-orgl+'px';
+            map.style.left=l+'px';
             scaleshift(e.scale);
         }
 });
@@ -177,7 +177,6 @@ ham.on('swipeup',function(e)
 
     }
 });
-
 ham.on('tap',function(e)
 {
     e.preventDefault();
