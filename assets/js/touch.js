@@ -87,19 +87,20 @@ ham.on('pinchmove',function(e)
 {
     cnt=1;
     e.preventDefault();
-    console.log(e.distance);
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var w=width*e.scale;
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
+    console.log(x,y);
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
+    console.log(xcor,ycor);
     var nxcor=(xcor/width)*w;
     var nycor=(ycor/height)*h;
-    var tl=(nxcor*e.scale-x);
-    var tt=(nycor*e.scale-y);
+    var tl=(nxcor-x);
+    var tt=(nycor-y);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
 
