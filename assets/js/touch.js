@@ -93,15 +93,13 @@ map.addEventListener('touchstart',function(e)
         x2=e.targetTouches[1].clientX;
         y1=e.targetTouches[0].clientY;
         y2=e.targetTouches[1].clientY;
-
     }
 });
 map.addEventListener('touchmove',function(e)
 {
     if(e.targetTouches.length===2)
     {
-        console.log(x1);
-        console.log(e.targetTouches[0].clientX-x2);
+        console.log(e.targetTouches[0].clientX);
     }
 });
 // ham.on('pinchmove',function(e)
