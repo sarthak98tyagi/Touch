@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="99" column="30" lean-forward="true" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+            <state relative-caret-position="289">
+              <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -138,12 +138,12 @@
       <workItem from="1565685961578" duration="20654000" />
       <workItem from="1565764269056" duration="10995000" />
       <workItem from="1565943497647" duration="21746000" />
-      <workItem from="1566203777163" duration="14809000" />
+      <workItem from="1566203777163" duration="15141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289246000" />
+    <option name="totallyTimeSpent" value="289578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -224,8 +224,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="99" column="30" lean-forward="true" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+        <state relative-caret-position="289">
+          <caret line="100" column="29" lean-forward="true" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
         </state>
       </provider>
     </entry>
