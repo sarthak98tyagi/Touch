@@ -99,6 +99,7 @@ ham.on('pinchmove',function(e)
     var nycor=(ycor/height)*y;
     var tl=nxcor-x;
     var tt=nycor-y;
+    console.log(tl,tt);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             console.log('!!');
