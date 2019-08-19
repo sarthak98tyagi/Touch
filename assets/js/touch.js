@@ -83,25 +83,6 @@ function neg(e)
     }
     cnt=1;
 }
-// var x1,y1,x2,y2,ch=0;
-// map.addEventListener('touchstart',function(e)
-// {
-//     if(e.targetTouches.length===2)
-//     {
-//         ch=1;
-//         x1=e.targetTouches[0].clientX;
-//         x2=e.targetTouches[1].clientX;
-//         y1=e.targetTouches[0].clientY;
-//         y2=e.targetTouches[1].clientY;
-//     }
-// });
-// map.addEventListener('touchmove',function(e)
-// {
-//     if(e.targetTouches.length===2)
-//     {
-//         console.log(x1-e.targetTouches[0].clientX,x2-e.targetTouches[0].clientX);
-//     }
-// });
 ham.on('pinchmove',function(e)
 {
     cnt=1;
@@ -109,29 +90,23 @@ ham.on('pinchmove',function(e)
     console.log(e.distance);
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-    var w;
-    if(e.scale>=1)
-        w=(width+e.distance);
-    else
-        w=(width-e.distance);
-    var f=w/width;
-    w=w*f;
-    var h=(height*f);
+    var w=width*e.scale;
+    var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=(xcor/width)*w;
     var nycor=(ycor/height)*h;
-    var tl=(nxcor-x);
-    var tt=(nycor-y);
+    var tl=(nxcor-x*e.scale);
+    var tt=(nycor-y*e.scale);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
 
             map.style.width=w+'px';
             map.style.left=-tl+'px';
             map.style.top=-tt+'px';
-            scaleshift(f);
+            scaleshift(e.scale);
         }
 });
 ham.on('swiperight',function(e)
