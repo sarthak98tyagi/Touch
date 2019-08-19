@@ -109,8 +109,13 @@ ham.on('pinchmove',function(e)
     console.log(e.distance);
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*e.scale);
-    var h=(height*e.scale);
+    var w;
+    if(e.scale>=1)
+        w=(width+e.distance);
+    else
+        w=(width-e.distance);
+    var f=w/width;
+    var h=(height*f);
     var x=e.center['x'];
     var y=e.center['y'];
     var xcor=Math.abs(parseFloat(map.style.left))+x;
@@ -125,7 +130,7 @@ ham.on('pinchmove',function(e)
             map.style.width=w+'px';
             map.style.left=-tl+'px';
             map.style.top=-tt+'px';
-            scaleshift(e.scale);
+            scaleshift(f);
         }
 });
 ham.on('swiperight',function(e)
