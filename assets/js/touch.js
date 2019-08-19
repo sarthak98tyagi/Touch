@@ -93,7 +93,7 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    var orgl=(x*e.scale)-e.scale;
+    var orgl=(x*e.scale)-x;
     console.log(orgl,e.distance,e.scale);
     var l=orgl;
     var t=(y/e.scale);
