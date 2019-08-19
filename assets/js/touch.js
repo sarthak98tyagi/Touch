@@ -126,7 +126,6 @@ ham.on('pinchmove',function(e)
             map.style.left=-tl+'px';
             map.style.top=-tt+'px';
             scaleshift(e.scale);
-            console.log(w,h);
         }
 });
 ham.on('swiperight',function(e)
