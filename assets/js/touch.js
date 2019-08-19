@@ -101,7 +101,7 @@ map.addEventListener('touchmove',function(e)
     if(e.targetTouches.length===2)
     {
         console.log(x1);
-        console.log(e.targetTouches[0].clientX-x1);
+        console.log(e.targetTouches[0].clientX-x2);
     }
 });
 // ham.on('pinchmove',function(e)
