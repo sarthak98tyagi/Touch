@@ -91,7 +91,7 @@ ham.on('pinchmove',function(e)
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var w=(width*e.scale);
     var h=(height*e.scale);
-    var x=Math.abs(parseFloat(map.style.left))+e.center['x'];
+    var x=e.center['x'];
     var y=e.center['y'];
     var orgl=(x*e.scale)-e.scale;
     console.log(orgl,e.distance,e.scale);
@@ -102,7 +102,7 @@ ham.on('pinchmove',function(e)
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
-            map.style.left=-l+'px';
+            map.style.left=parseFloat(map.style.float)-l+'px';
             scaleshift(e.scale);
         }
 });
