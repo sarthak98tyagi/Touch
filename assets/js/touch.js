@@ -93,16 +93,14 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    var orgl=(x*e.scale)-e.scale;
-    console.log(orgl,e.distance,e.scale);
-    var l=orgl;
-    var t=(y/e.scale);
-    var top=parseFloat(map.style.top);
+    var cl=Math.abs(parseFloat(map.style.left));
+    var tl=(cl+x)*e.scale;
+    var nl=tl-(x*e.scale);
     //var ch=h<mheight?top===0:true;
-        if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
+        if( (w-tl) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
-            map.style.left=parseFloat(map.style.left)-l+'px';
+            map.style.left=-nl+'px';
             scaleshift(e.scale);
         }
 });
