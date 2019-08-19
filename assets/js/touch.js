@@ -83,7 +83,7 @@ function neg(e)
     }
     cnt=1;
 }
-map.on('touchmove',function(e)
+map.addEventListener('touchmove',function(e)
 {
     console.log(e.targetTouches.length);
 });
