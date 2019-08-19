@@ -97,10 +97,9 @@ ham.on('pinchmove',function(e)
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=(xcor/width)*w;
     var nycor=(ycor/height)*h;
-    console.log(nycor);
+    console.log(nycor,height);
     var tl=nxcor-x;
     var tt=nycor-y;
-    console.log(tl,tt);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
 
