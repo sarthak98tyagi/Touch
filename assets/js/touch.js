@@ -96,7 +96,7 @@ map.addEventListener('touchstart',function(e)
 
     }
 });
-map.addEventListener('touchend',function(e)
+map.addEventListener('touchmove',function(e)
 {
     if(e.targetTouches.length===2)
     {
