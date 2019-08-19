@@ -115,6 +115,7 @@ ham.on('pinchmove',function(e)
     else
         w=(width-e.distance);
     var f=w/width;
+    w=w*f;
     var h=(height*f);
     var x=e.center['x'];
     var y=e.center['y'];
