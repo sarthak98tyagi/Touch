@@ -96,6 +96,7 @@ ham.on('pinchmove',function(e)
     var cl=Math.abs(parseFloat(map.style.left));
     var tl=cl*e.scale;
     console.log(tl);
+    console.log(tl);
         if( (w-tl) >= dwidth && w<3000 && (-top)<mheight)
         {
             console.log('!!');
