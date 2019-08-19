@@ -95,14 +95,14 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
-    var nxcor=(xcor/width)*x;
-    var nycor=(ycor/height)*y;
+    var nxcor=(xcor/width)*w;
+    var nycor=(ycor/height)*h;
     var tl=nxcor-x;
     var tt=nycor-y;
     console.log(tl,tt);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
-            console.log('!!');
+
             map.style.width=w+'px';
             map.style.left=-tl+'px';
             map.style.top=-tt+'px';
