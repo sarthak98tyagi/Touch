@@ -102,7 +102,7 @@ ham.on('pinchmove',function(e)
         if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
         {
             map.style.width=w+'px';
-            map.style.left=parseFloat(map.style.float)-l+'px';
+            map.style.left=parseFloat(map.style.left)-l+'px';
             scaleshift(e.scale);
         }
 });
