@@ -95,7 +95,7 @@ ham.on('pinchmove',function(e)
     var y=e.center['y'];
     var cl=Math.abs(parseFloat(map.style.left));
     var tl=cl*e.scale;
-        if( (w-e.scale) >= dwidth && w<3000 && (-top)<mheight)
+        if( (w-tl) >= dwidth)
         {
             console.log('!!');
             map.style.width=w+'px';
