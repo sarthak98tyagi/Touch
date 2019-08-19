@@ -83,13 +83,24 @@ function neg(e)
     }
     cnt=1;
 }
+var x1,y1,x2,y2,ch=0;
+map.addEventListener('touchstart',function(e)
+{
+    if(e.targetTouches.length===2)
+    {
+        ch=1;
+        x1=e.targetTouches[0].clientX;
+        x2=e.targetTouches[1].clientX;
+        y1=e.targetTouches[0].clientY;
+        y2=e.targetTouches[1].clientY;
+
+    }
+});
 map.addEventListener('touchmove',function(e)
 {
     if(e.targetTouches.length===2)
     {
-        var t1=e.targetTouches[0];
-        var t2=e.targetTouches[1];
-        console.log(t1.clientX,t1.clientY,t2.clientX,t2.clientY);
+        console.log(e.targetTouches[0].clientX-x1);
     }
 });
 // ham.on('pinchmove',function(e)
