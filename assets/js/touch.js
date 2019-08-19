@@ -93,10 +93,12 @@ ham.on('pinchmove',function(e)
     var h=(height*e.scale);
     var x=e.center['x'];
     var y=e.center['y'];
-    var cl=Math.abs(parseFloat(map.style.left));
-    var ct=Math.abs(parseFloat(map.style.top));
-    var tl=cl*e.scale;
-    var tt=ct*e.scale;
+    var xcor=Math.abs(parseFloat(map.style.left))+x;
+    var ycor=Math.abs(parseFloat(map.style.top))+y;
+    var nxcor=(xcor/width)*x;
+    var nycor=(ycor/height)*y;
+    var tl=nxcor-x;
+    var tt=nycor-y;
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             console.log('!!');
