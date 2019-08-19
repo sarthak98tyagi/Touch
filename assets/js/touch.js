@@ -96,7 +96,7 @@ ham.on('pinchmove',function(e)
     var orgl=Math.abs(parseFloat(map.style.left))+x;
     var orgt=Math.abs(parseFloat(map.style.top))+y;
     console.log(orgl,orgt);
-    var l=-org1+100;
+    var l=-orgl+100;
     var t=(y/e.scale);
     var top=parseFloat(map.style.top);
     //var ch=h<mheight?top===0:true;
