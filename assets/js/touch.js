@@ -94,7 +94,7 @@ ham.on('pinchmove',function(e)
     var x=e.center['x'];
     var y=e.center['y'];
     var orgl=x;
-    console.log(orgl,orgt,e.distance,e.scale);
+    console.log(orgl,e.distance,e.scale);
     var l=orgl-150;
     var t=(y/e.scale);
     var top=parseFloat(map.style.top);
