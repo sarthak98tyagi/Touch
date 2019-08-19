@@ -91,7 +91,7 @@ ham.on('pinchmove',function(e)
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var w=(width*e.scale);
     var h=(height*e.scale);
-    var x=e.center['x'];
+    var x=Math.abs(parsefloat(map.style.left))+e.center['x'];
     var y=e.center['y'];
     var orgl=(x*e.scale)-e.scale;
     console.log(orgl,e.distance,e.scale);
