@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07ed6e88-4f47-48d2-bb29-0aef55ef8ffa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/touch.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/touch.js" afterDir="false" />
-    </list>
+    <list default="true" id="07ed6e88-4f47-48d2-bb29-0aef55ef8ffa" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -37,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="108" column="3" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="3" />
+            <state relative-caret-position="340">
+              <caret line="99" column="22" lean-forward="true" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -139,12 +136,12 @@
       <workItem from="1565685961578" duration="20654000" />
       <workItem from="1565764269056" duration="10995000" />
       <workItem from="1565943497647" duration="21746000" />
-      <workItem from="1566203777163" duration="441000" />
+      <workItem from="1566203777163" duration="710000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274878000" />
+    <option name="totallyTimeSpent" value="275147000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -225,8 +222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="108" column="3" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="3" />
+        <state relative-caret-position="340">
+          <caret line="99" column="22" lean-forward="true" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
         </state>
       </provider>
     </entry>
