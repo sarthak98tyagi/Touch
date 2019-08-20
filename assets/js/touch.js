@@ -83,13 +83,15 @@ function neg(e)
     }
     cnt=1;
 }
-var dis1,dis2, dis3;
+var dis1,dis2, dis3,width,height,x,y,nw,nh,factor;
 map.addEventListener('touchstart',function(e)
 {
     e.preventDefault();
     if(e.targetTouches.length===2)
     {
         dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+        x=e.targetTouches[0].clientX;
+        y=e.targetTouches[0].clientY;
     }
     dis3 = dis1;
 });
@@ -101,11 +103,19 @@ map.addEventListener('touchmove',function(e)
        dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
        if((dis2-dis3)>0)
        {
-           console.log('Positive Zoom');
+           width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+           height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+           nw=width+dis2;
+           f=nw/width;
+           nh=height*f;
+           console.log(width,dis2,f,nh);
+           map.style.width=nw+'px';
+           // console.log('Positive Zoom');
        }
        else
        {
-           console.log("Negative Zoom");
+
+           // console.log("Negative Zoom");
        }
    }
    dis3 = dis2;
