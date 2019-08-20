@@ -120,10 +120,11 @@ map.addEventListener('touchmove',function(e)
            if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
+               scaleshift(f);
                map.style.left=-tl+'px';
+               scaleshift((Math.abs(parseFloat(map.style.left))/tl));
                map.style.top=-tt+'px';
-               scaleshift(f);
-               scaleshift(f);
+               scaleshift((Math.abs(parseFloat(map.style.top))/tt));
            }
 
            // console.log('Positive Zoom');
