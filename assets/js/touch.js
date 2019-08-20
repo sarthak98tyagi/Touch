@@ -102,7 +102,7 @@ ham.on('pinchmove',function(e)
     console.log(parseFloat(getComputedStyle(map).getPropertyValue('right')));
     var tl=(nxcor-x);
     var tt=(nycor-y);
-    console.log(w-tl);
+    console.log(w-tl-dwidth);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             map.style.width=w+'px';
