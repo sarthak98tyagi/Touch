@@ -113,10 +113,10 @@ map.addEventListener('touchmove',function(e)
            nxcor=(xcor/width)*nw;
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
-           tr=nw-tl-dwidth;
            tt=nycor-y;
-           tb=nh-tt-dheight;
-           console.log(nw-tl-tr);
+           tr=parseFloat(getComputedStyle(map).getPropertyValue('right'))*f;
+           tb=parseFloat(getComputedStyle(map).getPropertyValue('bottom'))*f;
+           console.log(nw-tl-tr,tr,tb);
            if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
@@ -138,9 +138,9 @@ map.addEventListener('touchmove',function(e)
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
            tt=nycor-y;
-           tr=nw-tl-dwidth;
-           tb=nh-tt-dheight;
-           console.log(nw-tl-tr);
+           tr=parseFloat(getComputedStyle(map).getPropertyValue('right'))*f;
+           tb=parseFloat(getComputedStyle(map).getPropertyValue('bottom'))*f;
+           console.log(nw-tl-tr,tr,tb);
            if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
