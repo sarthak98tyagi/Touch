@@ -107,7 +107,7 @@ map.addEventListener('touchmove',function(e)
        {
            width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
            height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-           nw=width+dis2;
+           nw=width+dis2*2;
            f=nw/width;
            nh=height*f;
            nxcor=(xcor/width)*nw;
