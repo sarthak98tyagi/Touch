@@ -90,7 +90,7 @@ ham.on('pinchmove',function(e)
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
-    e.scale=e.scale>1.2?1.2:e.scale;
+    e.scale=e.scale>1.25?1.25:e.scale;
     var w=width*e.scale;
     var h=height*e.scale;
     var x=e.center['x'];
