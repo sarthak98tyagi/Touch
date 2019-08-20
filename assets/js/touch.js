@@ -100,7 +100,6 @@ ham.on('pinchmove',function(e)
     console.log(xcor,ycor,"!");
     var nxcor=((xcor/width)*w);
     var nycor=((ycor/height)*h);
-    console.log(nxcor,nycor,"!!");
     var tl=(nxcor-x);
     var tt=(nycor-y);
     if( (w-tl) >= dwidth && (h-tt) >= dheight)
@@ -191,6 +190,7 @@ ham.on('tap',function(e)
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
+    console.log(xmark,ymark);
     var mark=document.createElement("div");
     mark.id=mp;
     var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
