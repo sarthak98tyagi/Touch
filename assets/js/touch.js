@@ -99,9 +99,9 @@ ham.on('pinchmove',function(e)
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=((xcor/width)*w);
     var nycor=((ycor/height)*h);
+    console.log(nxcor,nycor);
     var tl=(nxcor-x);
     var tt=(nycor-y);
-    console.log((r/width)*w);
     if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             map.style.width=w+'px';
