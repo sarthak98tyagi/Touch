@@ -86,6 +86,7 @@ function neg(e)
 var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,factor,nxcor,nycor,tl,tt,tr,tb;
 map.addEventListener('touchstart',function(e)
 {
+    cnt=1;
     e.preventDefault();
     if(e.targetTouches.length===2)
     {
@@ -99,6 +100,7 @@ map.addEventListener('touchstart',function(e)
 });
 map.addEventListener('touchmove',function(e)
 {
+    cnt=1;
     e.preventDefault();
    if(e.targetTouches.length===2)
    {
@@ -120,11 +122,9 @@ map.addEventListener('touchmove',function(e)
            if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
-               scaleshift(f);
                map.style.left=-tl+'px';
-               scaleshift((Math.abs(parseFloat(map.style.left))/tl));
                map.style.top=-tt+'px';
-               scaleshift((Math.abs(parseFloat(map.style.top))/tt));
+               scaleshift(f);
            }
 
            // console.log('Positive Zoom');
@@ -149,7 +149,7 @@ map.addEventListener('touchmove',function(e)
                map.style.left=-tl+'px';
                map.style.top=-tt+'px';
                scaleshift(f);
-               scaleshift(f);
+
            }
            // console.log("Negative Zoom");
        }
