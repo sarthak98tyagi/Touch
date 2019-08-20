@@ -83,13 +83,15 @@ function neg(e)
     }
     cnt=1;
 }
-var dis1,dis2;
+var dis1,dis2, dis3;
 map.addEventListener('touchstart',function(e)
 {
+    e.preventDefault();
     if(e.targetTouches.length===2)
     {
         dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
     }
+    dis3 = dis1;
 });
 map.addEventListener('touchmove',function(e)
 {
@@ -97,11 +99,16 @@ map.addEventListener('touchmove',function(e)
    if(e.targetTouches.length===2)
    {
        dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-       if((dis2-dis1)>0)
+       if((dis2-dis3)>0)
        {
-           console.log(dis2);
+           console.log('Positive Zoom');
+       }
+       else
+       {
+           console.log("Negative Zoom");
        }
    }
+   dis3 = dis2;
 });
 // ham.on('pinchmove',function(e)
 // {
