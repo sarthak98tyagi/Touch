@@ -89,21 +89,20 @@ ham.on('pinchmove',function(e)
     e.preventDefault();
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+    var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
     e.scale=e.scale>1.2?1.2:e.scale;
     var w=width*e.scale;
     var h=height*e.scale;
     var x=e.center['x'];
     var y=e.center['y'];
-    console.log(e.scale);
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=((xcor/width)*w);
     var nycor=((ycor/height)*h);
-    var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
-    var tl=(nxcor-x)-r;
-    var tt=(nycor-y)-parseFloat(getComputedStyle(map).getPropertyValue('bottom'));
-
-        if( (w-tl) >= dwidth && (h-tt) >= dheight)
+    var tl=(nxcor-x);
+    var tt=(nycor-y);
+    console.log((r/width)*w);
+    if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             map.style.width=w+'px';
             map.style.left=-tl+'px';
