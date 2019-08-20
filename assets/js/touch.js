@@ -83,15 +83,17 @@ function neg(e)
     }
     cnt=1;
 }
-var dis1,dis2, dis3,width,height,x,y,nw,nh,factor;
+var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,factor,nxcor,nycor,tl,tt;
 map.addEventListener('touchstart',function(e)
 {
     e.preventDefault();
     if(e.targetTouches.length===2)
     {
         dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-        x=e.targetTouches[0].clientX;
-        y=e.targetTouches[0].clientY;
+        x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
+        xcor=Math.abs(parseFloat(map.style.left))+x;
+        y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
+        ycor=Math.abs(parseFloat(map.style.top))+y;
     }
     dis3 = dis1;
 });
@@ -108,8 +110,18 @@ map.addEventListener('touchmove',function(e)
            nw=width+dis2;
            f=nw/width;
            nh=height*f;
-           console.log(width,dis2,f,nh);
-           map.style.width=nw+'px';
+           nxcor=(xcor/width)*nw;
+           nycor=(ycor/height)*nh;
+           tl=nxcor-x;
+           tt=nycor-y;
+           if((nw-tl)>=dwidth && (nh-tt)>=dheight)
+           {
+               map.style.width=nw+'px';
+               map.style.left=-tl+'px';
+               map.style.top=-tt+'px';
+               scaleshift(f);
+           }
+
            // console.log('Positive Zoom');
        }
        else
