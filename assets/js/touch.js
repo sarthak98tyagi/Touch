@@ -93,8 +93,8 @@ ham.on('pinchmove',function(e)
     e.scale=e.scale>1.2?1.2:e.scale;
     var w=width*e.scale;
     var h=height*e.scale;
-    var x=e.center['x'];
-    var y=e.center['y'];
+    var x=e.center['x']*e.scale;
+    var y=e.center['y']*e.scale;
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     console.log(xcor,ycor,"!");
@@ -190,7 +190,6 @@ ham.on('tap',function(e)
     var ct=parseFloat(map.style.top);
     var xmark=Math.abs(cl)+x;
     var ymark=Math.abs(ct)+y;
-    console.log(xmark,ymark);
     var mark=document.createElement("div");
     mark.id=mp;
     var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
