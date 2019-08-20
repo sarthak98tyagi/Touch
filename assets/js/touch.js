@@ -114,8 +114,8 @@ map.addEventListener('touchmove',function(e)
            nh=height*f;
            nxcor=(xcor/width)*nw;
            nycor=(ycor/height)*nh;
-           tl=nxcor-x;
-           tt=nycor-y;
+           tl=nxcor+x;
+           tt=nycor+y;
            tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')));
            tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')));
            console.log(nw);
