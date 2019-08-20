@@ -123,6 +123,7 @@ map.addEventListener('touchmove',function(e)
                map.style.left=-tl+'px';
                map.style.top=-tt+'px';
                scaleshift(f);
+               scaleshift(f);
            }
 
            // console.log('Positive Zoom');
@@ -138,14 +139,15 @@ map.addEventListener('touchmove',function(e)
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
            tt=nycor-y;
-           tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')));
-           tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')));
+           tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')))*f;
+           tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')))*f;
            console.log(nw,tl,tr);
            if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
                map.style.left=-tl+'px';
                map.style.top=-tt+'px';
+               scaleshift(f);
                scaleshift(f);
            }
            // console.log("Negative Zoom");
