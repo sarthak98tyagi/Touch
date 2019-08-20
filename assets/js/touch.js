@@ -118,7 +118,7 @@ map.addEventListener('touchmove',function(e)
            tt=nycor-y;
            tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')));
            tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')));
-           console.log(nw);
+           console.log(nw-dwidth-tl);
            if((nw+tl)>=dwidth && (nh+tt)>=dheight)
            {
                map.style.width=nw+'px';
