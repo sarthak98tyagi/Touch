@@ -99,7 +99,7 @@ ham.on('pinchmove',function(e)
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     var nxcor=((xcor/width)*w);
     var nycor=((ycor/height)*h);
-    console.log(getComputedStyle(map).getPropertyValue('right'));
+    console.log(parseFloat(getComputedStyle(map).getPropertyValue('right')*e.scale));
     var tl=(nxcor-x);
     var tt=(nycor-y);
         if( (w-tl) >= dwidth && (h-tt) >= dheight)
