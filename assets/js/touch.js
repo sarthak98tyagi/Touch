@@ -104,7 +104,7 @@ ham.on('pinchmove',function(e)
     var tt=(nycor-y);
     var tr=w-tl-dwidth;
     var tb=w-tt-dheight;
-        if( (w-tl-tr) >= dwidth && (h-tt-tb) >= dheight)
+        if( (w-tl) >= dwidth && (h-tt) >= dheight)
         {
             map.style.width=w+'px';
             map.style.left=-tl+'px';
