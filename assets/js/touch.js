@@ -13,7 +13,7 @@ var pointers={};
 map.style.top='0px';
 map.style.left='0px';
 var mp=0; //mark-counter
-var message=['One','Two','Three','Four','Five','Six'];
+var message=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
 var cnt=0;
 var move=0;
 function scaleshift(factor=1)
@@ -92,9 +92,9 @@ map.addEventListener('touchstart',function(e)
     {
         dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-        xcor=Math.abs(parseFloat(map.style.left))+x;
+        xcor=(parseFloat(map.style.left))+x;
         y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-        ycor=Math.abs(parseFloat(map.style.top))+y;
+        ycor=(parseFloat(map.style.top))+y;
     }
     dis3 = dis1;
 });
@@ -105,7 +105,7 @@ map.addEventListener('touchmove',function(e)
    if(e.targetTouches.length===2)
    {
        dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-       if((dis2-dis3)>0)
+       if((dis2-dis3)>0)                /*zoom-in*/
        {
            width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
            height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -118,16 +118,16 @@ map.addEventListener('touchmove',function(e)
            tt=nycor-y;
            tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')));
            tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')));
-           console.log(nw,tl,tr);
-           if((nw)>=dwidth && (nh)>=dheight)
+           console.log(nw);
+           if((nw+tl)>=dwidth && (nh+tt)>=dheight)
            {
                map.style.width=nw+'px';
-               map.style.left=-tl+'px';
-               map.style.top=-tt+'px';
+               map.style.left=tl+'px';
+               map.style.top=tt+'px';
                scaleshift(f);
            }
        }
-       else
+       else                          /*zoom-out*/
        {
            width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
            height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -138,15 +138,13 @@ map.addEventListener('touchmove',function(e)
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
            tt=nycor-y;
-           if((nw)>=dwidth && (nh)>=dheight)
+           if((nw+tl)>=dwidth && (nh+tt)>=dheight)
            {
                map.style.width=nw+'px';
-               map.style.left=-tl+'px';
-               map.style.top=-tt+'px';
+               map.style.left=tl+'px';
+               map.style.top=tt+'px';
                scaleshift(f);
            }
-           // console.log("Negative Zoom");
-           //
        }
    }
    dis3 = dis2;
