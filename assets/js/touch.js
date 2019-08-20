@@ -83,7 +83,7 @@ function neg(e)
     }
     cnt=1;
 }
-var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,factor,nxcor,nycor,tl,tt;
+var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,factor,nxcor,nycor,tl,tt,tr,tb;
 map.addEventListener('touchstart',function(e)
 {
     e.preventDefault();
@@ -113,9 +113,10 @@ map.addEventListener('touchmove',function(e)
            nxcor=(xcor/width)*nw;
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
-           console.log(nw-tl-dwidth);
+           tr=nw-tl-dwidth;
            tt=nycor-y;
-           if((nw-tl)>=dwidth && (nh-tt)>=dheight)
+           tb=nh-tt-dheight;
+           if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
                map.style.left=-tl+'px';
@@ -136,7 +137,9 @@ map.addEventListener('touchmove',function(e)
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
            tt=nycor-y;
-           if((nw-tl)>=dwidth && (nh-tt)>=dheight)
+           tr=nw-tl-dwidth;
+           tb=nh-tt-dheight;
+           if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
            {
                map.style.width=nw+'px';
                map.style.left=-tl+'px';
