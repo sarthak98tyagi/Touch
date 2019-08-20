@@ -83,18 +83,18 @@ function neg(e)
     }
     cnt=1;
 }
-ham.on('pinchmove',function(e)
+ham.on('pinchstart',function(e)
 {
     cnt=1;
     e.preventDefault();
     var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
     var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
     var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
-    e.scale=e.scale>1.2?1.2:e.scale;
+    // e.scale=e.scale>1.2?1.2:e.scale;
     var w=width*e.scale;
     var h=height*e.scale;
-    var x=e.center['x']*e.scale;
-    var y=e.center['y']*e.scale;
+    var x=e.center['x'];
+    var y=e.center['y'];
     var xcor=Math.abs(parseFloat(map.style.left))+x;
     var ycor=Math.abs(parseFloat(map.style.top))+y;
     console.log(xcor,ycor,"!");
