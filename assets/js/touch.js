@@ -83,7 +83,7 @@ function neg(e)
     }
     cnt=1;
 }
-ham.on('pinchstart',function(e)
+ham.on('pinchmove',function(e)
 {
     cnt=1;
     e.preventDefault();
