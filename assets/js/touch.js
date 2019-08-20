@@ -84,7 +84,7 @@ function neg(e)
     cnt=1;
 }
 var dis1,dis2;
-map.addEventListener('touchstart',function()
+map.addEventListener('touchstart',function(e)
 {
     if(e.targetTouches.length===2)
     {
