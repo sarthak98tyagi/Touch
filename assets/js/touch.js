@@ -126,7 +126,22 @@ map.addEventListener('touchmove',function(e)
        }
        else
        {
-
+           width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+           height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+           nw=width-dis2;
+           f=nw/width;
+           nh=height*f;
+           nxcor=(xcor/width)*nw;
+           nycor=(ycor/height)*nh;
+           tl=nxcor-x;
+           tt=nycor-y;
+           if((nw-tl)>=dwidth && (nh-tt)>=dheight)
+           {
+               map.style.width=nw+'px';
+               map.style.left=-tl+'px';
+               map.style.top=-tt+'px';
+               scaleshift(f);
+           }
            // console.log("Negative Zoom");
        }
    }
