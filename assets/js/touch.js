@@ -93,10 +93,14 @@ map.addEventListener('touchstart',function(e)
 });
 map.addEventListener('touchmove',function(e)
 {
+    e.preventDefault();
    if(e.targetTouches.length===2)
    {
        dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-       console.log(dis2-dis1);
+       if((dis2-dis1)>0)
+       {
+           console.log(dis2);
+       }
    }
 });
 // ham.on('pinchmove',function(e)
