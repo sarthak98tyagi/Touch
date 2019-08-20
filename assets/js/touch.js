@@ -122,8 +122,8 @@ map.addEventListener('touchmove',function(e)
            if((nw+tl)>=dwidth && (nh+tt)>=dheight)
            {
                map.style.width=nw+'px';
-               map.style.left=tl+'px';
-               map.style.top=tt+'px';
+               map.style.left=-tl+'px';
+               map.style.top=-tt+'px';
                scaleshift(f);
            }
        }
