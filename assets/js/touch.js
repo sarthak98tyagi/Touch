@@ -126,8 +126,6 @@ map.addEventListener('touchmove',function(e)
                map.style.top=-tt+'px';
                scaleshift(f);
            }
-
-           // console.log('Positive Zoom');
        }
        else
        {
@@ -143,7 +141,7 @@ map.addEventListener('touchmove',function(e)
            tr=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('right')))*f;
            tb=Math.abs(parseFloat(getComputedStyle(map).getPropertyValue('bottom')))*f;
            console.log(nw,tl,tr);
-           if((nw-tl-tr)>=dwidth && (nh-tt-tb)>=dheight)
+           if((nw-tl-tr)>=dwidth)
            {
                map.style.width=nw+'px';
                map.style.left=-tl+'px';
