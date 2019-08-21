@@ -16,10 +16,12 @@ var mp=0; //mark-counter
 var message=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
 var cnt=0;
 var move=0;
+var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,f,nxcor,nycor,tl,tt;
 function scaleshift(factor=1)
 {
     var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
     var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
+    console.log(factor,cnt);
     if(cnt===0)
     {
         ah=ah/factor;
@@ -41,52 +43,58 @@ function scaleshift(factor=1)
 }
 function pos(e)
 {
+
     e.preventDefault();
-    var scale=1.25;
-    var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
-    var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*scale);
-    var h=(height*scale);
-    var x=parseFloat(e.clientX);
-    var y=parseFloat(e.clientY);
-    var l=(x*scale);
-    var t=(y*scale);
-    var top=parseFloat(map.style.top);
-    var ch=h<mheight?top===0:true;
-    if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
+    width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+    height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+    nw=width*1.25;
+    f=nw/width;
+    console.log(f);
+    nh=height*1.25;
+    xcor=Math.abs(parseFloat(map.style.left))+document.documentElement.clientWidth/2;
+    ycor=Math.abs(parseFloat(map.style.top))+document.documentElement.clientHeight/2;
+    nxcor=(xcor/width)*nw;
+    nycor=(ycor/height)*nh;
+    tl=nxcor-document.documentElement.clientWidth/2;
+    tt=nycor-document.documentElement.clientHeight/2;
+    console.log(tl,tt);
+    if((-tl)<0 && (-tt)<0)
     {
-        map.style.width=w+'px';
-        map.style.left=-l+'px';
-        scaleshift(scale);
+        map.style.width=nw+'px';
+        map.style.left=-tl+'px';
+        map.style.top=-tt+'px';
+        scaleshift(f);
     }
     cnt=1;
 }
 function neg(e)
 {
     e.preventDefault();
-    var scale=0.75;
-    var width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
-    var height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-    var w=(width*scale);
-    var h=(height*scale);
-    var x=parseFloat(e.clientX);
-    var y=parseFloat(e.clientY);
-    var l=(x*scale);
-    var t=(y*scale);
-    var top=parseFloat(map.style.top);
-    var ch=h<mheight?top===0:true;
-    if( (w-l) >= dwidth && w<3000 && (-top)<mheight)
+    width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+    height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+    nw=width*0.75;
+    f=nw/width;
+    console.log(f);
+    nh=height*f;
+    xcor=Math.abs(parseFloat(map.style.left))+document.documentElement.clientWidth/2;
+    ycor=Math.abs(parseFloat(map.style.top))+document.documentElement.clientHeight/2;
+    nxcor=(xcor/width)*nw;
+    nycor=(ycor/height)*nh;
+    tl=nxcor-document.documentElement.clientWidth/2;
+    tt=nycor-document.documentElement.clientHeight/2;
+    if((-tl)<0 && (-tt)<0)
     {
-        map.style.width=w+'px';
-        map.style.left=-l+'px';
-        scaleshift(scale);
+        map.style.width=nw+'px';
+        map.style.left=-tl+'px';
+        map.style.top=-tt+'px';
+        scaleshift(f);
     }
     cnt=1;
 }
-var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,factor,nxcor,nycor,tl,tt,tr,tb;
+
 map.addEventListener('touchstart',function(e)
 {
-    cnt=1;
+
     e.preventDefault();
     if(e.targetTouches.length===2)
     {
@@ -209,9 +217,9 @@ ham.on('swipeup',function(e)
         map.style.top=(mt-e.distance)+'px';
         scaleshift();
     }
-    else
+    else if(h>document.documentElement.clientHeight)
     {
-        map.style.top=-(h-parseFloat(document.documentElement.clientHeight))+'px';
+        map.style.top=-(h-document.documentElement.clientHeight)+'px';
         scaleshift();
     }
 });
@@ -269,6 +277,7 @@ ham.on('tap',function(e)
                         // e.target.style.top=(dim.clientY)+'px';
                         if((30<dim.clientX && dim.clientX<(k-30)) && ((40<dim.clientY && dim.clientX<(h-40))))
                         {
+                            console.log(dim.clientX);
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
                             console.log('!!');
