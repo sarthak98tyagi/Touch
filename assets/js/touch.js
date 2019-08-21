@@ -283,8 +283,6 @@ ham.on('tap',function(e)
                         }
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
-                        pham.set({enable:true});
-                        ham.set({ enable:true});
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                             var rr=w+parseFloat(map.style.left)-k;
@@ -341,6 +339,8 @@ ham.on('tap',function(e)
                 {
                     move = 0;
                     e.target.style.background = "transparent";
+                    pham.set({enable:true});
+                    ham.set({ enable:true});
                 }
             });
     });
