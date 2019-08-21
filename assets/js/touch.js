@@ -252,7 +252,10 @@ ham.on('tap',function(e)
         popup.innerText=pointers[e.target.id][4];
         popup.id=e.target.id;
         popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
-        popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
+        setTimeout(function(){
+            popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
+        },200);
+
         popup.className="popup";
         screen.appendChild(popup);
     });
