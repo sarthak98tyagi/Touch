@@ -254,10 +254,11 @@ ham.on('tap',function(e)
         popup.innerHTML +='<p></p><button class="btn btn-danger" onclick="remove(event)">Remove point</button>';
         setTimeout(function(){
             popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
+            popup.className="popup";
+            screen.appendChild(popup);
         },500);
 
-        popup.className="popup";
-        screen.appendChild(popup);
+
     });
     var move=0;
     pham.on('press',function(e)
