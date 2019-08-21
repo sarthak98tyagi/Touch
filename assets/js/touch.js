@@ -268,7 +268,7 @@ ham.on('tap',function(e)
                         var l=document.documentElement.clientHeight;
                         // e.target.style.left=(dim.clientX)+'px';
                         // e.target.style.top=(dim.clientY)+'px';
-                        if((30<dim.clientX && dim.clientX<(k-30)) && ((30<dim.clientY && dim.clientX<(h-30)))
+                        if((30<dim.clientX && dim.clientX<(k-30)) && ((30<dim.clientY && dim.clientX<(h-30))))
                         {
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
