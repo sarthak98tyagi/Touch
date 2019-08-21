@@ -136,13 +136,13 @@ map.addEventListener('touchmove',function(e)
            nh=height*f;
            nxcor=(xcor/width)*nw;
            nycor=(ycor/height)*nh;
-           tl=nxcor-x;
+           tl=-(nxcor-x);
            tt=nycor-y;
            console.log(nw-dwidth+tl);
-           if((nw-tl)>=dwidth && (nh-tt)>=dheight)
+           if((nw+tl)>=dwidth && (nh-tt)>=dheight)
            {
                map.style.width=nw+'px';
-               map.style.left=-tl+'px';
+               map.style.left=tl+'px';
                map.style.top=-tt+'px';
                scaleshift(f);
            }
@@ -150,7 +150,6 @@ map.addEventListener('touchmove',function(e)
    }
    dis3 = dis2;
 });
-
 ham.on('swiperight',function(e)
 {
     cnt=1;
