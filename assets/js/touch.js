@@ -275,16 +275,17 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         var l=document.documentElement.clientHeight;
+                        var cl=parseFloat(map.style.left);
+                        var ct=parseFloat(map.style.top);
+                        pham.set({enable:true});
+                        ham.set({ enable:true});
                         if((40<dim.clientX && (k-dim.clientX)>40) && ((40<dim.clientY && (l-dim.clientY)>40)))
                         {
 
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
                         }
-                        var cl=parseFloat(map.style.left);
-                        var ct=parseFloat(map.style.top);
-                        pham.set({enable:true});
-                        ham.set({ enable:true});
+
                         if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
                             var rr=w+parseFloat(map.style.left)-k;
@@ -359,7 +360,7 @@ function remove(e)
 function cancel(e)
 {
     screen.removeChild(e.target.parentElement);
-    
+
     ham.set({enable:true});
 }
 
