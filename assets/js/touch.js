@@ -1,21 +1,17 @@
-var map=document.getElementById("map");
-var holder=document.getElementById("map-holder");
-var screen=document.getElementById('screen');
-var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
-var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
-var mheight=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-var ham= new Hammer(map);
-var pham;
+var dis1,dis2,dis3,width,height,xcor,ycor,x,y,nw,nh,f,nxcor,nycor,tl,tt,map,holder,screen,dwidth,dheight,ham,pham,mp=0,cnt=0,move=0
+    ,ml,mr,mt,mb,id,del,cl,ct,inwidth,inheight,dim,k,l,ll,bb,ldis,bdis,rdis,tdis,rr;
+map=document.getElementById("map");
+holder=document.getElementById("map-holder");
+screen=document.getElementById('screen');
+dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
+dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
+ham= new Hammer(map);
 ham.get('pinch').set({enable:true});
 ham.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 var pointers={};
 map.style.top='0px';
 map.style.left='0px';
-var mp=0; //mark-counter
 var message=['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
-var cnt=0;
-var move=0;
-var dis1,dis2, dis3,width,height,xcor,ycor,x,y,nw,nh,f,nxcor,nycor,tl,tt;
 function scaleshift(factor=1)
 {
     var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
@@ -157,7 +153,7 @@ ham.on('swiperight',function(e)
 {
     cnt=1;
     e.preventDefault();
-    var ml=parseFloat(map.style.left);
+    ml=parseFloat(map.style.left);
     if((ml+e.distance)<0)
    {
       map.style.left=(ml+e.distance)+'px';
@@ -173,8 +169,8 @@ ham.on('swipedown',function(e)
 {
     cnt=1;
     e.preventDefault();
-    var mt=parseFloat(map.style.top);
-    var ml=parseFloat(map.style.left);
+    mt=parseFloat(map.style.top);
+    ml=parseFloat(map.style.left);
     if((mt+e.distance)<0)
     {
         map.style.top=(mt+e.distance)+'px';
@@ -190,8 +186,8 @@ ham.on('swipeleft',function(e)
 {
     cnt=1;
     e.preventDefault();
-    var mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
-    var ml=parseFloat(map.style.left);
+    mr=parseFloat(getComputedStyle(map).getPropertyValue("right"));
+    ml=parseFloat(map.style.left);
     if((mr+e.distance)<=0)
     {
         map.style.left=(ml-e.distance)+'px';
@@ -208,9 +204,9 @@ ham.on('swipeup',function(e)
 {
     cnt=1;
     e.preventDefault();
-    var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
-    var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-    var mt=parseFloat(map.style.top);
+    mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
+    h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+    mt=parseFloat(map.style.top);
     if(Math.abs(mt-e.distance)<=(h-dheight))
     {
         map.style.top=(mt-e.distance)+'px';
@@ -225,17 +221,16 @@ ham.on('swipeup',function(e)
 ham.on('tap',function(e)
 {
     e.preventDefault();
-    var x=e.center['x'];
-    var y=e.center['y'];
-    console.log(x,y);
-    var cl=parseFloat(map.style.left);
-    var ct=parseFloat(map.style.top);
-    var xmark=Math.abs(cl)+x;
-    var ymark=Math.abs(ct)+y;
+    x=e.center['x'];
+    y=e.center['y'];
+    cl=parseFloat(map.style.left);
+    ct=parseFloat(map.style.top);
+    xmark=Math.abs(cl)+x;
+    ymark=Math.abs(ct)+y;
     var mark=document.createElement("div");
     mark.id=mp;
-    var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-    var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+    inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+    inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     pointers[mp]=[xmark,ymark,inwidth,inheight,message[mp]];
     mark.className="mark";
     mark.style.left=x+'px';
@@ -270,13 +265,13 @@ ham.on('tap',function(e)
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
                     {
-                        var dim=e.targetTouches[0];
-                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                        var k=document.documentElement.clientWidth;
-                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                        var l=document.documentElement.clientHeight;
-                        var cl=parseFloat(map.style.left);
-                        var ct=parseFloat(map.style.top);
+                        dim=e.targetTouches[0];
+                        w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        k=document.documentElement.clientWidth;
+                        h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                        l=document.documentElement.clientHeight;
+                        cl=parseFloat(map.style.left);
+                        ct=parseFloat(map.style.top);
                         pham.set({enable:true});
                         ham.set({ enable:true});
                         if((40<dim.clientX && (k-dim.clientX)>40) && ((40<dim.clientY && (l-dim.clientY)>40)))
@@ -286,10 +281,10 @@ ham.on('tap',function(e)
                             e.target.style.top=(dim.clientY)+'px';
                         }
 
-                        if((document.documentElement.clientWidth-dim.clientX)<30)
+                        if((k-dim.clientX)<30)
                         {
-                            var rr=w+parseFloat(map.style.left)-k;
-                            var rdis=Math.abs(k-dim.clientX);
+                            rr=w+parseFloat(map.style.left)-k;
+                            rdis=Math.abs(k-dim.clientX);
                             if((-rr+rdis)<=0)
                             {
                                 var rl=parseFloat(map.style.left);
@@ -297,11 +292,11 @@ ham.on('tap',function(e)
                                 scaleshift();
                             }
                         }
-                        if((document.documentElement.clientHeight-dim.clientY)<30)
+                        if((l-dim.clientY)<30)
                         {
 
-                            var bb=h+parseFloat(map.style.top)-l;
-                            var bdis=Math.abs(l-dim.clientY);
+                            bb=h+parseFloat(map.style.top)-l;
+                            bdis=Math.abs(l-dim.clientY);
                             if((-bb+bdis)<=0)
                             {
                                 var bt=parseFloat(map.style.top);
@@ -311,8 +306,8 @@ ham.on('tap',function(e)
                         }
                         if(dim.clientX<30)
                         {
-                            var ll=parseFloat(map.style.left);
-                            var ldis=30-dim.clientX;
+                            ll=parseFloat(map.style.left);
+                            ldis=30-dim.clientX;
                             if((ll+ldis)<=0)
                             {
                                 map.style.left=(ll+ldis)+'px';
@@ -321,18 +316,18 @@ ham.on('tap',function(e)
                         }
                         if(dim.clientY<30)
                         {
-                            var tl=parseFloat(map.style.top);
-                            var tdis=30-dim.clientY;
+                            tl=parseFloat(map.style.top);
+                            tdis=30-dim.clientY;
                             if((tl+tdis)<=0)
                             {
                                 map.style.top=(tl+tdis)+'px';
                                 scaleshift();
                             }
                         }
-                        var xmark=Math.abs(cl)+dim.clientX;
-                        var ymark=Math.abs(ct)+dim.clientY;
-                        var inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                        var inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                        xmark=Math.abs(cl)+dim.clientX;
+                        ymark=Math.abs(ct)+dim.clientY;
+                        inwidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        inheight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         pointers[e.target.id]=[xmark,ymark,inwidth,inheight,message[e.target.id]];
                     }
                 });
@@ -353,11 +348,11 @@ ham.on('tap',function(e)
 });
 function remove(e)
 {
- var tg=Number(e.target.parentElement.id);
- delete(pointers[tg]);
- var del=document.getElementById(tg);
+ id=Number(e.target.parentElement.id);
+ delete(pointers[id]);
+ del=document.getElementById(id);
  holder.removeChild(del);
- screen.removeChild(document.getElementById(tg));
+ screen.removeChild(document.getElementById(id));
  pham.set({enable:true});
  ham.set({enable:true});
 }
