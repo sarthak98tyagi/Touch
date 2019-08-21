@@ -274,7 +274,7 @@ ham.on('tap',function(e)
                         var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         var l=document.documentElement.clientHeight;
                         console.log(dim.clientX,k);
-                        if((30<dim.clientX && dim.clientX<(k-50)) && ((40<dim.clientY && dim.clientX<(h-50))))
+                        if((30<dim.clientX && (k-dim.clientX)>30) && ((40<dim.clientY && (h-dim.clientY)>30)))
                         {
 
                             e.target.style.left=(dim.clientX)+'px';
