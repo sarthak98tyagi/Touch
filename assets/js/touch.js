@@ -212,7 +212,7 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.top=-(h-dheight)+'px';
+        map.style.top=-(h+mt-dheight)+'px';
         console.log(h-dheight,'!!');
         scaleshift();
     }
