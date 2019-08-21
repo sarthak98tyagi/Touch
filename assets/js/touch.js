@@ -262,58 +262,57 @@ ham.on('tap',function(e)
                     if(e.targetTouches.length===1 && move)
                     {
                         var dim=e.targetTouches[0];
+                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                        var k=document.documentElement.clientWidth;
+                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                        var l=document.documentElement.clientHeight;
                         // e.target.style.left=(dim.clientX)+'px';
                         // e.target.style.top=(dim.clientY)+'px';
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
                         pham.set({enable:true});
                         ham.set({ enable:true});
-                        var w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                        var k=document.documentElement.clientWidth;
-                        var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                        var l=document.documentElement.clientHeight;
-                        if((dim.clientX>30 || (document.documentElement.clientWidth-dim.clientX)<30) && (dim.clientY>30 || (document.documentElement.clientWidth-dim.clientY)<30))
+                        if((document.documentElement.clientWidth-dim.clientX)<30)
                         {
-                            e.target.style.left=(dim.clientX)+'px';
-                            e.target.style.top=(dim.clientY)+'px';
-                        }
-                        else
+                            var rr=w+parseFloat(map.style.left)-k;
+                            var rdis=Math.abs(k-dim.clientX);
+                            if((-rr+rdis)<=0)
                             {
-                            if ((document.documentElement.clientWidth - dim.clientX) < 30) {
+                                var rl=parseFloat(map.style.left);
+                                map.style.left=(rl-rdis)+'px';
+                                scaleshift();
+                            }
+                        }
+                        if((document.documentElement.clientHeight-dim.clientY)<30)
+                        {
 
-                                var rr = w + parseFloat(map.style.left) - k;
-                                var rdis = Math.abs(k - dim.clientX);
-                                if ((-rr + rdis) <= 0) {
-                                    var rl = parseFloat(map.style.left);
-                                    map.style.left = (rl - rdis) + 'px';
-                                    scaleshift();
-                                }
+                            var bb=h+parseFloat(map.style.top)-l;
+                            var bdis=Math.abs(l-dim.clientY);
+                            if((-bb+bdis)<=0)
+                            {
+                                var bt=parseFloat(map.style.top);
+                                map.style.top=(bt-bdis)+'px';
+                                scaleshift();
                             }
-                            if ((document.documentElement.clientHeight - dim.clientY) < 30) {
-
-                                var bb = h + parseFloat(map.style.top) - l;
-                                var bdis = Math.abs(l - dim.clientY);
-                                if ((-bb + bdis) <= 0) {
-                                    var bt = parseFloat(map.style.top);
-                                    map.style.top = (bt - bdis) + 'px';
-                                    scaleshift();
-                                }
+                        }
+                        if(dim.clientX<30)
+                        {
+                            var ll=parseFloat(map.style.left);
+                            var ldis=30-dim.clientX;
+                            if((ll+ldis)<=0)
+                            {
+                                map.style.left=(ll+ldis)+'px';
+                                scaleshift();
                             }
-                            if (dim.clientX < 30) {
-                                var ll = parseFloat(map.style.left);
-                                var ldis = 30 - dim.clientX;
-                                if ((ll + ldis) <= 0) {
-                                    map.style.left = (ll + ldis) + 'px';
-                                    scaleshift();
-                                }
-                            }
-                            if (dim.clientY < 30) {
-                                var tl = parseFloat(map.style.top);
-                                var tdis = 30 - dim.clientY;
-                                if ((tl + tdis) <= 0) {
-                                    map.style.top = (tl + tdis) + 'px';
-                                    scaleshift();
-                                }
+                        }
+                        if(dim.clientY<30)
+                        {
+                            var tl=parseFloat(map.style.top);
+                            var tdis=30-dim.clientY;
+                            if((tl+tdis)<=0)
+                            {
+                                map.style.top=(tl+tdis)+'px';
+                                scaleshift();
                             }
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
