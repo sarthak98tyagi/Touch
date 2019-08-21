@@ -1,6 +1,5 @@
 var map=document.getElementById("map");
 var holder=document.getElementById("map-holder");
-// var pin=document.getElementsByClassName('mark');
 var screen=document.getElementById('screen');
 var dwidth=parseFloat(getComputedStyle(holder).getPropertyValue("width"));
 var dheight=parseFloat(getComputedStyle(holder).getPropertyValue("height"));
@@ -244,7 +243,7 @@ ham.on('tap',function(e)
     holder.appendChild(mark);
     var pin=document.getElementById(mp);
     pham=new Hammer(pin);
-    pham.on('tap',function(e)
+    pham.on('tap',function(e)                  /*Attach and Detach Pin*/
     {
             console.log('!!');
             pham.set({enable:false});
@@ -266,7 +265,7 @@ ham.on('tap',function(e)
             pham.set({enable:false});
             ham.set({enable:false});
             e.target.style.background="yellow";
-            e.target.addEventListener('touchmove',function(e)     /*drag module*/
+            e.target.addEventListener('touchmove',function(e)     /*drag*/
                 {
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
