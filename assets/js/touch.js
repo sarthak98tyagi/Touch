@@ -276,10 +276,9 @@ ham.on('tap',function(e)
                         console.log(dim.clientX,k);
                         if((30<dim.clientX && (k-dim.clientX)>30) && ((40<dim.clientY && (h-dim.clientY)>30)))
                         {
-
+                            console.log('!!');
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
-                            console.log('!!');
                         }
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
