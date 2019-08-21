@@ -246,7 +246,7 @@ ham.on('tap',function(e)
     pham=new Hammer(pin);
     pham.on('tap',function(e)
     {
-
+            console.log('!!');
             ham.set({enable:false});
             var popup=document.createElement("div");
             popup.innerText=pointers[e.target.id][4];
@@ -275,10 +275,9 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         var l=document.documentElement.clientHeight;
-                        console.log(dim.clientX,k,dim.clientY,h);
                         if((40<dim.clientX && (k-dim.clientX)>40) && ((40<dim.clientY && (l-dim.clientY)>40)))
                         {
-                            console.log('!!');
+
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
                         }
