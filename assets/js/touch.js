@@ -345,7 +345,7 @@ function remove(e)
  delete(pointers[tg]);
  var del=document.getElementById(tg);
  holder.removeChild(del);
- screen.removeChild(e.target.parentElement);
+ screen.removeChild(document.getElementById(tg));
  ham.set({enable:true});
 }
 function cancel(e)
