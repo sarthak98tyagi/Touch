@@ -343,11 +343,12 @@ ham.on('tap',function(e)
                     move = 0;
                     e.target.style.background = "transparent";
                 }
-            });
 
+            });
+            pham.set({enable:true});
+            ham.set({ enable:true});
     });
-    pham.set({enable:true});
-    ham.set({ enable:true});
+
         mp=mp+1;
 });
 function remove(e)
