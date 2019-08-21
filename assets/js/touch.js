@@ -202,8 +202,8 @@ ham.on('swipeup',function(e)
     cnt=1;
     e.preventDefault();
     var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
+    console.log(mb,e.distance);
     var mt=parseFloat(map.style.top);
-    // var ml=parseFloat(getComputedStyle(map).getPropertyValue("left"));
     if((mb+e.distance)<=0)
     {
         map.style.top=(mt-e.distance)+'px';
