@@ -272,7 +272,7 @@ ham.on('tap',function(e)
                         var k=document.documentElement.clientWidth;
                         var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
                         var l=document.documentElement.clientHeight;
-                        if((dim.clientX>30 && (document.documentElement.clientWidth-dim.clientX)<30) && (dim.clientY>30 && (document.documentElement.clientWidth-dim.clientY)<30))
+                        if((dim.clientX>30 && (document.documentElement.clientWidth-dim.clientX)<30) || (dim.clientY>30 && (document.documentElement.clientWidth-dim.clientY)<30))
                         {
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
