@@ -205,7 +205,7 @@ ham.on('swipeup',function(e)
     var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     console.log(mb,e.distance);
     var mt=parseFloat(map.style.top);
-    if(-(h+mt-parseFloat(map.style.top))<=0)
+    if(Math.abs(mt-e.distance)<=(h-dheight))
     {
         map.style.top=(mt-e.distance)+'px';
         scaleshift();
