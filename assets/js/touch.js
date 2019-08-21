@@ -103,10 +103,10 @@ map.addEventListener('touchstart',function(e)
 });
 map.addEventListener('touchmove',function(e)
 {
-    cnt=1;
+
     e.preventDefault();
    if(e.targetTouches.length===2)
-   {
+   {   cnt=1;
        dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
        if((dis2-dis3)>0)                /*zoom-in*/
        {
