@@ -247,6 +247,7 @@ ham.on('tap',function(e)
     pham.on('tap',function(e)
     {
             console.log('!!');
+            pham.set({enable:false});
             ham.set({enable:false});
             var popup=document.createElement("div");
             popup.innerText=pointers[e.target.id][4];
@@ -358,13 +359,13 @@ function remove(e)
  var del=document.getElementById(tg);
  holder.removeChild(del);
  screen.removeChild(document.getElementById(tg));
-
+ pham.set({enable:true});
  ham.set({enable:true});
 }
 function cancel(e)
 {
     screen.removeChild(e.target.parentElement);
-
+    pham.set({enable:true});
     ham.set({enable:true});
 }
 
