@@ -265,6 +265,7 @@ ham.on('tap',function(e)
                     e.preventDefault();
                     if(e.targetTouches.length===1 && move)
                     {
+                        cnt=1;
                         dim=e.targetTouches[0];
                         w=parseFloat(getComputedStyle(map).getPropertyValue('width'));
                         k=document.documentElement.clientWidth;
