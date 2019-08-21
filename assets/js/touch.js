@@ -202,9 +202,10 @@ ham.on('swipeup',function(e)
     cnt=1;
     e.preventDefault();
     var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
+    var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
     console.log(mb,e.distance);
     var mt=parseFloat(map.style.top);
-    if((mb+e.distance)<=0)
+    if(-(h+mt-parseFloat(map.style.top))<=0)
     {
         map.style.top=(mt-e.distance)+'px';
         scaleshift();
