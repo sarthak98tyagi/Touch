@@ -280,9 +280,17 @@ ham.on('tap',function(e)
                             if((-rr+rdis)<=0)
                             {
                                 var rl=parseFloat(map.style.left);
+                                e.target.style.left=dim.clientX+'px';
+                                e.target.style.top=dim.clientY+'px';
                                 map.style.left=(rl-rdis)+'px';
                                 scaleshift();
                             }
+
+                        }
+                        else
+                        {
+                            e.target.style.left=dim.clientX+'px';
+                            e.target.style.top=dim.clientY+'px';
                         }
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
@@ -293,8 +301,15 @@ ham.on('tap',function(e)
                             {
                                 var bt=parseFloat(map.style.top);
                                 map.style.top=(bt-bdis)+'px';
+                                e.target.style.left=dim.clientX+'px';
+                                e.target.style.top=dim.clientY+'px';
                                 scaleshift();
                             }
+                        }
+                        else
+                        {
+                            e.target.style.left=dim.clientX+'px';
+                            e.target.style.top=dim.clientY+'px';
                         }
                         if(dim.clientX<30)
                         {
@@ -303,8 +318,15 @@ ham.on('tap',function(e)
                             if((ll+ldis)<=0)
                             {
                                 map.style.left=(ll+ldis)+'px';
+                                e.target.style.left=dim.clientX+'px';
+                                e.target.style.top=dim.clientY+'px';
                                 scaleshift();
                             }
+                        }
+                        else
+                        {
+                            e.target.style.left=dim.clientX+'px';
+                            e.target.style.top=dim.clientY+'px';
                         }
                         if(dim.clientY<30)
                         {
@@ -313,8 +335,15 @@ ham.on('tap',function(e)
                             if((tl+tdis)<=0)
                             {
                                 map.style.top=(tl+tdis)+'px';
+                                e.target.style.left=dim.clientX+'px';
+                                e.target.style.top=dim.clientY+'px';
                                 scaleshift();
                             }
+                        }
+                        else
+                        {
+                            e.target.style.left=dim.clientX+'px';
+                            e.target.style.top=dim.clientY+'px';
                         }
                         var xmark=Math.abs(cl)+dim.clientX;
                         var ymark=Math.abs(ct)+dim.clientY;
