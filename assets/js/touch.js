@@ -213,7 +213,7 @@ ham.on('swipeup',function(e)
     else
     {
         map.style.top=-(h-dheight)+'px';
-        console.log('!!');
+        console.log(h-dheight,'!!');
         scaleshift();
     }
 });
