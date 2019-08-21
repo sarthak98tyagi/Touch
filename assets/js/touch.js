@@ -272,6 +272,7 @@ ham.on('tap',function(e)
                         {
                             e.target.style.left=(dim.clientX)+'px';
                             e.target.style.top=(dim.clientY)+'px';
+                            console.log('!!');
                         }
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
@@ -343,7 +344,7 @@ function remove(e)
  var tg=Number(e.target.parentElement.id);
  delete(pointers[tg]);
  var del=document.getElementById(tg);
- var c=holder.removeChild(del);
+ holder.removeChild(del);
  screen.removeChild(e.target.parentElement);
  ham.set({enable:true});
 }
