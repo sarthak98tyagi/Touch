@@ -138,7 +138,7 @@ map.addEventListener('touchmove',function(e)
            nycor=(ycor/height)*nh;
            tl=nxcor-x;
            tt=nycor-y;
-           var a=tl<0?(nw-dwidth+tl):(nw-dwidth-tl):
+           var a=tl<0?(nw-dwidth+tl):(nw-dwidth-tl);
            console.log(a);
            if((a)>=dwidth && (nh-tt)>=dheight)
            {
