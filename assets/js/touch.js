@@ -212,10 +212,9 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.bottom=(mt+mb)+'px';
+        map.style.bottom=0+'px';
         console.log('!!');
         scaleshift();
-
     }
 });
 ham.on('tap',function(e)
