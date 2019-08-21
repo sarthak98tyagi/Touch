@@ -203,7 +203,6 @@ ham.on('swipeup',function(e)
     e.preventDefault();
     var mb=parseFloat(getComputedStyle(map).getPropertyValue("bottom"));
     var h=parseFloat(getComputedStyle(map).getPropertyValue('height'));
-    console.log(mb,e.distance);
     var mt=parseFloat(map.style.top);
     if(Math.abs(mt-e.distance)<=(h-dheight))
     {
@@ -212,8 +211,7 @@ ham.on('swipeup',function(e)
     }
     else
     {
-        map.style.top=-(h+mt-dheight)+'px';
-        console.log(h-dheight,'!!');
+        map.style.top=-(h-parseFloat(document.documentElement.clientHeight))+'px';
         scaleshift();
     }
 });
