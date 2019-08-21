@@ -285,11 +285,9 @@ ham.on('tap',function(e)
                             }
                             else
                             {
-                                e.target.style.left=(dim.clientX-rdis)+'px';
-                                e.target.style.top=(dim.clientY-rdis)+'px';
+                                e.target.style.left=(dim.clientX-20)+'px';
+                                e.target.style.top=(dim.clientY-20)+'px';
                             }
-
-
                         }
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
