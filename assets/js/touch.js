@@ -247,8 +247,7 @@ ham.on('tap',function(e)
     pham.on('tap',function(e)
     {
 
-        ham.set({enable:false});
-        setTimeout(function(){
+            ham.set({enable:false});
             var popup=document.createElement("div");
             popup.innerText=pointers[e.target.id][4];
             popup.id=e.target.id;
@@ -256,7 +255,6 @@ ham.on('tap',function(e)
             popup.innerHTML +='<i class="fas fa-times close" onclick="cancel(event)"></i>';
             popup.className="popup";
             screen.appendChild(popup);
-        },1000);
 
 
     });
