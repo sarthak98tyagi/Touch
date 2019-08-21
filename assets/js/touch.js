@@ -262,7 +262,8 @@ ham.on('tap',function(e)
                     if(e.targetTouches.length===1 && move)
                     {
                         var dim=e.targetTouches[0];
-
+                        e.target.style.left=(dim.clientX-10)+'px';
+                        e.target.style.top=(dim.clientY-10)+'px';
                         var cl=parseFloat(map.style.left);
                         var ct=parseFloat(map.style.top);
                         pham.set({enable:true});
@@ -280,16 +281,9 @@ ham.on('tap',function(e)
                             {
                                 var rl=parseFloat(map.style.left);
                                 map.style.left=(rl-rdis)+'px';
-                                e.target.style.left=(dim.clientX-20)+'px';
-                                e.target.style.top=(dim.clientY-20)+'px';
                                 scaleshift();
                             }
 
-                        }
-                        else
-                        {
-                            e.target.style.left=dim.clientX+'px';
-                            e.target.style.top=dim.clientY+'px';
                         }
                         if((document.documentElement.clientHeight-dim.clientY)<30)
                         {
