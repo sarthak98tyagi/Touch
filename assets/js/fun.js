@@ -33,7 +33,7 @@ class Marker
     {
         e.preventDefault();
         var width,height,f,nw,nh,tl,tt,nxcor,nycor,dis2;
-        else if(e.targetTouches.length===2)
+        if(e.targetTouches.length===2)
         {   this.cnt=1;
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             if((dis2-this.dis1)>0)                /*zoom-in*/
