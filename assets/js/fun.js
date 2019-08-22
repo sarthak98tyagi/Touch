@@ -46,7 +46,7 @@ class Marker
                     this.map.style.width=nw+'px';
                     this.map.style.left=-tl+'px';
                     this.map.style.top=-tt+'px';
-                    scaleshift(f);
+                    // scaleshift(f);
                 }
             }
             else                          /*zoom-out*/
@@ -65,7 +65,7 @@ class Marker
                     this.map.style.width=nw+'px';
                     this.map.style.left=-tl+'px';
                     this.map.style.top=-tt+'px';
-                    scaleshift(f);
+                    // scaleshift(f);
                 }
             }
         }
@@ -78,13 +78,16 @@ class Marker
         this.map=document.createElement('img');
         this.map.src=this.url;
         this.map.alt="Map";
+        this.map.style.left='0px';
+        this.map.style.top='0px';
         this.mapref.appendChild(this.map);
         this.classList.forEach(function (value,index)
         {
             this.map.classList.add(value);
         },this);
-        // this.map.addEventListener('touchstart',this.pinchstart);
-        // this.map.addEventListener('touchmove',this.pinchmove);
+        
+        this.map.addEventListener('touchstart',this.pinchstart);
+        this.map.addEventListener('touchmove',this.pinchmove);
     }
 
 }
