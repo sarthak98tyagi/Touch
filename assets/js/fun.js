@@ -48,8 +48,7 @@ class Marker
                 dis=e.targetTouches[0].clientX - this.x;
                 if(dis<0)
                 {
-
-                    if (Math.abs(mt - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
+                    if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
                     {
                         this.map.style.left = (ml - Math.abs(dis)) + 'px';
 
