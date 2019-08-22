@@ -33,7 +33,7 @@ class Marker
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             if((dis2-self.dis1)>0)                /*zoom-in*/
             {
-                console.log('!!');
+
                 width=parseFloat(getComputedStyle(self.map).getPropertyValue("width"));
                 height=parseFloat(getComputedStyle(self.map).getPropertyValue("height"));
                 nw=width+dis2*2;
@@ -45,7 +45,7 @@ class Marker
                 tt=nycor-self.y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    console.log('!!');
+                    console.log('!!!');
                     self.map.style.width=nw+'px';
                     self.map.style.left=-tl+'px';
                     self.map.style.top=-tt+'px';
