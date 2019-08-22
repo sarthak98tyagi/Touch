@@ -22,6 +22,7 @@ class Marker
             self.xcor=Math.abs(parseFloat(self.map.style.left))+self.x;
             self.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
             self.ycor=Math.abs(parseFloat(self.map.style.top))+self.y;
+            console.log(self.xcor,self.ycor);
         }
     }
     pinchmove(e)
@@ -43,7 +44,6 @@ class Marker
                 nycor=(self.ycor/height)*nh;
                 tl=nxcor-self.x;
                 tt=nycor-self.y;
-                console.log(self.x,tl,tt);
                 if((-tl)<0 && (-tt)<0)
                 {
 
