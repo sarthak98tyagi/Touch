@@ -73,7 +73,6 @@ class Marker
     {
         this.dis1=0;
         this.cnt=0;
-        this.pp();
         var map=document.getElementById("map");
         map.src=this.url;
         map.addEventListener('touchstart',pinchstart(e));
