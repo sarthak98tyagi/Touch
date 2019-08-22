@@ -16,7 +16,7 @@ class Marker
         if(e.targetTouches.length===2)
         {
             this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            // this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
+            this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
             this.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
             this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
             this.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
@@ -30,9 +30,9 @@ class Marker
         if(e.targetTouches.length===2)
         {   this.cnt=1;
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            if((this.dis2-this.dis1)>0)                /*zoom-in*/
+            if((dis2-this.dis1)>0)                /*zoom-in*/
             {
-                // width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
+                width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
                 height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
                 nw=width+dis2*2;
                 f=nw/width;
@@ -74,6 +74,10 @@ class Marker
     start()
     {
         this.dis1=0;
+        this.x=0;
+        this.y=0;
+        this.xcor=0;
+        this.ycor=0;
         this.cnt=0;
         this.map=document.createElement('img');
         this.map.src=this.url;
