@@ -74,10 +74,12 @@ class Marker
     {
         this.dis1=0;
         this.cnt=0;
-        this.map=document.createElement('img');
-        this.map.src=this.url;
-        this.map.alt="Map";
-        this.mapref.appendChild(this.map);
+        var img=document.createElement('img');
+        img.src=this.url;
+        img.alt="Map";
+        img.id="map";
+        this.mapref.appendChild(img);
+        this.map=document.getElementById('map');
         this.map.addEventListener('touchstart',this.pinchstart);
         this.map.addEventListener('touchmove',this.pinchmove);
     }
