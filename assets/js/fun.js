@@ -20,9 +20,9 @@ class Marker
             self.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             self.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
             self.xcor=Math.abs(parseFloat(self.map.style.left))+self.x;
+            console.log(self.map.style.left);
             self.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
             self.ycor=Math.abs(parseFloat(self.map.style.top))+self.y;
-            console.log(self.xcor,self.ycor);
         }
     }
     pinchmove(e)
