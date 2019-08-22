@@ -43,9 +43,10 @@ class Marker
                 nycor=(self.ycor/height)*nh;
                 tl=nxcor-self.x;
                 tt=nycor-self.y;
+                console.log(self.x,tl,tt);
                 if((-tl)<0 && (-tt)<0)
                 {
-                    console.log('!!!');
+
                     self.map.style.width=nw+'px';
                     self.map.style.left=-tl+'px';
                     self.map.style.top=-tt+'px';
