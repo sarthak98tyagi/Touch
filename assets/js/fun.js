@@ -13,9 +13,14 @@ class Marker
     pinchstart(e)
     {
         e.preventDefault();
-        if(e.targetTouches.length===2)
+        if(e.targetTouches.length===1)
         {
-            console.log('!!');
+            this.x=e.targetTouches[0].clientX;
+            this.y=e.targetTouches[1].clientY;
+        }
+        else if(e.targetTouches.length===2)
+        {
+
             this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
             this.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
@@ -28,7 +33,7 @@ class Marker
     {
         e.preventDefault();
         var width,height,f,nw,nh,tl,tt,nxcor,nycor,dis2;
-        if(e.targetTouches.length===2)
+        else if(e.targetTouches.length===2)
         {   this.cnt=1;
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             if((dis2-this.dis1)>0)                /*zoom-in*/
@@ -74,6 +79,31 @@ class Marker
         }
         this.dis1 = dis2;
     }
+    pinchend(e)
+    {
+        e.preventDefault();
+        var ch,dis,ml;
+        if(e.targetTouches.length===1)
+        {
+            ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[1].clientY-this.y))?1:0;
+            if(ch===1)
+            {
+                this.cnt=1;
+                ml=parseFloat(this.map.style.left);
+                if((ml+(e.targetTouches[0].clientX-this.x))<0)
+                {
+                    this.map.style.left=(ml+e.distance)+'px';
+                    scaleshift();
+                }
+                else
+                {
+                    this.map.style.left=0+'px';
+                    scaleshift();
+                }
+            }
+
+        }
+    }
     start()
     {
         this.dis1=0;
@@ -90,6 +120,7 @@ class Marker
         },this);
         this.map.addEventListener('touchstart',this.pinchstart.bind(this));
         this.map.addEventListener('touchmove',this.pinchmove.bind(this));
+        this.map.addEventListener('touchend',this.pinchend.bind(this));
     }
 
 }
