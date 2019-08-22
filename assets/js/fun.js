@@ -55,10 +55,10 @@ class Marker
                 nw=width-dis2*2;
                 f=nw/width;
                 nh=height*f;
-                nxcor=(xcor/width)*nw;
-                nycor=(ycor/height)*nh;
-                tl=nxcor-x;
-                tt=nycor-y;
+                nxcor=(this.xcor/width)*nw;
+                nycor=(this.ycor/height)*nh;
+                tl=nxcor-this.x;
+                tt=nycor-this.y;
                 if((-tl)<0 && (-tt)<0)
                 {
                     this.map.style.width=nw+'px';
