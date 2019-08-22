@@ -10,18 +10,18 @@ class Marker
         this.mapref=mapref;
         this.start();
     }
+    self=this;
     pinchstart(e)
     {
         e.preventDefault();
         if(e.targetTouches.length===2)
         {
-            this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-            this.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
-            this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-            this.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
+            self.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+            self.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
+            self.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
+            self.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
+            self.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
         }
-
     }
     pinchmove(e)
     {
