@@ -18,9 +18,9 @@ class Marker
         {
             self.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             self.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-            self.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
+            self.xcor=Math.abs(parseFloat(self.map.style.left))+self.x;
             self.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-            self.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
+            self.ycor=Math.abs(parseFloat(self.map.style.top))+self.y;
         }
     }
     pinchmove(e)
@@ -28,48 +28,48 @@ class Marker
         e.preventDefault();
         var width,height,f,nw,nh,tl,tt,nxcor,nycor,dis2;
         if(e.targetTouches.length===2)
-        {   this.cnt=1;
+        {   self.cnt=1;
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            if((dis2-this.dis1)>0)                /*zoom-in*/
+            if((dis2-self.dis1)>0)                /*zoom-in*/
             {
-                width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
-                height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
+                width=parseFloat(getComputedStyle(self.map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(self.map).getPropertyValue("height"));
                 nw=width+dis2*2;
                 f=nw/width;
                 nh=height*f;
-                nxcor=(this.xcor/width)*nw;
-                nycor=(this.ycor/height)*nh;
-                tl=nxcor-this.x;
-                tt=nycor-this.y;
+                nxcor=(self.xcor/width)*nw;
+                nycor=(self.ycor/height)*nh;
+                tl=nxcor-self.x;
+                tt=nycor-self.y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    this.map.style.width=nw+'px';
-                    this.map.style.left=-tl+'px';
-                    this.map.style.top=-tt+'px';
+                    self.map.style.width=nw+'px';
+                    self.map.style.left=-tl+'px';
+                    self.map.style.top=-tt+'px';
                     // scaleshift(f);
                 }
             }
             else                          /*zoom-out*/
             {
-                width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
-                height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
+                width=parseFloat(getComputedStyle(self.map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(self.map).getPropertyValue("height"));
                 nw=width-dis2*2;
                 f=nw/width;
                 nh=height*f;
-                nxcor=(this.xcor/width)*nw;
-                nycor=(this.ycor/height)*nh;
-                tl=nxcor-this.x;
-                tt=nycor-this.y;
+                nxcor=(self.xcor/width)*nw;
+                nycor=(self.ycor/height)*nh;
+                tl=nxcor-self.x;
+                tt=nycor-self.y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    this.map.style.width=nw+'px';
-                    this.map.style.left=-tl+'px';
-                    this.map.style.top=-tt+'px';
+                    self.map.style.width=nw+'px';
+                    self.map.style.left=-tl+'px';
+                    self.map.style.top=-tt+'px';
                     // scaleshift(f);
                 }
             }
         }
-        this.dis1 = dis2;
+        self.dis1 = dis2;
     }
     start()
     {
@@ -89,8 +89,8 @@ class Marker
         {
             this.map.classList.add(value);
         },this);
-        this.map.addEventListener('touchstart',this.pinchstart.bind(this));
-        this.map.addEventListener('touchmove',this.pinchmove.bind(this));
+        this.map.addEventListener('touchstart',this.pinchstart);
+        this.map.addEventListener('touchmove',this.pinchmove);
     }
 
 }
