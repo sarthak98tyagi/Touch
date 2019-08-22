@@ -23,7 +23,6 @@ class Marker
             this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
             this.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
         }
-
     }
     pinchmove(e)
     {
@@ -46,7 +45,7 @@ class Marker
                 tt=nycor-this.y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    console.log('!!!');
+
                     this.map.style.width=nw+'px';
                     this.map.style.left=-tl+'px';
                     this.map.style.top=-tt+'px';
@@ -78,10 +77,6 @@ class Marker
     start()
     {
         this.dis1=0;
-        this.x=0;
-        this.y=0;
-        this.xcor=0;
-        this.ycor=0;
         this.cnt=0;
         this.map=document.createElement('img');
         this.map.src=this.url;
