@@ -1,11 +1,12 @@
 class Marker
 {
-    constructor(url,mark,option={'editable':false,'multiple':false})
+    constructor(url,mapref,mark,options={'editable':false,'multiple':false,classList:{}})
     {
 
-        this.editable=option['editable'];
-        this.multiple=option['multiple'];
+        this.editable=options['editable'];
+        this.multiple=options['multiple'];
         this.url=url;
+        this.mapref=mapref;
         this.start();
     }
     pinchstart(e)
@@ -15,9 +16,9 @@ class Marker
         {
             this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-            this.xcor=Math.abs(parseFloat(map.style.left))+this.x;
+            this.xcor=Math.abs(parseFloat(this.map.style.left))+this.x;
             this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-            this.ycor=Math.abs(parseFloat(map.style.top))+this.y;
+            this.ycor=Math.abs(parseFloat(this.map.style.top))+this.y;
         }
 
     }
@@ -30,8 +31,8 @@ class Marker
             dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             if((this.dis2-this.dis1)>0)                /*zoom-in*/
             {
-                width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
-                height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+                width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
                 nw=width+dis2*2;
                 f=nw/width;
                 nh=height*f;
@@ -41,16 +42,16 @@ class Marker
                 tt=nycor-this.y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    map.style.width=nw+'px';
-                    map.style.left=-tl+'px';
-                    map.style.top=-tt+'px';
+                    this.map.style.width=nw+'px';
+                    this.map.style.left=-tl+'px';
+                    this.map.style.top=-tt+'px';
                     scaleshift(f);
                 }
             }
             else                          /*zoom-out*/
             {
-                width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
-                height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+                width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
                 nw=width-dis2*2;
                 f=nw/width;
                 nh=height*f;
@@ -60,9 +61,9 @@ class Marker
                 tt=nycor-y;
                 if((-tl)<0 && (-tt)<0)
                 {
-                    map.style.width=nw+'px';
-                    map.style.left=-tl+'px';
-                    map.style.top=-tt+'px';
+                    this.map.style.width=nw+'px';
+                    this.map.style.left=-tl+'px';
+                    this.map.style.top=-tt+'px';
                     scaleshift(f);
                 }
             }
@@ -73,11 +74,14 @@ class Marker
     {
         this.dis1=0;
         this.cnt=0;
-        var map=document.getElementById("map");
-        map.src=this.url;
-        map.addEventListener('touchstart',pinchstart(e));
-        map.addEventListener('touchmove',pinchmove(e));
+        this.map=document.createElement('img');
+        this.map.src=this.url;
+        this.map.alt="Map";
+        this.mapref.appendChild(this.map);
+        this.map.addEventListener('touchstart',this.pinchstart);
+        this.map.addEventListener('touchmove',this.pinchmove);
     }
 
 }
-M=new Marker("assets/images/map.jpg");
+var map=document.getElementById('map-holder');
+M=new Marker("assets/images/map.jpg",map);
