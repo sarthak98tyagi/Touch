@@ -9,7 +9,7 @@ body
     height: 100vh;
     
 }
-#map-holder img
+.mapclass
 {
     position: absolute;
     top: 0;

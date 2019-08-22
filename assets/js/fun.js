@@ -1,10 +1,11 @@
 class Marker
 {
-    constructor(url,mapref,mark,options={'editable':false,'multiple':false,classList:{}})
+    constructor(url,mapref,mark,options={'editable':false,'multiple':false,classList:[]})
     {
 
         this.editable=options['editable'];
         this.multiple=options['multiple'];
+        this.classList=options['classList'];
         this.url=url;
         this.mapref=mapref;
         this.start();
@@ -74,16 +75,19 @@ class Marker
     {
         this.dis1=0;
         this.cnt=0;
-        var img=document.createElement('img');
-        img.src=this.url;
-        img.alt="Map";
-        img.id="map";
-        this.mapref.appendChild(img);
-        this.map=document.getElementById('map');
-        this.map.addEventListener('touchstart',this.pinchstart);
-        this.map.addEventListener('touchmove',this.pinchmove);
+        this.map=document.createElement('img');
+        this.map.src=this.url;
+        this.map.alt="Map";
+        this.mapref.appendChild(this.map);
+        this.classList.forEach(function (value,index)
+        {
+            this.map.classList.add(value);
+        },this);
+        // this.map.addEventListener('touchstart',this.pinchstart);
+        // this.map.addEventListener('touchmove',this.pinchmove);
     }
 
 }
 var map=document.getElementById('map-holder');
-M=new Marker("assets/images/map.jpg",map);
+options={classList:[]};
+M=new Marker("assets/images/map.jpg",map,{},{classList:['mapclass']});
