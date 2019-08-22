@@ -89,8 +89,8 @@ class Marker
         {
             this.map.classList.add(value);
         },this);
-        this.map.addEventListener('touchstart',this.pinchstart);
-        this.map.addEventListener('touchmove',this.pinchmove);
+        this.map.addEventListener('touchstart',this.pinchstart.bind(this));
+        this.map.addEventListener('touchmove',this.pinchmove.bind(this));
     }
 
 }
