@@ -115,6 +115,7 @@ class Marker
                    if(difference > 500)
                    {
                        console.log('!!', difference );
+                       alert('Hello');
                    }
                 });
                 mp++;
