@@ -117,7 +117,7 @@ class Marker
                     pr=new Date().getMilliseconds()<tm?(new Date().getMilliseconds()+1000):new Date().getMilliseconds();
                     var difference =pr-tm;
                     console.log(difference);
-                   if(difference > 500)
+                   if(difference > 150)
                    {
                        console.log('!!', difference );
                    }
