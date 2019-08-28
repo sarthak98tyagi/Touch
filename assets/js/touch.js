@@ -362,7 +362,5 @@ function remove(e)
 function cancel(e)
 {
     screen.removeChild(e.target.parentElement);
-    pham.set({enable:true});
-    ham.set({enable:true});
 }
 

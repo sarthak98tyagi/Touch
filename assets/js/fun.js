@@ -162,9 +162,7 @@ class Marker
         },this);
         this.map.addEventListener('touchstart',this.pinchstart.bind(this));
         this.map.addEventListener('touchmove',this.pinchmove.bind(this));
-
     }
-
 }
 var map=document.getElementById('map-holder');
 options={classList:[]};
