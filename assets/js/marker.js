@@ -104,7 +104,7 @@ class Marker
 
                 }.bind(this));
                 var move = 0;
-                mark.addEventListener('touchend', function () {
+                mark.addEventListener('touchend', function (e) {
 
                     var difference = new Date().getTime() - tm;
                     console.log(difference);
@@ -135,7 +135,7 @@ class Marker
                                         var rl = parseFloat(map.style.left);
                                         map.style.left = (rl - rdis) + 'px';
                                         cnt = 1;
-                                        
+
                                     }
                                 }
                                 if ((l - dim.clientY) < 30) {
