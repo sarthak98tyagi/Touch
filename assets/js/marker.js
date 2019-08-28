@@ -52,6 +52,7 @@ class Marker
     }
     setPin(msg) {
         friend(this.url);
+        var cnt;
         var info = [], mp = 0;
         if (Array.isArray(msg))
             info = msg;
@@ -111,7 +112,8 @@ class Marker
                     if (difference > 250) {
                         move = 1;
                         e.target.style.background = "yellow";
-                        e.target.addEventListener('touchmove', function (e)     /*drag*/ {
+                        e.target.addEventListener('touchmove', function (e)     /*drag*/
+                        {
                             e.preventDefault();
                             if (e.targetTouches.length === 1 && move) {
 
@@ -128,10 +130,12 @@ class Marker
                                     e.target.style.top = (dim.clientY) + 'px';
                                 }
 
-                                if ((k - dim.clientX) < 30) {
+                                if ((k - dim.clientX) < 30)
+                                {
                                     var rr = w + parseFloat(map.style.left) - k;
                                     var rdis = Math.abs(k - dim.clientX);
-                                    if ((-rr + rdis) <= 0) {
+                                    if ((-rr + rdis) <= 0)
+                                    {
                                         var rl = parseFloat(map.style.left);
                                         map.style.left = (rl - rdis) + 'px';
                                         cnt = 1;
@@ -169,9 +173,9 @@ class Marker
                                 }
                                 xmark = Math.abs(cl) + dim.clientX;
                                 ymark = Math.abs(ct) + dim.clientY;
-                                inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                                inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                                this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, message[e.target.id]];
+                                var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                                var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                                this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
                             }
                         }.bind(this));
                         e.target.addEventListener('touchend', function (e) {
