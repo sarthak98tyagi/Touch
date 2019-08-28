@@ -112,14 +112,14 @@ class Marker
                     var difference = new Date().getTime() - tm;
                     if (difference > 250)
                     {
-                        this.drag(e);
+                        this.drag(e,move);
                     }
                 }.bind(this));
                 mp = mp + 1;
             }
         }.bind(this));
     }
-    drag(e)
+    drag(e,move)
     {
         move = 1;
         e.target.style.background = "yellow";
