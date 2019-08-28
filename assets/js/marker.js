@@ -106,14 +106,16 @@ class Marker
                 var tm;
                 mark.addEventListener('touchstart',function(e)
                 {
-                      tm=1000-(new Date().getSeconds());
+                      tm=new Date().getSeconds();
                       console.log(tm);
 
                 }.bind(this));
                 mark.addEventListener('touchend',function()
                 {
                     console.log(new Date().getSeconds());
-                    var difference = (100-new Date().getMilliseconds())-tm;
+                    var pr;
+                    pr=new Date().getMilliseconds()<tm?(new Date().getMilliseconds()+1000):new Date().getMilliseconds();
+                    var difference =pr-tm;
                     console.log(difference);
                    if(difference > 500)
                    {
