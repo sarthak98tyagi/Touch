@@ -50,7 +50,8 @@ class Marker
     {
         return(this.pointers);
     }
-    setPin(msg) {
+    setPin(msg)
+    {
         friend(this.url);
         var cnt;
         var info = [], mp = 0;
@@ -59,9 +60,10 @@ class Marker
         else if (typeof (msg) == "string" || typeof (msg) == "number")
             info.push(msg);
         else if (typeof (msg) == "object") {
-            Object.entries(msg).forEach(function (value, index) {
+            Object.entries(msg).forEach(function (value, index)
+            {
                 info.push(value);
-            })
+            });
         }
         var map = document.getElementById('map');
         map.addEventListener('click', function (e) {
@@ -99,97 +101,102 @@ class Marker
                     popup.appendChild(k);
                 }.bind(this));
                 var tm;
-                mark.addEventListener('touchstart', function (e) {
+                mark.addEventListener('touchstart', function (e)
+                {
                     tm = new Date().getTime();
                     console.log(tm);
-
                 }.bind(this));
                 var move = 0;
-                mark.addEventListener('touchend', function (e) {
-
+                mark.addEventListener('touchend', function (e)
+                {
                     var difference = new Date().getTime() - tm;
-                    console.log(difference);
-                    if (difference > 250) {
-                        move = 1;
-                        e.target.style.background = "yellow";
-                        e.target.addEventListener('touchmove', function (e)     /*drag*/
-                        {
-                            e.preventDefault();
-                            if (e.targetTouches.length === 1 && move) {
-
-                                var dim = e.targetTouches[0];
-                                var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                                var k = document.documentElement.clientWidth;
-                                var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                                var l = document.documentElement.clientHeight;
-                                var cl = parseFloat(map.style.left);
-                                var ct = parseFloat(map.style.top);
-                                if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40))) {
-
-                                    e.target.style.left = (dim.clientX) + 'px';
-                                    e.target.style.top = (dim.clientY) + 'px';
-                                }
-
-                                if ((k - dim.clientX) < 30)
-                                {
-                                    var rr = w + parseFloat(map.style.left) - k;
-                                    var rdis = Math.abs(k - dim.clientX);
-                                    if ((-rr + rdis) <= 0)
-                                    {
-                                        var rl = parseFloat(map.style.left);
-                                        map.style.left = (rl - rdis) + 'px';
-                                        cnt = 1;
-
-                                    }
-                                }
-                                if ((l - dim.clientY) < 30) {
-
-                                    var bb = h + parseFloat(map.style.top) - l;
-                                    var bdis = Math.abs(l - dim.clientY);
-                                    if ((-bb + bdis) <= 0) {
-                                        var bt = parseFloat(map.style.top);
-                                        map.style.top = (bt - bdis) + 'px';
-                                        cnt = 1;
-
-                                    }
-                                }
-                                if (dim.clientX < 30) {
-                                    var ll = parseFloat(map.style.left);
-                                    var ldis = 30 - dim.clientX;
-                                    if ((ll + ldis) <= 0) {
-                                        map.style.left = (ll + ldis) + 'px';
-                                        cnt = 1;
-
-                                    }
-                                }
-                                if (dim.clientY < 30) {
-                                    var tl = parseFloat(map.style.top);
-                                    var tdis = 30 - dim.clientY;
-                                    if ((tl + tdis) <= 0) {
-                                        map.style.top = (tl + tdis) + 'px';
-                                        cnt = 1;
-
-                                    }
-                                }
-                                xmark = Math.abs(cl) + dim.clientX;
-                                ymark = Math.abs(ct) + dim.clientY;
-                                var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
-                                var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                                this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
-                            }
-                        }.bind(this));
-                        e.target.addEventListener('touchend', function (e) {
-                            if (move) {
-                                move = 0;
-                                e.target.style.background = "transparent";
-                            }
-
-                        });
+                    if (difference > 250)
+                    {
+                        this.drag(e);
                     }
                 }.bind(this));
                 mp = mp + 1;
             }
         }.bind(this));
+    }
+    drag(e)
+    {
+        move = 1;
+        e.target.style.background = "yellow";
+        e.target.addEventListener('touchmove', function (e)     /*drag*/
+        {
+            e.preventDefault();
+            if (e.targetTouches.length === 1 && move) {
+
+                var dim = e.targetTouches[0];
+                var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                var k = document.documentElement.clientWidth;
+                var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                var l = document.documentElement.clientHeight;
+                var cl = parseFloat(map.style.left);
+                var ct = parseFloat(map.style.top);
+                if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
+                {
+
+                    e.target.style.left = (dim.clientX) + 'px';
+                    e.target.style.top = (dim.clientY) + 'px';
+                }
+                if ((k - dim.clientX) < 30)
+                {
+                    var rr = w + parseFloat(map.style.left) - k;
+                    var rdis = Math.abs(k - dim.clientX);
+                    if ((-rr + rdis) <= 0)
+                    {
+                        var rl = parseFloat(map.style.left);
+                        map.style.left = (rl - rdis) + 'px';
+                        cnt = 1;
+                    }
+                }
+                if ((l - dim.clientY) < 30)
+                {
+
+                    var bb = h + parseFloat(map.style.top) - l;
+                    var bdis = Math.abs(l - dim.clientY);
+                    if ((-bb + bdis) <= 0) {
+                        var bt = parseFloat(map.style.top);
+                        map.style.top = (bt - bdis) + 'px';
+                        cnt = 1;
+
+                    }
+                }
+                if (dim.clientX < 30) {
+                    var ll = parseFloat(map.style.left);
+                    var ldis = 30 - dim.clientX;
+                    if ((ll + ldis) <= 0) {
+                        map.style.left = (ll + ldis) + 'px';
+                        cnt = 1;
+
+                    }
+                }
+                if (dim.clientY < 30) {
+                    var tl = parseFloat(map.style.top);
+                    var tdis = 30 - dim.clientY;
+                    if ((tl + tdis) <= 0) {
+                        map.style.top = (tl + tdis) + 'px';
+                        cnt = 1;
+
+                    }
+                }
+                var xmark = Math.abs(cl) + dim.clientX;
+                var ymark = Math.abs(ct) + dim.clientY;
+                var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
+            }
+        }.bind(this));
+        e.target.addEventListener('touchend', function (e)
+        {
+            if (move)
+            {
+                move = 0;
+                e.target.style.background = "transparent";
+            }
+        });
     }
     removePin(e)
     {
