@@ -112,6 +112,7 @@ class Marker
                 }.bind(this));
                 mark.addEventListener('touchend',function()
                 {
+                    console.log(new Date().getMilliseconds());
                     var difference = (new Date().getMilliseconds())-tm;
                     console.log(difference);
                    if(difference > 500)
