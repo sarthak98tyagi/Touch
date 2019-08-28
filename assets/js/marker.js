@@ -115,11 +115,11 @@ class Marker
                             e.preventDefault();
                             if (e.targetTouches.length === 1 && move) {
 
-                                dim = e.targetTouches[0];
+                                var dim = e.targetTouches[0];
                                 var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
                                 var k = document.documentElement.clientWidth;
                                 var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-                                l = document.documentElement.clientHeight;
+                                var l = document.documentElement.clientHeight;
                                 var cl = parseFloat(map.style.left);
                                 var ct = parseFloat(map.style.top);
                                 if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40))) {
