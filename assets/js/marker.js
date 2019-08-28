@@ -110,8 +110,6 @@ class Marker
                     console.log(difference);
                     if (difference > 250) {
                         move = 1;
-                        pham.set({enable: false});
-                        ham.set({enable: false});
                         e.target.style.background = "yellow";
                         e.target.addEventListener('touchmove', function (e)     /*drag*/ {
                             e.preventDefault();
@@ -137,7 +135,7 @@ class Marker
                                         var rl = parseFloat(map.style.left);
                                         map.style.left = (rl - rdis) + 'px';
                                         cnt = 1;
-                                        scaleshift();
+                                        
                                     }
                                 }
                                 if ((l - dim.clientY) < 30) {
@@ -148,7 +146,7 @@ class Marker
                                         var bt = parseFloat(map.style.top);
                                         map.style.top = (bt - bdis) + 'px';
                                         cnt = 1;
-                                        scaleshift();
+
                                     }
                                 }
                                 if (dim.clientX < 30) {
@@ -157,7 +155,7 @@ class Marker
                                     if ((ll + ldis) <= 0) {
                                         map.style.left = (ll + ldis) + 'px';
                                         cnt = 1;
-                                        scaleshift();
+
                                     }
                                 }
                                 if (dim.clientY < 30) {
@@ -166,7 +164,7 @@ class Marker
                                     if ((tl + tdis) <= 0) {
                                         map.style.top = (tl + tdis) + 'px';
                                         cnt = 1;
-                                        scaleshift();
+
                                     }
                                 }
                                 xmark = Math.abs(cl) + dim.clientX;
