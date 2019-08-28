@@ -107,6 +107,7 @@ class Marker
                 mark.addEventListener('touchstart',function(e)
                 {
                       tm=new Date().getMilliseconds();
+                      console.log(tm);
 
                 }.bind(this));
                 mark.addEventListener('touchend',function()
@@ -115,7 +116,6 @@ class Marker
                    if(difference > 500)
                    {
                        console.log('!!', difference );
-                       alert('Hello');
                    }
                 });
                 mp++;
