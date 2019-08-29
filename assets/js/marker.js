@@ -46,7 +46,8 @@ class Marker
                 info = msg;
             else if (typeof (msg) == "string" || typeof (msg) == "number")
                 info.push(msg);
-            else if (typeof (msg) == "object") {
+            else if (typeof (msg) == "object")
+            {
                 Object.entries(msg).forEach(function (value, index) {
                     info.push(value);
                 });
@@ -57,7 +58,6 @@ class Marker
             {
                 if (info.length > 0)
                 {
-
                     e.preventDefault();
                     var xmark = Math.abs(parseFloat(map.style.left)) + e.clientX;
                     var ymark = Math.abs(parseFloat(map.style.top)) + e.clientY;
@@ -112,13 +112,14 @@ class Marker
                     {
                         tm = new Date().getTime();
                     }.bind(this));
-                    mark.addEventListener('touchend', function (e)
+                    var tend=function()
                     {
                         var difference = new Date().getTime() - tm;
                         if (difference > 250) {
-                            this.pinDrag(e, move);
+                            this.pinDrag(e, move,tend,mapclick);
                         }
-                    }.bind(this));
+                    }.bind(this);
+                    mark.addEventListener('touchend',tend);
                     mp = mp + 1;
                 }
             }.bind(this);
@@ -180,9 +181,10 @@ class Marker
             }.bind(this);
             map.addEventListener('click', mapclick);
     }
-    pinDrag(e,move)
+    pinDrag(e,move,pinevent,mapevent)
     {
         move = 1;
+        console.log(pinevent,mapevent);
         e.target.style.background = "yellow";
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
