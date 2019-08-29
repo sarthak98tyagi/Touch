@@ -52,7 +52,7 @@ class Marker
                     info.push(value);
                 });
             }
-            var f=0,removePin,cancelPin,pop;
+            var f=0,removePin,cancelPin,pop,move;
             var map = document.getElementById('map');
             var mapclick = function (e)
             {
@@ -104,84 +104,91 @@ class Marker
                             popup.appendChild(btn);
                             popup.appendChild(k);
                     }.bind(this);
-                    var move=0;
+                    move=0;
                     mark.addEventListener('click', pop);
                     mark.addEventListener('contextmenu',desktopPress,false);
-                    var tm;
-                    mark.addEventListener('touchstart', function (e)
-                    {
-                        tm = new Date().getTime();
-                    }.bind(this));
-                    var tend=function()
-                    {
-                        var difference = new Date().getTime() - tm;
-                        if (difference > 250) {
-                            this.pinDrag(e, move,tend,mapclick,desktopPress);
-                        }
-                    }.bind(this);
-                    mark.addEventListener('touchend',tend);
+                    // var tm;
+                    // mark.addEventListener('touchstart', function (e)
+                    // {
+                    //     tm = new Date().getTime();
+                    // }.bind(this));
+                    // var tend=function()
+                    // {
+                    //     var difference = new Date().getTime() - tm;
+                    //     if (difference > 250) {
+                    //         this.pinDrag(e, move,tend,mapclick,desktopPress);
+                    //     }
+                    // }.bind(this);
+                    // mark.addEventListener('touchend',tend);
                     mp = mp + 1;
                 }
             }.bind(this);
             var desktopPress=function(e)
             {
                 e.preventDefault();
-                map.removeEventListener('click',mapclick);
-                e.target.removeEventListener('click',pop);
-                e.target.removeEventListener('contextmenu',desktopPress);
-                var evn=e;
-                var popup = document.createElement("div");
-                popup.innerText = this.pointers[e.target.id][4];
-                popup.id = e.target.id;
-                var p = document.createElement("p");
-                var btn1 = document.createElement("button");
-                btn1.className = "btn btn-danger";
-                btn1.innerText = "Remove";
-                btn1.addEventListener("click", removePin);
-                var btn2 = document.createElement("button");
-                btn2.className = "btn btn-danger";
-                btn2.innerText = "Edit";
-                console.log(this.pointers[evn.target.id]);
-                btn2.addEventListener("click",function(e)
+                if((document.documentElement.clientWidth)>=1280)
                 {
-                    document.getElementById('map-holder').removeChild(e.target.parentElement);
-                    evn.target.style.background='yellow';
-                    var locate=function(e)
+                    map.removeEventListener('click',mapclick);
+                    e.target.removeEventListener('click',pop);
+                    e.target.removeEventListener('contextmenu',desktopPress);
+                    var evn=e;
+                    var popup = document.createElement("div");
+                    popup.innerText = this.pointers[e.target.id][4];
+                    popup.id = e.target.id;
+                    var p = document.createElement("p");
+                    var btn1 = document.createElement("button");
+                    btn1.className = "btn btn-danger";
+                    btn1.innerText = "Remove";
+                    btn1.addEventListener("click", removePin);
+                    var btn2 = document.createElement("button");
+                    btn2.className = "btn btn-danger";
+                    btn2.innerText = "Edit";
+                    console.log(this.pointers[evn.target.id]);
+                    btn2.addEventListener("click",function(e)
                     {
-                        var dx=e.clientX;
-                        var dy=e.clientY;
-                        evn.target.style.left=dx+'px';
-                        evn.target.style.top=dy+'px';
-                        this.pointers[evn.target.id][0]=parseFloat(map.style.left)+dx;
-                        this.pointers[evn.target.id][1]=parseFloat(map.style.top)+dy;
-                        console.log(this.pointers[evn.target.id]);
-                        evn.target.style.background='transparent';
-                        map.removeEventListener('click',locate);
+                        document.getElementById('map-holder').removeChild(e.target.parentElement);
+                        evn.target.style.background='yellow';
+                        var locate=function(e)
+                        {
+                            var dx=e.clientX;
+                            var dy=e.clientY;
+                            evn.target.style.left=dx+'px';
+                            evn.target.style.top=dy+'px';
+                            this.pointers[evn.target.id][0]=parseFloat(map.style.left)+dx;
+                            this.pointers[evn.target.id][1]=parseFloat(map.style.top)+dy;
+                            console.log(this.pointers[evn.target.id]);
+                            evn.target.style.background='transparent';
+                            map.removeEventListener('click',locate);
+                            map.addEventListener('click',mapclick);
+                            evn.target.addEventListener('contextmenu',desktopPress);
+                            evn.target.addEventListener('click',pop);
+                        }.bind(this);
+                        map.addEventListener('click',locate);
+                    }.bind(this));
+                    var k = document.createElement("i");
+                    k.className = "fas fa-times close";
+                    popup.className = "popup";
+                    k.addEventListener('click',function(e)
+                    {
+                        document.getElementById('map-holder').removeChild(e.target.parentElement);
                         map.addEventListener('click',mapclick);
                         evn.target.addEventListener('contextmenu',desktopPress);
                         evn.target.addEventListener('click',pop);
-                    }.bind(this);
-                    map.addEventListener('click',locate);
-                }.bind(this));
-                var k = document.createElement("i");
-                k.className = "fas fa-times close";
-                popup.className = "popup";
-                k.addEventListener('click',function(e)
+                    });
+                    document.getElementById('map-holder').appendChild(popup);
+                    popup.appendChild(btn1);
+                    popup.appendChild(btn2);
+                    popup.appendChild(k);
+                    return false;
+                }
+                else
                 {
-                    document.getElementById('map-holder').removeChild(e.target.parentElement);
-                    map.addEventListener('click',mapclick);
-                    evn.target.addEventListener('contextmenu',desktopPress);
-                    evn.target.addEventListener('click',pop);
-                });
-                document.getElementById('map-holder').appendChild(popup);
-                popup.appendChild(btn1);
-                popup.appendChild(btn2);
-                popup.appendChild(k);
-                return false;
+                    this.pinDrag(e,move);
+                }
             }.bind(this);
             map.addEventListener('click', mapclick);
     }
-    pinDrag(e,move,pinevent,mapevent,desktop)
+    pinDrag(e,move)
     {
         move = 1;
         e.preventDefault();
