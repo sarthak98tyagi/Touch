@@ -86,10 +86,8 @@ function neg(e)
     }
     cnt=1;
 }
-
 map.addEventListener('touchstart',function(e)
 {
-
     e.preventDefault();
     if(e.targetTouches.length===2)
     {

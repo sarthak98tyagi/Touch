@@ -17,20 +17,6 @@ function friend(url)
     map.style.minWidth="100%";
     mapholder.appendChild(map);
 }
-function cancel(e)
-{
-    document.getElementById('map-holder').removeChild(e.target.parentElement);
-}
-// function remove(e,pointers={})
-// {
-//
-//     console.log(a);
-//     var id=Number(e.target.parentElement.id);
-//     delete(this.pointers[id]);
-//     del=document.getElementById(id);
-//     document.getElementById('map-holder').removeChild(del);
-//     document.getElementById('map-holder').removeChild(document.getElementById(id));
-// }
 class Marker
 {
     constructor(url,pointers={})
@@ -39,6 +25,7 @@ class Marker
             return;
         this.url = url;
         this.pointers=pointers;
+        this.cnt=0;
     }
     getPin(n)
     {
@@ -60,14 +47,14 @@ class Marker
         else if (typeof (msg) == "string" || typeof (msg) == "number")
             info.push(msg);
         else if (typeof (msg) == "object") {
-            Object.entries(msg).forEach(function (value, index)
-            {
+            Object.entries(msg).forEach(function (value, index) {
                 info.push(value);
             });
         }
         var map = document.getElementById('map');
-        map.addEventListener('click', function (e) {
-            if (info.length > 0) {
+        var mapclick = function (e) {
+            if (info.length > 0)
+            {
                 e.preventDefault();
                 var xmark = Math.abs(parseFloat(map.style.left)) + e.clientX;
                 var ymark = Math.abs(parseFloat(map.style.top)) + e.clientY;
@@ -79,50 +66,65 @@ class Marker
                 mark.style.left = e.clientX + 'px';
                 mark.style.top = e.clientY + 'px';
                 document.getElementById('map-holder').appendChild(mark);
-
-                mark.addEventListener('click', function (e) {
-
-                    var popup = document.createElement("div");
-                    popup.innerText = this.pointers[e.target.id][4];
-                    popup.id = e.target.id;
-                    var p = document.createElement("p");
-                    var btn = document.createElement("button");
-                    btn.className = "btn btn-danger";
-                    btn.innerText = "Remove";
-                    btn.addEventListener("click", function (e) {
-                        this.removePin(e);
-                    }.bind(this));
-                    var k = document.createElement("i");
-                    k.className = "fas fa-times close";
-                    popup.className = "popup";
-                    k.addEventListener('click', cancel);
-                    document.getElementById('map-holder').appendChild(popup);
-                    popup.appendChild(btn);
-                    popup.appendChild(k);
-                }.bind(this));
+                var pop = function (e)
+                {
+                        var removePin=function(e)
+                        {
+                            var id=Number(e.target.parentElement.id);
+                            delete(this.pointers[id]);
+                            document.getElementById('map-holder').removeChild(document.getElementById(id));
+                            document.getElementById('map-holder').removeChild(document.getElementById(id));
+                            mark.addEventListener('click', pop);
+                            map.addEventListener('click',mapclick);
+                        }.bind(this);
+                        var cancelPin=function(e)
+                        {
+                            document.getElementById('map-holder').removeChild(e.target.parentElement);
+                            mark.addEventListener('click', pop);
+                            map.addEventListener('click',mapclick);
+                        };
+                        mark.removeEventListener('click', pop);
+                        map.removeEventListener('click',mapclick);
+                        var popup = document.createElement("div");
+                        popup.innerText = this.pointers[e.target.id][4];
+                        popup.id = e.target.id;
+                        var p = document.createElement("p");
+                        var btn = document.createElement("button");
+                        btn.className = "btn btn-danger";
+                        btn.innerText = "Remove";
+                        btn.addEventListener("click", removePin);
+                        var k = document.createElement("i");
+                        k.className = "fas fa-times close";
+                        popup.className = "popup";
+                        k.addEventListener('click', cancelPin);
+                        document.getElementById('map-holder').appendChild(popup);
+                        popup.appendChild(btn);
+                        popup.appendChild(k);
+                }.bind(this);
+                mark.addEventListener('click', pop);
                 var tm;
                 mark.addEventListener('touchstart', function (e)
                 {
                     tm = new Date().getTime();
-                    console.log(tm);
                 }.bind(this));
                 var move = 0;
                 mark.addEventListener('touchend', function (e)
                 {
                     var difference = new Date().getTime() - tm;
-                    if (difference > 250)
-                    {
-                        this.drag(e,move);
+                    if (difference > 250) {
+                        this.drag(e, move);
                     }
                 }.bind(this));
                 mp = mp + 1;
             }
-        }.bind(this));
+        }.bind(this);
+        map.addEventListener('click', mapclick);
     }
     drag(e,move)
     {
         move = 1;
         e.target.style.background = "yellow";
+        e.target.removeEventListener('touchend',drag);
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
             e.preventDefault();
@@ -149,7 +151,7 @@ class Marker
                     {
                         var rl = parseFloat(map.style.left);
                         map.style.left = (rl - rdis) + 'px';
-                        cnt = 1;
+                        this.cnt = 1;
                     }
                 }
                 if ((l - dim.clientY) < 30)
@@ -160,7 +162,7 @@ class Marker
                     if ((-bb + bdis) <= 0) {
                         var bt = parseFloat(map.style.top);
                         map.style.top = (bt - bdis) + 'px';
-                        cnt = 1;
+                        this.cnt = 1;
 
                     }
                 }
@@ -169,7 +171,7 @@ class Marker
                     var ldis = 30 - dim.clientX;
                     if ((ll + ldis) <= 0) {
                         map.style.left = (ll + ldis) + 'px';
-                        cnt = 1;
+                        this.cnt = 1;
 
                     }
                 }
@@ -178,8 +180,7 @@ class Marker
                     var tdis = 30 - dim.clientY;
                     if ((tl + tdis) <= 0) {
                         map.style.top = (tl + tdis) + 'px';
-                        cnt = 1;
-
+                        this.cnt = 1;
                     }
                 }
                 var xmark = Math.abs(cl) + dim.clientX;
@@ -200,10 +201,7 @@ class Marker
     }
     removePin(e)
     {
-        var id=Number(e.target.parentElement.id);
-        delete(this.pointers[id]);
-        document.getElementById('map-holder').removeChild(document.getElementById(id));
-        document.getElementById('map-holder').removeChild(document.getElementById(id));
+
     }
     managePin(n,editable)
     {
