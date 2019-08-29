@@ -184,16 +184,16 @@ class Marker
     pinDrag(e,move,pinevent,mapevent,desktop)
     {
         move = 1;
-
-        document.getElementById('map').removeEventListener('click',mapevent);
-        e.target.removeEventListener('touchend',pinevent);
-        e.target.removeEventListener('contextmenu',desktop);
+        e.preventDefault();
+        // document.getElementById('map').removeEventListener('click',mapevent);
+        // e.target.removeEventListener('touchend',pinevent);
+        // e.target.removeEventListener('contextmenu',desktop);
         e.target.style.background = "yellow";
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
             e.preventDefault();
-            if (e.targetTouches.length === 1 && move) {
-
+            if (e.targetTouches.length === 1 && move)
+            {
                 var dim = e.targetTouches[0];
                 var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
                 var k = document.documentElement.clientWidth;
