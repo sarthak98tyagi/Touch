@@ -124,7 +124,6 @@ class Marker
     {
         move = 1;
         e.target.style.background = "yellow";
-        e.target.removeEventListener('touchend',drag);
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
             e.preventDefault();
