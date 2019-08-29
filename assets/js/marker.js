@@ -184,9 +184,9 @@ class Marker
         {
             this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-            this.xcor=Math.abs(parseFloat(document.getElementById('map').style.left))+x;
+            this.xcor=Math.abs(parseFloat(document.getElementById('map').style.left))+this.x;
             this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-            this.ycor=Math.abs(parseFloat(document.getElementById('map').style.top))+y;
+            this.ycor=Math.abs(parseFloat(document.getElementById('map').style.top))+this.y;
         }
         this.dis3 = this.dis1;
     }
