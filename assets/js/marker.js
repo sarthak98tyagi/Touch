@@ -116,7 +116,7 @@ class Marker
                     {
                         var difference = new Date().getTime() - tm;
                         if (difference > 250) {
-                            this.pinDrag(e, move,tend,mapclick);
+                            this.pinDrag(e, move,tend,mapclick,desktopPress);
                         }
                     }.bind(this);
                     mark.addEventListener('touchend',tend);
@@ -181,10 +181,13 @@ class Marker
             }.bind(this);
             map.addEventListener('click', mapclick);
     }
-    pinDrag(e,move,pinevent,mapevent)
+    pinDrag(e,move,pinevent,mapevent,desktop)
     {
         move = 1;
-        console.log(pinevent,mapevent);
+
+        document.getElementById('map').removeEventListener('click',mapevent);
+        e.target.removeEventListener('touchend',pinevent);
+        e.target.removeEventListener('contextmenu',desktop);
         e.target.style.background = "yellow";
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
