@@ -107,19 +107,6 @@ class Marker
                     move=0;
                     mark.addEventListener('click', pop);
                     mark.addEventListener('contextmenu',desktopPress,false);
-                    // var tm;
-                    // mark.addEventListener('touchstart', function (e)
-                    // {
-                    //     tm = new Date().getTime();
-                    // }.bind(this));
-                    // var tend=function()
-                    // {
-                    //     var difference = new Date().getTime() - tm;
-                    //     if (difference > 250) {
-                    //         this.pinDrag(e, move,tend,mapclick,desktopPress);
-                    //     }
-                    // }.bind(this);
-                    // mark.addEventListener('touchend',tend);
                     mp = mp + 1;
                 }
             }.bind(this);
@@ -192,9 +179,6 @@ class Marker
     {
         move = 1;
         e.preventDefault();
-        // document.getElementById('map').removeEventListener('click',mapevent);
-        // e.target.removeEventListener('touchend',pinevent);
-        // e.target.removeEventListener('contextmenu',desktop);
         e.target.style.background = "yellow";
         e.target.addEventListener('touchmove', function (e)     /*drag*/
         {
@@ -222,6 +206,7 @@ class Marker
                         var rl = parseFloat(map.style.left);
                         map.style.left = (rl - rdis) + 'px';
                         this.cnt = 1;
+                        this.scaleshift();
                     }
                 }
                 if ((l - dim.clientY) < 30)
@@ -233,6 +218,7 @@ class Marker
                         var bt = parseFloat(map.style.top);
                         map.style.top = (bt - bdis) + 'px';
                         this.cnt = 1;
+                        this.scaleshift();
 
                     }
                 }
@@ -242,7 +228,7 @@ class Marker
                     if ((ll + ldis) <= 0) {
                         map.style.left = (ll + ldis) + 'px';
                         this.cnt = 1;
-
+                        this.scaleshift();
                     }
                 }
                 if (dim.clientY < 30) {
@@ -251,6 +237,7 @@ class Marker
                     if ((tl + tdis) <= 0) {
                         map.style.top = (tl + tdis) + 'px';
                         this.cnt = 1;
+                        this.scaleshift();
                     }
                 }
                 var xmark = Math.abs(cl) + dim.clientX;
@@ -266,6 +253,30 @@ class Marker
             {
                 move = 0;
                 e.target.style.background = "transparent";
+            }
+        });
+    }
+    scaleshift(factor=1)
+    {
+        var map=document.getElementById('map');
+        var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
+        var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
+        if(this.cnt===0)
+        {
+            ah=ah/factor;
+        }
+        var al=parseFloat(map.style.left);
+        var at=parseFloat(map.style.top);
+        Object.entries(this.pointers).forEach(function(value,index)
+        {
+            if(value[1][0])
+            {
+                var ws=(value[1][0]*cw)/value[1][2];
+                var mark=document.getElementById(value[0]);
+                var nx=ws+al;
+                var ny=((value[1][1]*ah)/value[1][3])+at;
+                mark.style.left=nx+'px';
+                mark.style.top=ny+'px';
             }
         });
     }
