@@ -174,6 +174,66 @@ class Marker
                 }
             }.bind(this);
             map.addEventListener('click', mapclick);
+            map.addEventListener('touchstart',this.pinchstart);
+            map.addEventListener('touchmove',this.pinchmove)
+    }
+    pinchstart()
+    {
+        e.preventDefault();
+        if(e.targetTouches.length===2)
+        {
+            this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+            this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
+            this.xcor=Math.abs(parseFloat(document.getElementById('map').style.left))+x;
+            this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
+            this.ycor=Math.abs(parseFloat(document.getElementById('map').style.top))+y;
+        }
+        this.dis3 = this.dis1;
+    }
+    pinchmove()
+    {
+        var map=document.getElementById('map');
+        var width,height,nw,f,nh,tl,tt;
+        e.preventDefault();
+        if(e.targetTouches.length===2)
+        {   this.cnt=1;
+            dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+            if((dis2-dis3)>0)                /*zoom-in*/
+            {
+                width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+                nw=width+this.dis2*2;
+                f=nw/width;
+                nh=height*f;
+                tl=((this.xcor/width)*nw)-this.x;
+                tt=((this.ycor/height)*nh)-this.y;
+                if((-tl)<0 && (-tt)<0)
+                {
+                    map.style.width=nw+'px';
+                    map.style.left=-tl+'px';
+                    map.style.top=-tt+'px';
+                    this.scaleshift(f);
+                }
+            }
+            else                          /*zoom-out*/
+            {
+                width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+                height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+                nw=width-this.dis2*2;
+                f=nw/width;
+                nh=height*f;
+                tl=((this.xcor/width)*nw)-this.x;
+                tt=((this.ycor/height)*nh)-this.y;
+                if((-tl)<0 && (-tt)<0)
+                {
+                    map.style.width=nw+'px';
+                    map.style.left=-tl+'px';
+                    map.style.top=-tt+'px';
+                    scaleshift(f);
+                }
+            }
+        }
+        this.dis3 = this.dis2;
     }
     pinDrag(e,move)
     {
@@ -222,7 +282,8 @@ class Marker
 
                     }
                 }
-                if (dim.clientX < 30) {
+                if (dim.clientX < 30)
+                {
                     var ll = parseFloat(map.style.left);
                     var ldis = 30 - dim.clientX;
                     if ((ll + ldis) <= 0) {
@@ -231,7 +292,8 @@ class Marker
                         this.scaleshift();
                     }
                 }
-                if (dim.clientY < 30) {
+                if (dim.clientY < 30)
+                {
                     var tl = parseFloat(map.style.top);
                     var tdis = 30 - dim.clientY;
                     if ((tl + tdis) <= 0) {
