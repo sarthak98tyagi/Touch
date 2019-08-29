@@ -177,7 +177,7 @@ class Marker
             map.addEventListener('touchstart',this.pinchstart);
             map.addEventListener('touchmove',this.pinchmove)
     }
-    pinchstart()
+    pinchstart(e)
     {
         e.preventDefault();
         if(e.targetTouches.length===2)
@@ -190,7 +190,7 @@ class Marker
         }
         this.dis3 = this.dis1;
     }
-    pinchmove()
+    pinchmove(e)
     {
         var map=document.getElementById('map');
         var width,height,nw,f,nh,tl,tt;
