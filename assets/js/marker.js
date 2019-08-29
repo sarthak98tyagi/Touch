@@ -39,88 +39,148 @@ class Marker
     }
     setPin(msg)
     {
-        friend(this.url);
-        var cnt;
-        var info = [], mp = 0;
-        if (Array.isArray(msg))
-            info = msg;
-        else if (typeof (msg) == "string" || typeof (msg) == "number")
-            info.push(msg);
-        else if (typeof (msg) == "object") {
-            Object.entries(msg).forEach(function (value, index) {
-                info.push(value);
-            });
-        }
-        var map = document.getElementById('map');
-        var mapclick = function (e) {
-            if (info.length > 0)
+            friend(this.url);
+            var cnt;
+            var info = [], mp = 0;
+            if (Array.isArray(msg))
+                info = msg;
+            else if (typeof (msg) == "string" || typeof (msg) == "number")
+                info.push(msg);
+            else if (typeof (msg) == "object") {
+                Object.entries(msg).forEach(function (value, index) {
+                    info.push(value);
+                });
+            }
+            var f=0,removePin,cancelPin,pop;
+            var map = document.getElementById('map');
+            var mapclick = function (e)
+            {
+                if (info.length > 0)
+                {
+
+                    e.preventDefault();
+                    var xmark = Math.abs(parseFloat(map.style.left)) + e.clientX;
+                    var ymark = Math.abs(parseFloat(map.style.top)) + e.clientY;
+                    var mark = document.createElement("div");
+                    mark.id = mp;
+                    mark.className = 'mark';
+                    this.pointers[mp] = [xmark, ymark, parseFloat(getComputedStyle(map).getPropertyValue('width')),
+                        parseFloat(getComputedStyle(map).getPropertyValue('height')), info.pop(0)];
+                    mark.style.left = e.clientX + 'px';
+                    mark.style.top = e.clientY + 'px';
+                    document.getElementById('map-holder').appendChild(mark);
+                    removePin=function(e)
+                    {
+                        var id=Number(e.target.parentElement.id);
+                        delete(this.pointers[id]);
+                        document.getElementById('map-holder').removeChild(document.getElementById(id));
+                        document.getElementById('map-holder').removeChild(document.getElementById(id));
+                        mark.addEventListener('click', pop);
+                        map.addEventListener('click',mapclick);
+                    }.bind(this);
+                    cancelPin=function(e,f=0)
+                    {
+                        document.getElementById('map-holder').removeChild(e.target.parentElement);
+                        mark.addEventListener('click', pop);
+                        map.addEventListener('click',mapclick);
+                    };
+                    pop = function (e)
+                    {
+                            mark.removeEventListener('click', pop);
+                            map.removeEventListener('click',mapclick);
+                            var popup = document.createElement("div");
+                            popup.innerText = this.pointers[e.target.id][4];
+                            popup.id = e.target.id;
+                            var p = document.createElement("p");
+                            var btn = document.createElement("button");
+                            btn.className = "btn btn-danger";
+                            btn.innerText = "Remove";
+                            btn.addEventListener("click", removePin);
+                            var k = document.createElement("i");
+                            k.className = "fas fa-times close";
+                            popup.className = "popup";
+                            k.addEventListener('click', cancelPin);
+                            document.getElementById('map-holder').appendChild(popup);
+                            popup.appendChild(btn);
+                            popup.appendChild(k);
+                    }.bind(this);
+                    var move=0;
+                    mark.addEventListener('click', pop);
+                    mark.addEventListener('contextmenu',desktopPress,false);
+                    var tm;
+                    mark.addEventListener('touchstart', function (e)
+                    {
+                        tm = new Date().getTime();
+                    }.bind(this));
+                    mark.addEventListener('touchend', function (e)
+                    {
+                        var difference = new Date().getTime() - tm;
+                        if (difference > 250) {
+                            this.pinDrag(e, move);
+                        }
+                    }.bind(this));
+                    mp = mp + 1;
+                }
+            }.bind(this);
+            var desktopPress=function(e)
             {
                 e.preventDefault();
-                var xmark = Math.abs(parseFloat(map.style.left)) + e.clientX;
-                var ymark = Math.abs(parseFloat(map.style.top)) + e.clientY;
-                var mark = document.createElement("div");
-                mark.id = mp;
-                mark.className = 'mark';
-                this.pointers[mp] = [xmark, ymark, parseFloat(getComputedStyle(map).getPropertyValue('width')),
-                    parseFloat(getComputedStyle(map).getPropertyValue('height')), info.pop(0)];
-                mark.style.left = e.clientX + 'px';
-                mark.style.top = e.clientY + 'px';
-                document.getElementById('map-holder').appendChild(mark);
-                var pop = function (e)
+                map.removeEventListener('click',mapclick);
+                e.target.removeEventListener('click',pop);
+                e.target.removeEventListener('contextmenu',desktopPress);
+                var evn=e;
+                var popup = document.createElement("div");
+                popup.innerText = this.pointers[e.target.id][4];
+                popup.id = e.target.id;
+                var p = document.createElement("p");
+                var btn1 = document.createElement("button");
+                btn1.className = "btn btn-danger";
+                btn1.innerText = "Remove";
+                btn1.addEventListener("click", removePin);
+                var btn2 = document.createElement("button");
+                btn2.className = "btn btn-danger";
+                btn2.innerText = "Edit";
+                console.log(this.pointers[evn.target.id]);
+                btn2.addEventListener("click",function(e)
                 {
-                        var removePin=function(e)
-                        {
-                            var id=Number(e.target.parentElement.id);
-                            delete(this.pointers[id]);
-                            document.getElementById('map-holder').removeChild(document.getElementById(id));
-                            document.getElementById('map-holder').removeChild(document.getElementById(id));
-                            mark.addEventListener('click', pop);
-                            map.addEventListener('click',mapclick);
-                        }.bind(this);
-                        var cancelPin=function(e)
-                        {
-                            document.getElementById('map-holder').removeChild(e.target.parentElement);
-                            mark.addEventListener('click', pop);
-                            map.addEventListener('click',mapclick);
-                        };
-                        mark.removeEventListener('click', pop);
-                        map.removeEventListener('click',mapclick);
-                        var popup = document.createElement("div");
-                        popup.innerText = this.pointers[e.target.id][4];
-                        popup.id = e.target.id;
-                        var p = document.createElement("p");
-                        var btn = document.createElement("button");
-                        btn.className = "btn btn-danger";
-                        btn.innerText = "Remove";
-                        btn.addEventListener("click", removePin);
-                        var k = document.createElement("i");
-                        k.className = "fas fa-times close";
-                        popup.className = "popup";
-                        k.addEventListener('click', cancelPin);
-                        document.getElementById('map-holder').appendChild(popup);
-                        popup.appendChild(btn);
-                        popup.appendChild(k);
-                }.bind(this);
-                mark.addEventListener('click', pop);
-                var tm;
-                mark.addEventListener('touchstart', function (e)
-                {
-                    tm = new Date().getTime();
+                    document.getElementById('map-holder').removeChild(e.target.parentElement);
+                    evn.target.style.background='yellow';
+                    var locate=function(e)
+                    {
+                        var dx=e.clientX;
+                        var dy=e.clientY;
+                        evn.target.style.left=dx+'px';
+                        evn.target.style.top=dy+'px';
+                        this.pointers[evn.target.id][0]=parseFloat(map.style.left)+dx;
+                        this.pointers[evn.target.id][1]=parseFloat(map.style.top)+dy;
+                        console.log(this.pointers[evn.target.id]);
+                        evn.target.style.background='transparent';
+                        map.removeEventListener('click',locate);
+                        map.addEventListener('click',mapclick);
+                        evn.target.addEventListener('contextmenu',desktopPress);
+                        evn.target.addEventListener('click',pop);
+                    }.bind(this);
+                    map.addEventListener('click',locate);
                 }.bind(this));
-                var move = 0;
-                mark.addEventListener('touchend', function (e)
+                var k = document.createElement("i");
+                k.className = "fas fa-times close";
+                popup.className = "popup";
+                k.addEventListener('click',function(e)
                 {
-                    var difference = new Date().getTime() - tm;
-                    if (difference > 250) {
-                        this.drag(e, move);
-                    }
-                }.bind(this));
-                mp = mp + 1;
-            }
-        }.bind(this);
-        map.addEventListener('click', mapclick);
+                    document.getElementById('map-holder').removeChild(e.target.parentElement);
+                    map.addEventListener('click',mapclick);
+                    evn.target.addEventListener('contextmenu',desktopPress);
+                    evn.target.addEventListener('click',pop);
+                });
+                document.getElementById('map-holder').appendChild(popup);
+                popup.appendChild(btn1);
+                popup.appendChild(btn2);
+                popup.appendChild(k);
+                return false;
+            }.bind(this);
+            map.addEventListener('click', mapclick);
     }
-    drag(e,move)
+    pinDrag(e,move)
     {
         move = 1;
         e.target.style.background = "yellow";
@@ -138,7 +198,6 @@ class Marker
                 var ct = parseFloat(map.style.top);
                 if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
                 {
-
                     e.target.style.left = (dim.clientX) + 'px';
                     e.target.style.top = (dim.clientY) + 'px';
                 }
@@ -197,10 +256,6 @@ class Marker
                 e.target.style.background = "transparent";
             }
         });
-    }
-    removePin(e)
-    {
-
     }
     managePin(n,editable)
     {
