@@ -174,8 +174,8 @@ class Marker
                 }
             }.bind(this);
             map.addEventListener('click', mapclick);
-            map.addEventListener('touchstart',this.pinchstart);
-            map.addEventListener('touchmove',this.pinchmove)
+            map.addEventListener('touchstart',this.pinchstart.bind(this));
+            map.addEventListener('touchmove',this.pinchmove.bind(this))
     }
     pinchstart(e)
     {
@@ -197,8 +197,8 @@ class Marker
         e.preventDefault();
         if(e.targetTouches.length===2)
         {   this.cnt=1;
-            dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            if((dis2-dis3)>0)                /*zoom-in*/
+            this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+            if((this.dis2-this.dis3)>0)                /*zoom-in*/
             {
                 width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
