@@ -174,8 +174,8 @@ class Marker
                 }
             }.bind(this);
             map.addEventListener('click', mapclick);
-            map.addEventListener('touchstart',this.pinchstart.bind(this));
-            map.addEventListener('touchmove',this.pinchmove.bind(this))
+            map.addEventListener('touchstart',this.pinchstart);
+            map.addEventListener('touchmove',this.pinchmove);
     }
     pinchstart(e)
     {
