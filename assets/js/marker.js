@@ -197,7 +197,7 @@ class Marker
         e.preventDefault();
         if(e.targetTouches.length===1)
         {
-
+            console.log(e.targetTouches.length);
             ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
             if(ch===1)
             {
@@ -205,7 +205,7 @@ class Marker
                 ml=parseFloat(map.style.left);
                 mr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
                 dis=e.targetTouches[0].clientX - this.x;
-                console.log(ml,mr,dis);
+                // console.log(ml,mr,dis);
                 if(dis<0)
                 {
                     if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
