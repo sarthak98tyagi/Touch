@@ -194,6 +194,7 @@ class Marker
     {
         var map=document.getElementById('map');
         var width,height,nw,f,nh,tl,tt;
+        console.log(this.pointers);
         e.preventDefault();
         if(e.targetTouches.length===2)
         {   this.cnt=1;
@@ -335,7 +336,6 @@ class Marker
             {
                 var ws=(value[1][0]*cw)/value[1][2];
                 console.log(value[0]);
-                
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
                 var ny=((value[1][1]*ah)/value[1][3])+at;
