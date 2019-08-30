@@ -174,11 +174,13 @@ class Marker
                 }
             }.bind(this);
             map.addEventListener('click', mapclick);
-            map.addEventListener('touchstart',this.pinchstart);
-            map.addEventListener('touchmove',this.pinchmove);
+            map.addEventListener('touchstart',this.pinchstart.bind(this));
+            map.addEventListener('touchmove',this.pinchmove.bind(this));
     }
     pinchstart(e)
     {
+        this.x=0;
+        this.y=0;
         e.preventDefault();
         if(e.targetTouches.length===2)
         {
