@@ -179,8 +179,8 @@ class Marker
     }
     pinchstart(e)
     {
-        this.x=0;
-        this.y=0;
+        this.x=e.targetTouches[0].clientX;
+        this.y=e.targetTouches[0].clientY;
         e.preventDefault();
         if(e.targetTouches.length===2)
         {
@@ -196,6 +196,8 @@ class Marker
     {
         var map=document.getElementById('map');
         var width,height,nw,f,nh,tl,tt,dis2,ch,dis,ml,mr,mt;
+        width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
+        height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
         e.preventDefault();
         if(e.targetTouches.length===1)
         {
@@ -207,12 +209,13 @@ class Marker
                 ml=parseFloat(map.style.left);
                 mr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
                 dis=e.targetTouches[0].clientX - this.x;
-                // console.log(ml,mr,dis);
+                console.log(ml,mr,dis);
                 if(dis<0)
                 {
                     if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
                     {
                         map.style.left = (ml - Math.abs(dis)) + 'px';
+                        console.log('!!');
 
                     }
                     else if(width>document.documentElement.clientWidth)
