@@ -196,8 +196,8 @@ class Marker
     {
         var map=document.getElementById('map');
         var width,height,nw,f,nh,tl,tt,dis2,ch,dis,ml,mr,mt;
-        width=parseFloat(getComputedStyle(this.map).getPropertyValue("width"));
-        height=parseFloat(getComputedStyle(this.map).getPropertyValue("height"));
+        width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+        height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
         e.preventDefault();
         if(e.targetTouches.length===1)
         {
