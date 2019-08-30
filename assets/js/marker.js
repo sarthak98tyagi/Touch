@@ -193,10 +193,73 @@ class Marker
     pinchmove(e)
     {
         var map=document.getElementById('map');
-        var width,height,nw,f,nh,tl,tt;
+        var width,height,nw,f,nh,tl,tt,dis2,ch,dis,ml,mr,mt;
         console.log(this.pointers);
         e.preventDefault();
-        if(e.targetTouches.length===2)
+        if(e.targetTouches.length===1)
+        {
+
+            ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
+            if(ch===1)
+            {
+                this.cnt=1;
+                ml=parseFloat(map.style.left);
+                mr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
+                dis=e.targetTouches[0].clientX - this.x;
+                if(dis<0)
+                {
+                    if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
+                    {
+                        map.style.left = (ml - Math.abs(dis)) + 'px';
+
+                    }
+                    else if(width>document.documentElement.clientWidth)
+                    {
+
+                        map.style.left = -(width-document.documentElement.clientWidth) + 'px'
+                    }
+                }
+                else
+                {
+                    if((ml+dis)<0)
+                    {
+                        map.style.left=(ml+dis)+'px';
+
+                    }
+                    else {map.style.left=0+'px';}
+                }
+            }
+            else
+            {
+                dis = e.targetTouches[0].clientY - this.y;
+                mt = parseFloat(map.style.top);
+                if (dis < 0)
+                {
+                    if (Math.abs(mt - Math.abs(dis)) <= (height - document.documentElement.clientHeight)) {
+                        map.style.top = (mt - Math.abs(dis)) + 'px';
+
+                    } else if (height > document.documentElement.clientHeight) {
+                        map.style.top = -(height - document.documentElement.clientHeight) + 'px';
+
+                    }
+
+                }
+                else
+                {
+                    if((mt+dis)<0)
+                    {
+                        map.style.top=(mt+dis)+'px';
+                    }
+                    else
+                    {
+                        map.style.top=0+'px';
+                    }
+                }
+
+            }
+
+        }
+        else if(e.targetTouches.length===2)
         {   this.cnt=1;
             this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             if((this.dis2-this.dis3)>0)                /*zoom-in*/
