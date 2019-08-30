@@ -366,6 +366,6 @@ class Marker
         document.body.removeChild(document.getElementById('map-holder'));
     }
 }
-a=new Marker('assets/images/map.jpg',{0:[300,400,360,512,"Hello"]});
+a=new Marker('assets/images/map.jpg');
 a.setPin(['hello','hi']);
 
