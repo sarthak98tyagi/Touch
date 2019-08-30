@@ -229,7 +229,7 @@ class Marker
                     map.style.width=nw+'px';
                     map.style.left=-tl+'px';
                     map.style.top=-tt+'px';
-                    scaleshift(f);
+                    this.scaleshift(f);
                 }
             }
         }
@@ -334,6 +334,8 @@ class Marker
             if(value[1][0])
             {
                 var ws=(value[1][0]*cw)/value[1][2];
+                console.log(value[0]);
+                
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
                 var ny=((value[1][1]*ah)/value[1][3])+at;
