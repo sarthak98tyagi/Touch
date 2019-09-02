@@ -31,7 +31,7 @@ class Marker
     {
         if(this.pointers[n])
         return this.pointers[n];
-        return NULL;
+        return NULL; // need info
     }
     getJSON()
     {
@@ -40,7 +40,6 @@ class Marker
     setPin(msg)
     {
             friend(this.url);
-            var cnt;
             var info = [], mp = 0;
             if (Array.isArray(msg))
                 info = msg;
@@ -52,13 +51,14 @@ class Marker
                     info.push(value);
                 });
             }
-            var f=0,removePin,cancelPin,pop,move;
+            var removePin,cancelPin,pop,move;
             var map = document.getElementById('map');
-            var mapclick = function (e)
+            var mapClick = function (e)
             {
                 if (info.length > 0)
                 {
                     e.preventDefault();
+                    e.stopPropagation();
                     var xmark = Math.abs(parseFloat(map.style.left)) + e.clientX;
                     var ymark = Math.abs(parseFloat(map.style.top)) + e.clientY;
                     var mark = document.createElement("div");
@@ -73,25 +73,24 @@ class Marker
                     {
                         var id=Number(e.target.parentElement.id);
                         delete(this.pointers[id]);
-                        document.getElementById('map-holder').removeChild(document.getElementById(id));
+                        document.getElementById('map-holder').removeChild(document.getElementById("box"+id));
                         document.getElementById('map-holder').removeChild(document.getElementById(id));
                         mark.addEventListener('click', pop);
-                        map.addEventListener('click',mapclick);
+                        map.addEventListener('click',mapClick);
                     }.bind(this);
                     cancelPin=function(e,f=0)
                     {
                         document.getElementById('map-holder').removeChild(e.target.parentElement);
                         mark.addEventListener('click', pop);
-                        map.addEventListener('click',mapclick);
+                        map.addEventListener('click',mapClick);
                     };
                     pop = function (e)
                     {
                             mark.removeEventListener('click', pop);
-                            map.removeEventListener('click',mapclick);
+                            map.removeEventListener('click',mapClick);
                             var popup = document.createElement("div");
                             popup.innerText = this.pointers[e.target.id][4];
-                            popup.id = e.target.id;
-                            var p = document.createElement("p");
+                            popup.id = "box"+e.target.id;
                             var btn = document.createElement("button");
                             btn.className = "btn btn-danger";
                             btn.innerText = "Remove";
@@ -113,16 +112,16 @@ class Marker
             var desktopPress=function(e)
             {
                 e.preventDefault();
-                if((document.documentElement.clientWidth)>=1280)
+                e.stopPropagation();
+                if((document.documentElement.clientWidth)>=992)
                 {
-                    map.removeEventListener('click',mapclick);
+                    map.removeEventListener('click',mapClick);
                     e.target.removeEventListener('click',pop);
                     e.target.removeEventListener('contextmenu',desktopPress);
                     var evn=e;
                     var popup = document.createElement("div");
                     popup.innerText = this.pointers[e.target.id][4];
-                    popup.id = e.target.id;
-                    var p = document.createElement("p");
+                    popup.id = "box"+e.target.id;
                     var btn1 = document.createElement("button");
                     btn1.className = "btn btn-danger";
                     btn1.innerText = "Remove";
@@ -130,7 +129,7 @@ class Marker
                     var btn2 = document.createElement("button");
                     btn2.className = "btn btn-danger";
                     btn2.innerText = "Edit";
-                    console.log(this.pointers[evn.target.id]);
+                    // console.log(this.pointers[evn.target.id]);
                     btn2.addEventListener("click",function(e)
                     {
                         document.getElementById('map-holder').removeChild(e.target.parentElement);
@@ -146,7 +145,7 @@ class Marker
                             console.log(this.pointers[evn.target.id]);
                             evn.target.style.background='transparent';
                             map.removeEventListener('click',locate);
-                            map.addEventListener('click',mapclick);
+                            map.addEventListener('click',mapClick);
                             evn.target.addEventListener('contextmenu',desktopPress);
                             evn.target.addEventListener('click',pop);
                         }.bind(this);
@@ -158,7 +157,7 @@ class Marker
                     k.addEventListener('click',function(e)
                     {
                         document.getElementById('map-holder').removeChild(e.target.parentElement);
-                        map.addEventListener('click',mapclick);
+                        map.addEventListener('click',mapClick);
                         evn.target.addEventListener('contextmenu',desktopPress);
                         evn.target.addEventListener('click',pop);
                     });
@@ -173,7 +172,17 @@ class Marker
                     this.pinDrag(e,move);
                 }
             }.bind(this);
-            map.addEventListener('click', mapclick);
+            map.addEventListener("click touchstart", function (e) {
+                e.preventDefault();
+                if(e.targetTouches.length==1)
+                {
+                    
+                }
+            }.bind(this));
+            map.addEventListener("touchmove", function () {
+
+            });
+            map.addEventListener('click touchstart', mapClick);
             map.addEventListener('touchstart',this.pinchstart.bind(this));
             map.addEventListener('touchmove',this.pinchmove.bind(this));
     }
