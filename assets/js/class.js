@@ -1,14 +1,17 @@
-const MARKER_viewportWidth = 1234;
+const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
     constructor(url, pointer = []){
         this.url = url;
-        this.pointers = pointers;
+        this.pointers = pointer;
         this.pins = [];
+        this.cnt=0;
+        this.mp=0;
     }
     checkEvent(e)
     {
+        var map=document.getElementById(MARKER_mapId);
         this.x=e.targetTouches[0].clientX;
         this.y=e.targetTouches[0].clientY;
         e.preventDefault();
@@ -22,60 +25,183 @@ class Marker {
         }
         this.dis3 = this.dis1;
     }
-    findEvent(e,msg)
+    findEvent(e)
     {
-        if(0 && !isDesktop())
-        {
 
-            var x=e.clientX;
-            var y=e.clientY;
+        var map=document.getElementById(MARKER_mapId);
+        if((Math.abs(this.x-e.targetTouches[0].clientX)<5 && Math.abs(this.y-e.targetTouches[0].clientY)) && e.targetTouches.length===1 && !isDesktop())
+        {
+            var x=e.targetTouches[0].clientX;
+            var y=e.targetTouches[0].clientY;
             var w,h;
-            this.addPin(msg, {x:x, y:y, w:w, h:h})
+            console.log(x,y);
+            w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+            h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+            this.addPin(this.info, {x:x, y:y, w:w, h:h})
         }
-        else if(1){
-            this.startSwipe();
+        else if(e.targetTouches.length===1 )
+        {
+            this.startSwipe(e);
         }
-        else if(2){
-            if(!isDesktop()) this.startZoom();
+        else if(e.targetTouches.length===2)
+        {
+            if(!isDesktop())
+            {
+                this.startZoom();
+            }
         }
     }
-    startZoom() {}
+    startZoom(e)
+    {
+        this.cnt=1;
+        var map=document.getElementById('MARKER_mapId');
+        var w,h,nw,f,nh,tl,tt,dis2;
+        this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+        if((this.dis2-this.dis3)>0)                /*zoom-in*/
+        {
+            width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+            height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+            nw=width+this.dis2*2;
+            f=nw/width;
+            nh=height*f;
+            tl=((this.xcor/width)*nw)-this.x;
+            tt=((this.ycor/height)*nh)-this.y;
+            if((-tl)<0 && (-tt)<0)
+            {
+                map.style.width=nw+'px';
+                map.style.left=-tl+'px';
+                map.style.top=-tt+'px';
+                this.scaleshift(f);
+            }
+        }
+        else                          /*zoom-out*/
+        {
+            width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+            height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
+            nw=width-this.dis2*2;
+            f=nw/width;
+            nh=height*f;
+            tl=((this.xcor/width)*nw)-this.x;
+            tt=((this.ycor/height)*nh)-this.y;
+            if((-tl)<0 && (-tt)<0)
+            {
+                map.style.width=nw+'px';
+                map.style.left=-tl+'px';
+                map.style.top=-tt+'px';
+                this.scaleshift(f);
+            }
+        }
+        this.dis3 = this.dis2;
+    }
+    startSwipe(e)
+    {
+        var map=document.getElementById(MARKER_mapId);
+        var width,height,ch,dis,ml,mr,mt;
+        width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
+        height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
 
-    startSwipe() {}
+        ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
+        if(ch===1)
+        {
+            this.cnt=1;
+            ml=parseFloat(map.style.left);
+            mr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
+            dis=e.targetTouches[0].clientX - this.x;
+                if(dis<0)
+                {
+                    if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
+                    {
+                        map.style.left = (ml - Math.abs(dis)) + 'px';
 
+                    }
+                    else if(width>document.documentElement.clientWidth)
+                    {
+
+                        map.style.left = -(width-document.documentElement.clientWidth) + 'px'
+                    }
+                }
+                else
+                {
+                    if((ml+dis)<0)
+                    {
+                        map.style.left=(ml+dis)+'px';
+
+                    }
+                    else {map.style.left=0+'px';}
+                }
+
+
+        }
+        else
+        {
+            dis = e.targetTouches[0].clientY - this.y;
+            mt = parseFloat(map.style.top);
+            if (dis < 0)
+            {
+                if (Math.abs(mt - Math.abs(dis)) <= (height - document.documentElement.clientHeight)) {
+                    map.style.top = (mt - Math.abs(dis)) + 'px';
+
+                } else if (height > document.documentElement.clientHeight) {
+                    map.style.top = -(height - document.documentElement.clientHeight) + 'px';
+
+                }
+
+            }
+            else
+            {
+                if((mt+dis)<0)
+                {
+                    map.style.top=(mt+dis)+'px';
+                }
+                else
+                {
+                    map.style.top=0+'px';
+                }
+            }
+
+        }
+    }
     setPin(msg) {
-        var info=[];
+        var info = [];
         appendMapHolder(this.url);
         if (Array.isArray(msg))
-            info = msg;
-        else if(typeof (msg) == "object")
-        {
-            Object.entries(msg).forEach(function (value, index)
-            {
+            this.info = msg;
+        else if (typeof (msg) == "object") {
+            Object.entries(msg).forEach(function (value, index) {
                 info.push(value);
             });
         }
-        this.map =  document.getElementById(MARKER_mapId);
-        this.map.addEventListener("touchstart", this.checkEvent);
-        this.map.addEventListener("touchmove", this.findEvent(info));
-        if(isDesktop()) this.map.addEventListener("click", function () {
-            var x;
-            var y;
-            var w,h;
-            this.addPin(info, {x:x, y:y, w:w, h:h});
-        }.bind(this));
+        var map = document.getElementById(MARKER_mapId);
+        map.addEventListener("touchstart", this.checkEvent.bind(this));
+        map.addEventListener("touchmove", this.findEvent.bind(this));
+        if (isDesktop()) {
+            map.addEventListener("click", function (e) {
+                console.log('!!');
+                var x = e.clientX;
+                var y = e.clientY;
+                var w, h;
+                w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
+                h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
+                this.addPin(this.info, {x: x, y: y, w: w, h: h});
+            }.bind(this));
+        }
     }
-    addPin(msg, pinInfo){
-        if(msg.length > 0) {
+    addPin(msg, pinInfo)
+    {
+        if(msg.length > 0)
+        {
             const marker = document.createElement("div");
-            // marker style
-            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h, msg.pop(0), marker, true);
-            pin.init();
+            marker.className='mark';
+            marker.id=this.mp;
+            var data=msg.pop(0);
+            this.pointers[this.mp++]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
+            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true);
             this.pins.push(pin);
         }
     }
-    managePin(pin,editable){
-        appendMapHolder();
+    managePin(pin,editable)
+    {
+        appendMapHolder(this.url);
         var pinInfo = this.pins[pin];
         const marker = document.createElement("div");
         // marker style
@@ -85,19 +211,31 @@ class Marker {
         appendMapHolder();
         this.pins.forEach( function (pinInfo) {
             const marker = document.createElement("div");
+            marker.className='mark';
             // marker style
             const PIN = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h, pinInfo.message, marker, editable);
         });
 
     }
-    getJSON() {}
-    getPin() {}
-    destroy() {}
-    zoomDesktop() {
-        if(isDesktop()){
-
-        }
+    getJSON()
+    {
+        return(this.pointers);
     }
+    getPin(n)
+    {
+        if(this.pointers[n])
+            return this.pointers[n];
+        return NULL; // need info
+    }
+    destroy()
+    {
+        document.body.removeChild(document.getElementById('map-holder'));
+    }
+    // zoomDesktop() {
+    //     if(isDesktop()){
+    //
+    //     }
+    // }
 }
 class Pin
 {
@@ -114,36 +252,50 @@ class Pin
     }
     init()
     {
-        this.appendMarker();
-        this.marker.addEventListener("click", this.openPopup(1));
-        if(this.editable) this.marker.addEventListener("contextmenu", this.openPopup(2));
+        this.appendMarker(this.marker);
+        this.move=0;
+        this.marker.addEventListener('click',function(){this.openPopup(event,1)}.bind(this));
+        if(this.editable)
+        {
+            this.marker.addEventListener("contextmenu",function(){this.openPopup(event,2)}.bind(this),false);
+        }
     }
-    openPopup(choice){
+    openPopup(e,choice)
+    {
+        e.preventDefault();
+        console.log(e);
         const allPopups = document.querySelectorAll(".popup");
-        if(allPopups.length > 0 ) {
-            allPopups.forEach( function (popup) {
+        if(allPopups.length > 0 )
+        {
+            allPopups.forEach( function (popup)
+            {
                 popup.remove();
             })
         }
         var el = choice === 1 ? ["p", "i", "button"]: ["p", "i", "button", "button"];
         var elements = this.elements(el);
         this.appendPopup(elements, choice);
-        elements[1].addEventListener("click", this.removePopup);
-        if(this.editable) elements[2].addEventListener("click", this.deletePopup);
-        if(choice === 2) {
-            elements[3].addEventListener("click", this.dragPin);
+        elements[2].addEventListener("click", this.removePopup);
+        elements[1].addEventListener("click", this.deletePopup);
+        if(choice === 2)
+        {
+
+            elements[3].addEventListener("click", this.dragPin.bind(this));
         }
     }
-    appendPopup(elements, choice) {
+    appendPopup(elements, choice)
+    {
         var popup = document.createElement("div");
         popup.className = "popup";
+        popup.id="box"+this.marker.id;
         var data;
         var deleteButtonClass = this.editable ? "btn btn-danger" : "btn btn-danger delete-display-none";
         if (choice === 2) data = [
             {text: this.msg, classes: ""},
-            {text: "Edit", classes: "btn btn-primary edit-pin"},
-            {text: "Remove", classes: deleteButtonClass},
             {text: "", classes: "fas fa-times"},
+            {text: "Remove", classes: deleteButtonClass},
+            {text: "Edit", classes: "btn btn-primary edit-pin"},
+
         ];
         if (choice === 1) data = [
             {text: this.msg},
@@ -155,41 +307,137 @@ class Pin
             element.className = data[index].classes;
             popup.appendChild(element);
         });
+        document.getElementById('map-holder').appendChild(popup);
     }
-    removePopup()
+    removePopup(e)
     {
-
+        var id=e.target.parentElement.id;
+        document.getElementById('map-holder').removeChild(document.getElementById(id));
+        document.getElementById('map-holder').removeChild(document.getElementById(id.substring(3,)));
     }
-    deletePopup(){}
-    dragPin(){
-        if(isDesktop()){
-            const MAP = document.getElementById(MARKER_mapId);
+    deletePopup(e)
+    {
+        document.getElementById('map-holder').removeChild(e.target.parentElement);
+    }
+    dragPin(e){
+        if(isDesktop())
+        {
 
-            MAP.addEventListener("click", function (event) {
+            this.startDrag(e);
+            const MAP = document.getElementById(MARKER_mapId);
+            MAP.addEventListener("click", function (e)
+            {
                 dragging = true;
-            });
+                e.preventDefault();
+                e.stopPropagation();
+            }.bind(this));
         }
-        else{
-            this.marker.addEventListener("touchstart", this.startDrag);
+        else
+            {
+            this.marker.addEventListener("touchstart", this.startDrag.bind(this));
             this.marker.addEventListener("touchmove", this.followDrag);
             this.marker.addEventListener("touchend", this.endDrag);
         }
     }
-
     elements(el){
         var elements = [];
-        el.forEach( function (element, index) {
+        el.forEach( function (element, index)
+        {
             elements.push(document.createElement(element));
         });
         return elements;
     }
+    startDrag(e)
+    {
+        var a=(e.target.parentElement.id).substring(3,);
+        console.log(a);
+        this.move = 1;
+        e.preventDefault();
+        document.getElementById(a).style.background = "yellow";
+        this.deletePopup(e);
+    }
+    followDrag()
+    {
+        e.preventDefault();
+        if (e.targetTouches.length === 1 && this.move)
+        {
+            var dim = e.targetTouches[0];
+            var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+            var k = document.documentElement.clientWidth;
+            var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+            var l = document.documentElement.clientHeight;
+            var cl = parseFloat(map.style.left);
+            var ct = parseFloat(map.style.top);
+            if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
+            {
+                e.target.style.left = (dim.clientX) + 'px';
+                e.target.style.top = (dim.clientY) + 'px';
+            }
+            if ((k - dim.clientX) < 30)
+            {
+                var rr = w + parseFloat(map.style.left) - k;
+                var rdis = Math.abs(k - dim.clientX);
+                if ((-rr + rdis) <= 0)
+                {
+                    var rl = parseFloat(map.style.left);
+                    map.style.left = (rl - rdis) + 'px';
+                    this.cnt = 1;
+                    this.scaleshift();
+                }
+            }
+            if ((l - dim.clientY) < 30)
+            {
 
-    startDrag(){}
-    followDrag(){}
-    endDrag(){}
+                var bb = h + parseFloat(map.style.top) - l;
+                var bdis = Math.abs(l - dim.clientY);
+                if ((-bb + bdis) <= 0) {
+                    var bt = parseFloat(map.style.top);
+                    map.style.top = (bt - bdis) + 'px';
+                    this.cnt = 1;
+                    this.scaleshift();
 
-    appendMarker() {
-        // append at this.x, this.y
+                }
+            }
+            if (dim.clientX < 30)
+            {
+                var ll = parseFloat(map.style.left);
+                var ldis = 30 - dim.clientX;
+                if ((ll + ldis) <= 0) {
+                    map.style.left = (ll + ldis) + 'px';
+                    this.cnt = 1;
+                    this.scaleshift();
+                }
+            }
+            if (dim.clientY < 30)
+            {
+                var tl = parseFloat(map.style.top);
+                var tdis = 30 - dim.clientY;
+                if ((tl + tdis) <= 0) {
+                    map.style.top = (tl + tdis) + 'px';
+                    this.cnt = 1;
+                    this.scaleshift();
+                }
+            }
+            var xmark = Math.abs(cl) + dim.clientX;
+            var ymark = Math.abs(ct) + dim.clientY;
+            var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+            var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+            this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
+        }
+    }
+    endDrag(e)
+    {
+        if (move)
+        {
+            move = 0;
+            e.target.style.background = "transparent";
+        }
+    }
+    appendMarker(marker)
+    {
+        document.getElementById('map-holder').appendChild(marker);
+        marker.style.left=this.x+'px';
+        marker.style.top=this.y+'px';
     }
 
 }
@@ -198,6 +446,24 @@ function isDesktop() {
     return MARKER_viewportWidth >= 992;
 }
 
-function appendMapHolder() {
-
+function appendMapHolder(url)
+{
+    var mapholder=document.createElement("div");
+    mapholder.style.position="relative";
+    mapholder.style.width="100%";
+    mapholder.style.hieght="100vh";
+    mapholder.style.background="black";
+    mapholder.id="map-holder";
+    document.body.appendChild(mapholder);
+    var map=document.createElement("img");
+    map.src=url;
+    map.alt="Map";
+    map.id='inspectionMapImage';
+    map.style.position='absolute';
+    map.style.left='0px';
+    map.style.top='0px';
+    map.style.minWidth="100%";
+    mapholder.appendChild(map);
 }
+a=new Marker('assets/images/map.jpg');
+a.setPin(['hello','hi']);
