@@ -37,7 +37,7 @@ class Marker {
             console.log(x,y);
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-            this.addPin(this.info, {x:x, y:y, w:w, h:h})
+            this.addPin({x:x, y:y, w:w, h:h})
         }
         else if(e.targetTouches.length===1 )
         {
@@ -162,7 +162,7 @@ class Marker {
         }
     }
     setPin(msg) {
-        var info = [];
+        this.info = [];
         appendMapHolder(this.url);
         if (Array.isArray(msg))
             this.info = msg;
@@ -175,25 +175,25 @@ class Marker {
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
         if (isDesktop()) {
-            map.addEventListener("click", function (e) {
-                console.log('!!');
+            map.addEventListener("click", function (e)
+            {
                 var x = e.clientX;
                 var y = e.clientY;
                 var w, h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
-                this.addPin(this.info, {x: x, y: y, w: w, h: h});
+                this.addPin({x: x, y: y, w: w, h: h});
             }.bind(this));
         }
     }
-    addPin(msg, pinInfo)
+    addPin(pinInfo)
     {
-        if(msg.length > 0)
+        if(this.info.length > 0)
         {
             const marker = document.createElement("div");
             marker.className='mark';
             marker.id=this.mp;
-            var data=msg.pop(0);
+            var data=this.info.pop(0);
             this.pointers[this.mp++]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
             const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true);
             this.pins.push(pin);
