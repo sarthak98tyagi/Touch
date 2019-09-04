@@ -158,7 +158,6 @@ class Marker {
 
                 }
 
-
         }
         else
         {
@@ -230,6 +229,7 @@ class Marker {
             this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
             const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true,this.mp);
             this.pins.push(pin);
+            console.log(this.pointers[this.mp]);
             this.mp=this.mp+1;
             document.getElementById(MARKER_mapId).addEventListener('modifyPin',function(e)
             {
@@ -237,6 +237,8 @@ class Marker {
                 this.pointers[e.detail.index][1]=e.detail.y;
                 this.pointers[e.detail.index][2]=e.detail.w;
                 this.pointers[e.detail.index][3]=e.detail.h;
+                console.log(this.pointers[e.detail.index]);
+
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
             {
@@ -320,7 +322,6 @@ class Pin
         elements[1].addEventListener("click", this.deletePopup);
         if(choice === 2)
         {
-
             elements[3].addEventListener("click", this.dragPin.bind(this));
         }
     }
@@ -366,20 +367,44 @@ class Pin
 
         if(isDesktop())
         {
-
             this.startDrag(e);
-            const MAP = document.getElementById(MARKER_mapId);
-            MAP.addEventListener("click", function (e)
+            const map = document.getElementById(MARKER_mapId);
+            var a=(e.target.parentElement.id).substring(3,);
+            var evn=document.getElementById(a);
+            var overLay=this.overlay();
+            document.documentElement.appendChild(overLay);
+            overLay.addEventListener("click", function (e)
             {
                 dragging = true;
                 e.preventDefault();
                 e.stopPropagation();
+                var dx=e.clientX;
+                var dy=e.clientY;
+                evn.style.left=dx+'px';
+                evn.style.top=dy+'px';
+                this.x=parseFloat(map.style.left)+dx;
+                this.y=parseFloat(map.style.top)+dy;
+                evn.style.background='transparent';
+                this.destroyOverlay();
+                var evt=new CustomEvent('modifyPin',{'detail':{'x':this.x,'y':this.y,'w':this.width,'h':this.height,'index':this.index}});
+                map.dispatchEvent(evt);
             }.bind(this));
         }
         else
         {
             this.marker.addEventListener("touchstart",this.startDrag(event));
         }
+    }
+    overlay()
+    {
+        var over=document.createElement('div');
+        over.className='overlay';
+        over.id='over';
+        return over;
+    }
+    destroyOverlay()
+    {
+        document.documentElement.removeChild(document.getElementById('over'));
     }
     elements(el)
     {

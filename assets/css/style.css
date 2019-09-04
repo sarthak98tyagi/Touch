@@ -1,15 +1,6 @@
 .delete-display-none{
     display: none;
 }
-
-
-
-
-
-
-
-
-
 body
 {
     overflow: hidden;
@@ -19,7 +10,17 @@ body
     position: relative;
     width: 100%;
     height: 100vh;
-    
+    z-index: 999;
+}
+.overlay
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+    top:0;
+    left: 0;
+    z-index: 1000;
 }
 .mapclass
 {
