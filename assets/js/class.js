@@ -27,19 +27,17 @@ class Marker {
     }
     findEvent(e)
     {
-
         var map=document.getElementById(MARKER_mapId);
         if((Math.abs(this.x-e.targetTouches[0].clientX)<5 && Math.abs(this.y-e.targetTouches[0].clientY)) && e.targetTouches.length===1 && !isDesktop())
         {
             var x=e.targetTouches[0].clientX;
             var y=e.targetTouches[0].clientY;
             var w,h;
-            console.log(x,y);
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             this.addPin({x:x, y:y, w:w, h:h})
         }
-        else if(e.targetTouches.length===1 )
+        else if(e.targetTouches.length===1)
         {
             this.startSwipe(e);
         }
@@ -50,6 +48,32 @@ class Marker {
                 this.startZoom();
             }
         }
+    }
+    scaleshift(factor=1)
+    {
+        var map=document.getElementById(MARKER_mapId);
+        var cw=factor===1?parseFloat(getComputedStyle(map).getPropertyValue('width')):parseFloat(map.style.width);
+        var ah=parseFloat(getComputedStyle(map).getPropertyValue('height'))*factor;
+        if(this.cnt===0)
+        {
+            ah=ah/factor;
+        }
+        var al=parseFloat(map.style.left);
+        var at=parseFloat(map.style.top);
+        Object.entries(this.pointers).forEach(function(value,index)
+        {
+
+            if(value[1][0])
+            {
+                var ws=(value[1][0]*cw)/value[1][2];
+                var mark=document.getElementById(value[0]);
+                var nx=ws+al;
+                var ny=((value[1][1]*ah)/value[1][3])+at;
+                console.log(mark);
+                mark.style.left=nx+'px';
+                mark.style.top=ny+'px';
+            }
+        });
     }
     startZoom(e)
     {
@@ -112,12 +136,14 @@ class Marker {
                     if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
                     {
                         map.style.left = (ml - Math.abs(dis)) + 'px';
+                        this.scaleshift();
 
                     }
                     else if(width>document.documentElement.clientWidth)
                     {
 
                         map.style.left = -(width-document.documentElement.clientWidth) + 'px'
+                        this.scaleshift();
                     }
                 }
                 else
@@ -125,9 +151,11 @@ class Marker {
                     if((ml+dis)<0)
                     {
                         map.style.left=(ml+dis)+'px';
+                        this.scaleshift();
 
                     }
-                    else {map.style.left=0+'px';}
+                    else {map.style.left=0+'px';this.scaleshift();}
+
                 }
 
 
@@ -140,10 +168,11 @@ class Marker {
             {
                 if (Math.abs(mt - Math.abs(dis)) <= (height - document.documentElement.clientHeight)) {
                     map.style.top = (mt - Math.abs(dis)) + 'px';
+                    this.scaleshift();
 
                 } else if (height > document.documentElement.clientHeight) {
                     map.style.top = -(height - document.documentElement.clientHeight) + 'px';
-
+                    this.scaleshift();
                 }
 
             }
@@ -152,10 +181,12 @@ class Marker {
                 if((mt+dis)<0)
                 {
                     map.style.top=(mt+dis)+'px';
+                    this.scaleshift();
                 }
                 else
                 {
                     map.style.top=0+'px';
+                    this.scaleshift();
                 }
             }
 
@@ -185,18 +216,32 @@ class Marker {
                 this.addPin({x: x, y: y, w: w, h: h});
             }.bind(this));
         }
+
     }
     addPin(pinInfo)
     {
+
         if(this.info.length > 0)
         {
             const marker = document.createElement("div");
             marker.className='mark';
             marker.id=this.mp;
             var data=this.info.pop(0);
-            this.pointers[this.mp++]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
-            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true);
+            this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
+            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true,this.mp);
             this.pins.push(pin);
+            this.mp=this.mp+1;
+            document.getElementById(MARKER_mapId).addEventListener('modifyPin',function(e)
+            {
+                this.pointers[e.detail.index][0]=e.detail.x;
+                this.pointers[e.detail.index][1]=e.detail.y;
+                this.pointers[e.detail.index][2]=e.detail.w;
+                this.pointers[e.detail.index][3]=e.detail.h;
+            }.bind(this));
+            document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
+            {
+                this.scaleshift();
+            }.bind(this))
         }
     }
     managePin(pin,editable)
@@ -231,15 +276,11 @@ class Marker {
     {
         document.body.removeChild(document.getElementById('map-holder'));
     }
-    // zoomDesktop() {
-    //     if(isDesktop()){
-    //
-    //     }
-    // }
+
 }
 class Pin
 {
-    constructor(x,y,w,h,msg,marker,editable)
+    constructor(x,y,w,h,msg,marker,editable,index)
     {
         this.x=x;
         this.y=y;
@@ -248,12 +289,13 @@ class Pin
         this.msg=msg;
         this.marker = marker;
         this.editable = editable;
+        this.move=0;
+        this.index=index;
         this.init();
     }
     init()
     {
         this.appendMarker(this.marker);
-        this.move=0;
         this.marker.addEventListener('click',function(){this.openPopup(event,1)}.bind(this));
         if(this.editable)
         {
@@ -263,7 +305,6 @@ class Pin
     openPopup(e,choice)
     {
         e.preventDefault();
-        console.log(e);
         const allPopups = document.querySelectorAll(".popup");
         if(allPopups.length > 0 )
         {
@@ -283,6 +324,7 @@ class Pin
             elements[3].addEventListener("click", this.dragPin.bind(this));
         }
     }
+
     appendPopup(elements, choice)
     {
         var popup = document.createElement("div");
@@ -319,7 +361,9 @@ class Pin
     {
         document.getElementById('map-holder').removeChild(e.target.parentElement);
     }
-    dragPin(e){
+    dragPin(e)
+    {
+
         if(isDesktop())
         {
 
@@ -333,13 +377,12 @@ class Pin
             }.bind(this));
         }
         else
-            {
-            this.marker.addEventListener("touchstart", this.startDrag.bind(this));
-            this.marker.addEventListener("touchmove", this.followDrag);
-            this.marker.addEventListener("touchend", this.endDrag);
+        {
+            this.marker.addEventListener("touchstart",this.startDrag(event));
         }
     }
-    elements(el){
+    elements(el)
+    {
         var elements = [];
         el.forEach( function (element, index)
         {
@@ -349,90 +392,102 @@ class Pin
     }
     startDrag(e)
     {
-        var a=(e.target.parentElement.id).substring(3,);
-        console.log(a);
-        this.move = 1;
         e.preventDefault();
+        var a=(e.target.parentElement.id).substring(3,);
+        this.move=1;
         document.getElementById(a).style.background = "yellow";
         this.deletePopup(e);
-    }
-    followDrag()
-    {
-        e.preventDefault();
-        if (e.targetTouches.length === 1 && this.move)
+        var map=document.getElementById(MARKER_mapId);
+        var scale=new CustomEvent('scaleshift');
+        document.getElementById(a).addEventListener('touchmove', function (e)     /*drag*/
         {
-            var dim = e.targetTouches[0];
-            var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
-            var k = document.documentElement.clientWidth;
-            var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-            var l = document.documentElement.clientHeight;
-            var cl = parseFloat(map.style.left);
-            var ct = parseFloat(map.style.top);
-            if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
+            e.preventDefault();
+            if (e.targetTouches.length === 1 && this.move)
             {
-                e.target.style.left = (dim.clientX) + 'px';
-                e.target.style.top = (dim.clientY) + 'px';
-            }
-            if ((k - dim.clientX) < 30)
-            {
-                var rr = w + parseFloat(map.style.left) - k;
-                var rdis = Math.abs(k - dim.clientX);
-                if ((-rr + rdis) <= 0)
+                var dim = e.targetTouches[0];
+                var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                var k = document.documentElement.clientWidth;
+                var h = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                var l = document.documentElement.clientHeight;
+                var cl = parseFloat(map.style.left);
+                var ct = parseFloat(map.style.top);
+                if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
                 {
-                    var rl = parseFloat(map.style.left);
-                    map.style.left = (rl - rdis) + 'px';
-                    this.cnt = 1;
-                    this.scaleshift();
+                    e.target.style.left = (dim.clientX) + 'px';
+                    e.target.style.top = (dim.clientY) + 'px';
                 }
-            }
-            if ((l - dim.clientY) < 30)
-            {
+                if ((k - dim.clientX) < 30)
+                {
+                    var rr = w + parseFloat(map.style.left) - k;
+                    var rdis = Math.abs(k - dim.clientX);
+                    if ((-rr + rdis) <= 0)
+                    {
+                        var rl = parseFloat(map.style.left);
+                        map.style.left = (rl - rdis) + 'px';
+                        console.log(map.style.left);
+                        this.cnt = 1;
+                        map.dispatchEvent(scale);
 
-                var bb = h + parseFloat(map.style.top) - l;
-                var bdis = Math.abs(l - dim.clientY);
-                if ((-bb + bdis) <= 0) {
-                    var bt = parseFloat(map.style.top);
-                    map.style.top = (bt - bdis) + 'px';
-                    this.cnt = 1;
-                    this.scaleshift();
+                    }
+                }
+                if ((l - dim.clientY) < 30)
+                {
 
+                    var bb = h + parseFloat(map.style.top) - l;
+                    var bdis = Math.abs(l - dim.clientY);
+                    if ((-bb + bdis) <= 0) {
+                        var bt = parseFloat(map.style.top);
+                        map.style.top = (bt - bdis) + 'px';
+                        this.cnt = 1;
+                        map.dispatchEvent(scale);
+
+                    }
                 }
-            }
-            if (dim.clientX < 30)
-            {
-                var ll = parseFloat(map.style.left);
-                var ldis = 30 - dim.clientX;
-                if ((ll + ldis) <= 0) {
-                    map.style.left = (ll + ldis) + 'px';
-                    this.cnt = 1;
-                    this.scaleshift();
+                if (dim.clientX < 30)
+                {
+                    var ll = parseFloat(map.style.left);
+                    var ldis = 30 - dim.clientX;
+                    if ((ll + ldis) <= 0) {
+                        map.style.left = (ll + ldis) + 'px';
+                        this.cnt = 1;
+                        map.dispatchEvent(scale);
+
+                    }
                 }
-            }
-            if (dim.clientY < 30)
-            {
-                var tl = parseFloat(map.style.top);
-                var tdis = 30 - dim.clientY;
-                if ((tl + tdis) <= 0) {
-                    map.style.top = (tl + tdis) + 'px';
-                    this.cnt = 1;
-                    this.scaleshift();
+                if (dim.clientY < 30)
+                {
+                    var tl = parseFloat(map.style.top);
+                    var tdis = 30 - dim.clientY;
+                    if ((tl + tdis) <= 0) {
+                        map.style.top = (tl + tdis) + 'px';
+                        this.cnt = 1;
+                        map.dispatchEvent(scale);
+                    }
                 }
+                var xmark = Math.abs(cl) + dim.clientX;
+                var ymark = Math.abs(ct) + dim.clientY;
+                var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
+                var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
+                // this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
+                this.x=xmark;
+                this.y=ymark;
+                this.width=inwidth;
+                this.height=inheight;
+
             }
-            var xmark = Math.abs(cl) + dim.clientX;
-            var ymark = Math.abs(ct) + dim.clientY;
-            var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
-            var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
-            this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
-        }
-    }
-    endDrag(e)
-    {
-        if (move)
+        }.bind(this));
+        document.getElementById(a).addEventListener('touchend', function (e)
         {
-            move = 0;
-            e.target.style.background = "transparent";
-        }
+            if (this.move)
+            {
+                this.move = 0;
+                e.target.style.background = "transparent";
+                var ev=new CustomEvent('modifyPin',{'detail':{'x':this.x,'y':this.y,'w':this.width,'h':this.height,'index':this.index}});
+                map.dispatchEvent(ev);
+            }
+        }.bind(this));
     }
+
     appendMarker(marker)
     {
         document.getElementById('map-holder').appendChild(marker);
