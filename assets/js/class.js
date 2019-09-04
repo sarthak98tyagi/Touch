@@ -2,7 +2,8 @@ const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
-    constructor(url, pointer = []){
+    constructor(url, pointer = [])
+    {
         this.url = url;
         this.pointers = pointer;
         this.pins = [];
@@ -19,9 +20,9 @@ class Marker {
         {
             this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
             this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
-            this.xcor=Math.abs(parseFloat(document.getElementById('map').style.left))+this.x;
+            this.xcor=Math.abs(parseFloat(map.style.left))+this.x;
             this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
-            this.ycor=Math.abs(parseFloat(document.getElementById('map').style.top))+this.y;
+            this.ycor=Math.abs(parseFloat(map.style.top))+this.y;
         }
         this.dis3 = this.dis1;
     }
@@ -45,7 +46,7 @@ class Marker {
         {
             if(!isDesktop())
             {
-                this.startZoom();
+                this.startZoom(event);
             }
         }
     }
@@ -80,6 +81,7 @@ class Marker {
         this.cnt=1;
         var map=document.getElementById('MARKER_mapId');
         var w,h,nw,f,nh,tl,tt,dis2;
+
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
