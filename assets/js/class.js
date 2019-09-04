@@ -70,7 +70,6 @@ class Marker {
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
                 var ny=((value[1][1]*ah)/value[1][3])+at;
-                console.log(mark);
                 mark.style.left=nx+'px';
                 mark.style.top=ny+'px';
             }
@@ -80,7 +79,7 @@ class Marker {
     {
         this.cnt=1;
         var map=document.getElementById(MARKER_mapId);
-        var w,h,nw,f,nh,tl,tt,dis2;
+        var w,h,nw,f,nh,tl,tt,dis2,width,height;
 
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
@@ -231,7 +230,6 @@ class Marker {
             this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
             const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true,this.mp);
             this.pins.push(pin);
-            console.log(this.pointers[this.mp]);
             this.mp=this.mp+1;
             document.getElementById(MARKER_mapId).addEventListener('modifyPin',function(e)
             {
@@ -239,7 +237,7 @@ class Marker {
                 this.pointers[e.detail.index][1]=e.detail.y;
                 this.pointers[e.detail.index][2]=e.detail.w;
                 this.pointers[e.detail.index][3]=e.detail.h;
-                console.log(this.pointers[e.detail.index]);
+
 
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
@@ -451,7 +449,6 @@ class Pin
                     {
                         var rl = parseFloat(map.style.left);
                         map.style.left = (rl - rdis) + 'px';
-                        console.log(map.style.left);
                         this.cnt = 1;
                         map.dispatchEvent(scale);
 
