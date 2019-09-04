@@ -80,13 +80,12 @@ class Marker {
         this.cnt=1;
         var map=document.getElementById(MARKER_mapId);
         var w,h,nw,f,nh,tl,tt,dis2,width,height;
-
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
             width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-            nw=width+this.dis2*2;
+            nw=width+this.dis2;
             f=nw/width;
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
@@ -103,7 +102,7 @@ class Marker {
         {
             width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-            nw=width-this.dis2*2;
+            nw=width-this.dis2;
             f=nw/width;
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
