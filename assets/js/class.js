@@ -79,7 +79,7 @@ class Marker {
     startZoom(e)
     {
         this.cnt=1;
-        var map=document.getElementById('MARKER_mapId');
+        var map=document.getElementById(MARKER_mapId);
         var w,h,nw,f,nh,tl,tt,dis2;
 
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
