@@ -71,11 +71,15 @@ class Marker {
             {
                 var ws=(this.pointers[index][0]*cw)/this.pointers[index][2];
                 var mark=document.getElementById(index);
-                var nx=ws+al;
-                console.log(mark,value);
-                var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
-                mark.style.left=nx+'px';
-                mark.style.top=ny+'px';
+                if(mark)
+                {
+                    var nx=ws+al;
+                    console.log(mark,value);
+                    var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
+                    mark.style.left=nx+'px';
+                    mark.style.top=ny+'px';
+                }
+
             }
         }.bind(this));
     }
