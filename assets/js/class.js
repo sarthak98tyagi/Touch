@@ -13,6 +13,8 @@ class Marker {
     }
     checkEvent(e)
     {
+
+        console.log('!!!');
         var map=document.getElementById(MARKER_mapId);
         this.x=e.targetTouches[0].clientX;
         this.y=e.targetTouches[0].clientY;
@@ -194,7 +196,8 @@ class Marker {
 
         }
     }
-    setPin(msg) {
+    setPin(msg)
+    {
         this.info = [];
         appendMapHolder(this.url);
         if (Array.isArray(msg))
