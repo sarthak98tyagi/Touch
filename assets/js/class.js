@@ -261,14 +261,15 @@ class Marker {
         var map=document.getElementById(MARKER_mapId);
         document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
+        map.addEventListener("touchstart", this.checkEvent.bind(this));
+        map.addEventListener("touchmove", this.findEvent.bind(this));
         this.editable=editable;
         if(this.pointers[n])
         {
             var pinInfo = this.pointers[n];
             this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
         }
-        map.addEventListener("touchstart", this.checkEvent.bind(this));
-        map.addEventListener("touchmove", this.findEvent.bind(this));
+
     }
     manageAllPins(editable)
     {
@@ -276,6 +277,8 @@ class Marker {
         this.editable=editable;
         document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
+        map.addEventListener("touchstart", this.checkEvent.bind(this));
+        map.addEventListener("touchmove", this.findEvent.bind(this));
         this.pointers.forEach( function (value,index)
         {
             var pinInfo = this.pointers[index];
