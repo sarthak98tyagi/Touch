@@ -65,7 +65,6 @@ class Marker {
         }
         var al=parseFloat(map.style.left);
         var at=parseFloat(map.style.top);
-        console.log(this.pointers);
         this.pointers.forEach(function(value,index)
         {
             if(value[1][0])
@@ -73,6 +72,7 @@ class Marker {
                 var ws=(value[1][0]*cw)/value[1][2];
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
+                console.log(mark);
                 var ny=((value[1][1]*ah)/value[1][3])+at;
                 mark.style.left=nx+'px';
                 mark.style.top=ny+'px';
@@ -272,7 +272,6 @@ class Marker {
             marker.id=n;
             const pin = new Pin(pinInfo[0], pinInfo[1], pinInfo[2], pinInfo[3],pinInfo[4], marker, this.editable,n);
         }
-
     }
     manageAllPins(editable)
     {
@@ -542,10 +541,10 @@ class Pin
     }
     appendMarker(marker)
     {
-        document.getElementById('map-holder').appendChild(marker);
-
         marker.style.left=this.x+'px';
         marker.style.top=this.y+'px';
+        document.getElementById('map-holder').appendChild(marker);
+
     }
 }
 function isDesktop()
