@@ -65,12 +65,13 @@ class Marker {
         }
         var al=parseFloat(map.style.left);
         var at=parseFloat(map.style.top);
-        Object.entries(this.pointers).forEach(function(value,index)
+        this.pointers.forEach(function(value,index)
         {
 
             if(value[1][0])
             {
                 var ws=(value[1][0]*cw)/value[1][2];
+                console.log(value[0]);
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
                 var ny=((value[1][1]*ah)/value[1][3])+at;
