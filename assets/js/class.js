@@ -145,7 +145,7 @@ class Marker {
                     else if(width>document.documentElement.clientWidth)
                     {
 
-                        map.style.left = -(width-document.documentElement.clientWidth) + 'px'
+                        map.style.left = -(width-document.documentElement.clientWidth) + 'px';
                         this.scaleshift();
                     }
                 }
@@ -263,6 +263,8 @@ class Marker {
             var pinInfo = this.pointers[n];
             this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
         }
+        map.addEventListener("touchstart", this.checkEvent.bind(this));
+        map.addEventListener("touchmove", this.findEvent.bind(this));
     }
     manageAllPins(editable)
     {
@@ -274,6 +276,8 @@ class Marker {
             var pinInfo = this.pointers[index];
             this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
         }.bind(this));
+        map.addEventListener("touchstart", this.checkEvent.bind(this));
+        map.addEventListener("touchmove", this.findEvent.bind(this));
     }
     getJSON()
     {
@@ -525,7 +529,7 @@ class Pin
     appendMarker(marker)
     {
         document.getElementById('map-holder').appendChild(marker);
-        
+
         marker.style.left=this.x+'px';
         marker.style.top=this.y+'px';
     }
