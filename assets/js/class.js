@@ -67,13 +67,13 @@ class Marker {
         var at=parseFloat(map.style.top);
         this.pointers.forEach(function(value,index)
         {
-            if(value)
+            if(this.pointers.length>0)
             {
-                var ws=(value[1][0]*cw)/value[1][2];
-                var mark=document.getElementById(value[0]);
+                var ws=(this.pointers[index][0]*cw)/this.pointers[index][2];
+                var mark=document.getElementById(this.pointers[index]);
                 var nx=ws+al;
                 console.log(mark,value);
-                var ny=((value[1][1]*ah)/value[1][3])+at;
+                var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
                 mark.style.left=nx+'px';
                 mark.style.top=ny+'px';
             }
