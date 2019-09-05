@@ -14,7 +14,7 @@ class Marker {
     checkEvent(e)
     {
 
-        console.log('!!!');
+
         var map=document.getElementById(MARKER_mapId);
         this.x=e.targetTouches[0].clientX;
         this.y=e.targetTouches[0].clientY;
@@ -65,13 +65,12 @@ class Marker {
         }
         var al=parseFloat(map.style.left);
         var at=parseFloat(map.style.top);
+        console.log(this.pointers);
         this.pointers.forEach(function(value,index)
         {
-
             if(value[1][0])
             {
                 var ws=(value[1][0]*cw)/value[1][2];
-                console.log(value[0]);
                 var mark=document.getElementById(value[0]);
                 var nx=ws+al;
                 var ny=((value[1][1]*ah)/value[1][3])+at;
@@ -235,7 +234,6 @@ class Marker {
             marker.className='mark';
             marker.id=this.mp;
             this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,pinInfo.data];
-            console.log(this.pointers);
             const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,pinInfo.data, marker, this.editable,this.mp);
             // this.pins.push(pin);
             this.mp=this.mp+1;
