@@ -271,13 +271,11 @@ class Marker {
             marker.className='mark';
             marker.id=n;
             const pin = new Pin(pinInfo[0], pinInfo[1], pinInfo[2], pinInfo[3],pinInfo[4], marker, this.editable,n);
-
         }
 
     }
     manageAllPins(editable)
     {
-
         this.editable=editable;
         document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
@@ -287,7 +285,10 @@ class Marker {
         this.pointers.forEach( function (value,index)
         {
             var pinInfo = this.pointers[index];
-            this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
+            const marker = document.createElement("div");
+            marker.className='mark';
+            marker.id=index;
+            const pin = new Pin(pinInfo[0], pinInfo[1], pinInfo[2], pinInfo[3],pinInfo[4], marker, this.editable,index);
         }.bind(this));
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
