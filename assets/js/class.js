@@ -258,9 +258,10 @@ class Marker {
     }
     managePin(n,editable)
     {
-        var map=document.getElementById(MARKER_mapId);
+
         document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
+        var map=document.getElementById(MARKER_mapId);
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
         this.editable=editable;
@@ -273,10 +274,11 @@ class Marker {
     }
     manageAllPins(editable)
     {
-        var map=document.getElementById(MARKER_mapId);
+
         this.editable=editable;
         document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
+        var map=document.getElementById(MARKER_mapId);
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
         this.pointers.forEach( function (value,index)
