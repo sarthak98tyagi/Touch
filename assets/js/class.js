@@ -70,7 +70,7 @@ class Marker {
             if(this.pointers.length>0)
             {
                 var ws=(this.pointers[index][0]*cw)/this.pointers[index][2];
-                var mark=document.getElementById(this.pointers[index]);
+                var mark=document.getElementById(index);
                 var nx=ws+al;
                 console.log(mark,value);
                 var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
