@@ -77,7 +77,7 @@ class Marker {
                 mark.style.left=nx+'px';
                 mark.style.top=ny+'px';
             }
-        });
+        }.bind(this));
     }
     startZoom(e)
     {
