@@ -267,7 +267,11 @@ class Marker {
         if(this.pointers[n])
         {
             var pinInfo = this.pointers[n];
-            this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
+            const marker = document.createElement("div");
+            marker.className='mark';
+            marker.id=n;
+            const pin = new Pin(pinInfo[0], pinInfo[1], pinInfo[2], pinInfo[3],pinInfo[4], marker, this.editable,n);
+
         }
 
     }
