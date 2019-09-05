@@ -5,10 +5,11 @@ class Marker {
     constructor(url, pointer = [])
     {
         this.url = url;
-        this.pointers = pointer;
-        this.pins = [];
+        this.pointers = [];
+        this.pins = pointer;
         this.cnt=0;
         this.mp=0;
+        this.editable=true;
     }
     checkEvent(e)
     {
@@ -36,7 +37,8 @@ class Marker {
             var w,h;
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-            this.addPin({x:x, y:y, w:w, h:h})
+            if(this.info.length>0)
+            this.addPin({x:x, y:y, w:w, h:h,data: this.info.shift()})
         }
         else if(e.targetTouches.length===1)
         {
@@ -90,6 +92,7 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
+            var n=0;
             if((-tl)<0 && (-tt)<0)
             {
                 map.style.width=nw+'px';
@@ -198,13 +201,14 @@ class Marker {
             this.info = msg;
         else if (typeof (msg) == "object") {
             Object.entries(msg).forEach(function (value, index) {
-                info.push(value);
+                this.info.push(value);
             });
         }
         var map = document.getElementById(MARKER_mapId);
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
-        if (isDesktop()) {
+        if (isDesktop())
+        {
             map.addEventListener("click", function (e)
             {
                 var x = e.clientX;
@@ -212,23 +216,24 @@ class Marker {
                 var w, h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
-                this.addPin({x: x, y: y, w: w, h: h});
+                if(this.info.length>0)
+                {
+
+                    this.addPin({x: x, y: y, w: w, h: h,data: this.info.shift()});
+                }
             }.bind(this));
         }
-
     }
     addPin(pinInfo)
     {
 
-        if(this.info.length > 0)
-        {
-            const marker = document.createElement("div");
+        const marker = document.createElement("div");
             marker.className='mark';
             marker.id=this.mp;
-            var data=this.info.pop(0);
-            this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,data];
-            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,data, marker, true,this.mp);
-            this.pins.push(pin);
+            this.pointers[this.mp]=[pinInfo.x,pinInfo.y,pinInfo.w,pinInfo.h,pinInfo.data];
+            console.log(this.pointers);
+            const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,pinInfo.data, marker, this.editable,this.mp);
+            // this.pins.push(pin);
             this.mp=this.mp+1;
             document.getElementById(MARKER_mapId).addEventListener('modifyPin',function(e)
             {
@@ -236,32 +241,39 @@ class Marker {
                 this.pointers[e.detail.index][1]=e.detail.y;
                 this.pointers[e.detail.index][2]=e.detail.w;
                 this.pointers[e.detail.index][3]=e.detail.h;
+            }.bind(this));
+            document.getElementById(MARKER_mapId).addEventListener('removePin',function(e)
+            {
 
+                delete(this.pointers[e.detail.index]);
 
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
             {
                 this.scaleshift();
             }.bind(this))
+    }
+    managePin(n,editable)
+    {
+        document.body.removeChild(document.getElementById('map-holder'));
+        appendMapHolder(this.url);
+        this.editable=editable;
+        if(this.pointers[n])
+        {
+            var pinInfo = this.pointers[n];
+            this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
         }
     }
-    managePin(pin,editable)
+    manageAllPins(editable)
     {
+        this.editable=editable;
+        document.body.removeChild(document.getElementById('map-holder'));
         appendMapHolder(this.url);
-        var pinInfo = this.pins[pin];
-        const marker = document.createElement("div");
-        // marker style
-        const PIN = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h, pinInfo.message, marker, editable);
-    }
-    manageAllPins(editable) {
-        appendMapHolder();
-        this.pins.forEach( function (pinInfo) {
-            const marker = document.createElement("div");
-            marker.className='mark';
-            // marker style
-            const PIN = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h, pinInfo.message, marker, editable);
-        });
-
+        this.pointers.forEach( function (value,index)
+        {
+            var pinInfo = this.pointers[index];
+            this.addPin({x: pinInfo[0], y: pinInfo[1], w: pinInfo[2], h: pinInfo[3],data: pinInfo[4]});
+        }.bind(this));
     }
     getJSON()
     {
@@ -317,14 +329,13 @@ class Pin
         var el = choice === 1 ? ["p", "i", "button"]: ["p", "i", "button", "button"];
         var elements = this.elements(el);
         this.appendPopup(elements, choice);
-        elements[2].addEventListener("click", this.removePopup);
+        elements[2].addEventListener("click", this.removePopup.bind(this));
         elements[1].addEventListener("click", this.deletePopup);
         if(choice === 2)
         {
             elements[3].addEventListener("click", this.dragPin.bind(this));
         }
     }
-
     appendPopup(elements, choice)
     {
         var popup = document.createElement("div");
@@ -354,6 +365,8 @@ class Pin
     removePopup(e)
     {
         var id=e.target.parentElement.id;
+        var evt=new CustomEvent('removePin',{'detail':{index:this.index}});
+        document.getElementById(MARKER_mapId).dispatchEvent(evt);
         document.getElementById('map-holder').removeChild(document.getElementById(id));
         document.getElementById('map-holder').removeChild(document.getElementById(id.substring(3,)));
     }
@@ -363,7 +376,6 @@ class Pin
     }
     dragPin(e)
     {
-
         if(isDesktop())
         {
             this.startDrag(e);
@@ -372,7 +384,7 @@ class Pin
             var evn=document.getElementById(a);
             var overLay=this.overlay();
             document.documentElement.appendChild(overLay);
-            overLay.addEventListener("click", function (e)
+            overLay.addEventListener("click", function(e)
             {
                 dragging = true;
                 e.preventDefault();
@@ -510,20 +522,18 @@ class Pin
             }
         }.bind(this));
     }
-
     appendMarker(marker)
     {
         document.getElementById('map-holder').appendChild(marker);
+        
         marker.style.left=this.x+'px';
         marker.style.top=this.y+'px';
     }
-
 }
-
-function isDesktop() {
+function isDesktop()
+{
     return MARKER_viewportWidth >= 992;
 }
-
 function appendMapHolder(url)
 {
     var mapholder=document.createElement("div");
@@ -544,4 +554,15 @@ function appendMapHolder(url)
     mapholder.appendChild(map);
 }
 a=new Marker('assets/images/map.jpg');
-a.setPin(['hello','hi']);
+function st()
+{
+    a.setPin(['hi','hello']);
+}
+function mng()
+{
+    a.managePin(0,true);
+}
+function mngal()
+{
+    a.manageAllPins(true);
+}
