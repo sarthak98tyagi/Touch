@@ -116,7 +116,7 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            if((-tl)<=0 && (-tt)<=0)
+            if((width===MARKER_viewportWidth &&((-tl)<=0 && (-tt)<=0)))
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
