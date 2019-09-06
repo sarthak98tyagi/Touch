@@ -30,7 +30,7 @@ class Marker {
     findEvent(e)
     {
         var map=document.getElementById(MARKER_mapId);
-        if((Math.abs(this.x-e.targetTouches[0].clientX)===0 && Math.abs(this.y-e.targetTouches[0].clientY)===0) && e.targetTouches.length===1 && !isDesktop())
+        if((Math.abs(this.x-e.targetTouches[0].clientX)<2 && Math.abs(this.y-e.targetTouches[0].clientY)<2) && e.targetTouches.length===1 && !isDesktop())
         {
             var x=e.targetTouches[0].clientX+Math.abs(parseFloat(map.style.left));
             var y=e.targetTouches[0].clientY+Math.abs(parseFloat(map.style.top));
