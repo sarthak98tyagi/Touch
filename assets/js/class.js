@@ -250,7 +250,7 @@ class Marker {
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('removePin',function(e)
             {
-                console.log(this.pointers[e.detail.index]);
+                console.log(this.pointers[e.detail.index][4]);
                 delete(this.pointers[e.detail.index]);
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
