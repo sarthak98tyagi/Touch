@@ -39,7 +39,6 @@ class Marker {
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             if(this.info.length>0)
             {
-                console.log('added');
                 this.addPin({x: x, y: y, w: w, h: h, data: this.info.shift()})
             }
         }
@@ -72,7 +71,6 @@ class Marker {
             {
 
                 var ws=(this.pointers[index][0]*cw)/this.pointers[index][2];
-                console.log(cw,ws,al);
                 var mark=document.getElementById(index);
                 if(mark)
                 {
@@ -235,7 +233,7 @@ class Marker {
     }
     addPin(pinInfo)
     {
-        console.log('called');
+
         const marker = document.createElement("div");
             marker.className='mark';
             marker.id=this.mp;
@@ -549,9 +547,8 @@ class Pin
     {
 
         document.getElementById('map-holder').appendChild(marker);
-        marker.style.left=this.x+'px';
-        marker.style.top=this.y+'px';
-        console.log('placed');
+        marker.style.left=(this.x+parseFloat(map.style.left))+'px';
+        marker.style.top=(this.y+parseFloat(map.style.top))+'px';
     }
 }
 function isDesktop()
