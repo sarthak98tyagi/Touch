@@ -38,7 +38,10 @@ class Marker {
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             if(this.info.length>0)
-            this.addPin({x:x, y:y, w:w, h:h,data: this.info.shift()})
+            {
+                console.log('added');
+                this.addPin({x: x, y: y, w: w, h: h, data: this.info.shift()})
+            }
         }
         else if(e.targetTouches.length===1)
         {
