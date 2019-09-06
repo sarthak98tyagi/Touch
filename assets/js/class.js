@@ -13,8 +13,6 @@ class Marker {
     }
     checkEvent(e)
     {
-
-
         var map=document.getElementById(MARKER_mapId);
         this.x=e.targetTouches[0].clientX;
         this.y=e.targetTouches[0].clientY;
@@ -32,7 +30,7 @@ class Marker {
     findEvent(e)
     {
         var map=document.getElementById(MARKER_mapId);
-        if((Math.abs(this.x-e.targetTouches[0].clientX)<5 && Math.abs(this.y-e.targetTouches[0].clientY)) && e.targetTouches.length===1 && !isDesktop())
+        if((Math.abs(this.x-e.targetTouches[0].clientX)===0 && Math.abs(this.y-e.targetTouches[0].clientY)===0) && e.targetTouches.length===1 && !isDesktop())
         {
             var x=e.targetTouches[0].clientX+Math.abs(parseFloat(map.style.left));
             var y=e.targetTouches[0].clientY+Math.abs(parseFloat(map.style.top));
@@ -208,7 +206,8 @@ class Marker {
         if (Array.isArray(msg))
             this.info = msg;
         else if (typeof (msg) == "object") {
-            Object.entries(msg).forEach(function (value, index) {
+            Object.entries(msg).forEach(function (value, index)
+            {
                 this.info.push(value);
             });
         }
@@ -226,8 +225,7 @@ class Marker {
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
                 if(this.info.length>0)
                 {
-
-                    this.addPin({x: x, y: y, w: w, h: h,data: this.info.shift()});
+                    this.addPin({x: x, y: y, w: w, h: h, data: this.info.shift()});
                 }
             }.bind(this));
         }
