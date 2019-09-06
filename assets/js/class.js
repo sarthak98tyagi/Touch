@@ -30,7 +30,7 @@ class Marker {
     findEvent(e)
     {
         var map=document.getElementById(MARKER_mapId);
-        if((Math.abs(this.x-e.targetTouches[0].clientX)<3 && Math.abs(this.y-e.targetTouches[0].clientY)<3) && e.targetTouches.length===1 && !isDesktop())
+        if((Math.abs(this.x-e.targetTouches[0].clientX)<1 && Math.abs(this.y-e.targetTouches[0].clientY)<1) && e.targetTouches.length===1 && !isDesktop())
         {
             var x=e.targetTouches[0].clientX+Math.abs(parseFloat(map.style.left));
             var y=e.targetTouches[0].clientY+Math.abs(parseFloat(map.style.top));
@@ -250,9 +250,8 @@ class Marker {
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('removePin',function(e)
             {
-
+                console.log(this.pointers[e.details.index]);
                 delete(this.pointers[e.detail.index]);
-
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
             {
