@@ -34,8 +34,8 @@ class Marker {
         var map=document.getElementById(MARKER_mapId);
         if((Math.abs(this.x-e.targetTouches[0].clientX)<5 && Math.abs(this.y-e.targetTouches[0].clientY)) && e.targetTouches.length===1 && !isDesktop())
         {
-            var x=e.targetTouches[0].clientX;
-            var y=e.targetTouches[0].clientY;
+            var x=e.targetTouches[0].clientX+Math.abs(parseFloat(map.style.left));
+            var y=e.targetTouches[0].clientY+Math.abs(parseFloat(map.style.top));
             var w,h;
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -65,21 +65,22 @@ class Marker {
         }
         var al=parseFloat(map.style.left);
         var at=parseFloat(map.style.top);
-        console.log(ah,al,at);
         this.pointers.forEach(function(value,index)
         {
             if(this.pointers.length>0)
             {
+
                 var ws=(this.pointers[index][0]*cw)/this.pointers[index][2];
+                console.log(cw,ws,al);
                 var mark=document.getElementById(index);
                 if(mark)
                 {
                     var nx=ws+al;
                     var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
+                    // console.log(nx,ny);
                     mark.style.left=nx+'px';
                     mark.style.top=ny+'px';
                 }
-
             }
         }.bind(this));
     }
@@ -218,8 +219,8 @@ class Marker {
         {
             map.addEventListener("click", function (e)
             {
-                var x = e.clientX;
-                var y = e.clientY;
+                var x = e.clientX+Math.abs(parseFloat(map.style.left));
+                var y = e.clientY+Math.abs(parseFloat(map.style.top));
                 var w, h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
