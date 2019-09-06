@@ -250,7 +250,7 @@ class Marker {
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('removePin',function(e)
             {
-                console.log(this.pointers[e.details.index]);
+                console.log(this.pointers[e.detail.index]);
                 delete(this.pointers[e.detail.index]);
             }.bind(this));
             document.getElementById(MARKER_mapId).addEventListener('scaleshift',function(e)
@@ -386,8 +386,8 @@ class Pin
     {
         var id=e.target.parentElement.id;
         console.log(this.index);
-        var evt=new CustomEvent('removePin',{'detail':{index:this.index}});
-        document.getElementById(MARKER_mapId).dispatchEvent(evt);
+        var v=new CustomEvent('removePin',{'detail':{index:this.index}});
+        document.getElementById(MARKER_mapId).dispatchEvent(v);
         document.getElementById('map-holder').removeChild(document.getElementById(id));
         document.getElementById('map-holder').removeChild(document.getElementById(id.substring(3,)));
     }
