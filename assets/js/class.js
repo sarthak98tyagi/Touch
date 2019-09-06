@@ -374,15 +374,16 @@ class Pin
             {text: "", classes: "fas fa-times"},
             {text: "Remove", classes: deleteButtonClass},
             {text: "Edit", classes: "btn btn-primary edit-pin"},
-
         ];
         if (choice === 1) data = [
             {text: this.msg},
             {text: "", classes: "fas fa-times"},
             {text: "Remove", classes: deleteButtonClass},
         ];
-        elements.forEach( function (element, index) {
+        elements.forEach( function (element, index)
+        {
             element.innerText = data[index].text;
+            element.style.marginTop='15px';
             element.className = data[index].classes;
             popup.appendChild(element);
         });
@@ -584,5 +585,5 @@ function appendMapHolder(url)
 a=new Marker('assets/images/map.jpg');
 function st(){a.setPin(['hi','hello','hey']);}
 function mng(){a.managePin(0,true);}
-function mngal(){a.manageAllPins(true);}
+function mngal(){a.manageAllPins(false);}
 function dest(){a.destroy();}

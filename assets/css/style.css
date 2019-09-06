@@ -3,6 +3,8 @@
 }
 body
 {
+    padding: 0;
+    margin: 0;
     overflow: hidden;
 }
 #map-holder
@@ -53,8 +55,7 @@ body
 .popup
 {
     position: fixed;
-    width: auto;
-    height: 200px;
+    width: 120px;
     top: 50%;
     left: 50%;
     font-size: 20px;
@@ -62,11 +63,11 @@ body
     color: darkred;
     background: aliceblue;
     transform: translate(-50%,-50%);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    padding: 20px;
     transition: all 0.3s ease-in-out;
 }
 .check
@@ -84,8 +85,7 @@ body
 i
 {
     position: absolute;
-    top: 5px;
-    right: 15px;
-    font-size: 20px;
+    top: 0;
+    right: 20px;
     color: darkred;
 }
