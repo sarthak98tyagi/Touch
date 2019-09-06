@@ -235,7 +235,7 @@ class Marker {
     }
     addPin(pinInfo)
     {
-
+        console.log('called');
         const marker = document.createElement("div");
             marker.className='mark';
             marker.id=this.mp;
