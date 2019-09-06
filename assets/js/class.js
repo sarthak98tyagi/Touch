@@ -385,6 +385,7 @@ class Pin
     removePopup(e)
     {
         var id=e.target.parentElement.id;
+        console.log(this.index);
         var evt=new CustomEvent('removePin',{'detail':{index:this.index}});
         document.getElementById(MARKER_mapId).dispatchEvent(evt);
         document.getElementById('map-holder').removeChild(document.getElementById(id));
