@@ -551,6 +551,7 @@ class Pin
         document.getElementById('map-holder').appendChild(marker);
         marker.style.left=this.x+'px';
         marker.style.top=this.y+'px';
+        console.log('placed');
     }
 }
 function isDesktop()
