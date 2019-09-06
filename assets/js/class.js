@@ -545,7 +545,7 @@ class Pin
     }
     appendMarker(marker)
     {
-
+        var map=document.getElementById(MARKER_mapId);
         document.getElementById('map-holder').appendChild(marker);
         marker.style.left=(this.x+parseFloat(map.style.left))+'px';
         marker.style.top=(this.y+parseFloat(map.style.top))+'px';
