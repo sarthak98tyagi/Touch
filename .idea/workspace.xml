@@ -36,7 +36,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/class.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
+            <state relative-caret-position="480">
               <caret line="554" column="1" lean-forward="true" selection-start-line="554" selection-start-column="1" selection-end-line="554" selection-end-column="1" />
             </state>
           </provider>
@@ -173,18 +173,18 @@
       <workItem from="1567422455574" duration="2715000" />
       <workItem from="1567425876665" duration="11706000" />
       <workItem from="1567503684574" duration="34551000" />
-      <workItem from="1567674108789" duration="24042000" />
+      <workItem from="1567674108789" duration="24741000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495027000" />
+    <option name="totallyTimeSpent" value="495726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24330357" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24330357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -269,13 +269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2087">
-          <caret line="212" column="31" selection-start-line="212" selection-start-column="14" selection-end-line="212" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../first/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -310,6 +303,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/touch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1977">
+          <caret line="212" column="31" selection-start-line="212" selection-start-column="14" selection-end-line="212" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -319,7 +319,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/class.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
+        <state relative-caret-position="480">
           <caret line="554" column="1" lean-forward="true" selection-start-line="554" selection-start-column="1" selection-end-line="554" selection-end-column="1" />
         </state>
       </provider>
