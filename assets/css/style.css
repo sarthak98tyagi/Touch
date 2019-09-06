@@ -22,14 +22,6 @@ body
     left: 0;
     z-index: 1000;
 }
-.mapclass
-{
-    position: absolute;
-    min-width: 100%;
-    /*min-height: 100%;*/
-    transition: all .3s ease-in-out;
-    cursor: pointer;
-}
 .mark
 {
     position: absolute;
@@ -61,7 +53,7 @@ body
 .popup
 {
     position: fixed;
-    width: 50%;
+    width: auto;
     height: 200px;
     top: 50%;
     left: 50%;
@@ -81,8 +73,10 @@ body
 {
     position: fixed;
     z-index: 11111;
+    top: 0;
+    left: 0;
     width:auto;
-    height: 100px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
