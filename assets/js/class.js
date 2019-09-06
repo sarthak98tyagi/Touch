@@ -547,9 +547,8 @@ class Pin
     {
         var map=document.getElementById(MARKER_mapId);
         document.getElementById('map-holder').appendChild(marker);
-        console.log(map.style.left);
-        console.log(map.style.top);
-        marker.style.left=this.x+'px';
+        console.log(this.x+parseFloat(map.style.left));
+        marker.style.left=(this.x+parseFloat(map.style.left))+'px';
         marker.style.top=(this.y+parseFloat(map.style.top))+'px';
     }
 }
