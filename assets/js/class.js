@@ -121,7 +121,7 @@ class Marker {
             tt=((this.ycor/height)*nh)-this.y;
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
-            ck = !((nh <= MAP_initHeight && tt <= 0));
+            ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0));
             if(ck)
             {
                 map.style.width=nw+'px';
