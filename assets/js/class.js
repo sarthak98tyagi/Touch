@@ -118,10 +118,11 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             console.log(nh,tt,nh-tt,MARKER_viewportHeight,"H");
-            console.loh(nw,tl,nw-tl,MARKER_viewportWidth,"W");
+            console.log(nw,tl,nw-tl,MARKER_viewportWidth,"W");
             if((width<=MARKER_viewportWidth &&((-tl)<=0 && (-tt)<=0)) || ((nw-tl)>=MARKER_viewportWidth && (nh-tt)>=MARKER_viewportHeight))
             {
-                console.log(nh,tt,nh-tt,MARKER_viewportHeight);
+                // console.log(nh,tt,nh-tt,MARKER_viewportHeight);
+                console.log("MIN");
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
