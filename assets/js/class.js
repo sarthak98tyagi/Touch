@@ -1,6 +1,6 @@
 const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_viewportHeight= document.documentElement.clientHeight;
-let MAP_initWidth,MAP_initHeight;
+var MAP_initWidth,MAP_initHeight;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
@@ -590,8 +590,9 @@ function appendMapHolder(url)
     map.style.top='0px';
     map.style.minWidth="100%";
     mapholder.appendChild(map);
-    MAP_initWidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
-    MAP_initHeight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
+    console.log(map);
+    MAP_initWidth=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('width'));
+    MAP_initHeight=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('height'));
 }
 a=new Marker('assets/images/map.jpg');
 function st(){a.setPin(['hi','hello','hey']);}
