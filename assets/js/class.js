@@ -119,11 +119,11 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
-            if(((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)))
+            if(((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)) || ((nw-tl)<MARKER_viewportWidth && (nh-tt)<MARKER_viewportHeight))
             {
                 ck=false;
             }
-            if(ck && ((-tl)<=0 && (-tt)<=0))
+            if(ck)
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
@@ -588,7 +588,6 @@ function appendMapHolder(url)
     map.style.top='0px';
     map.style.minWidth="100%";
     mapholder.appendChild(map);
-    console.log(map);
     MAP_initWidth=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('width'));
     MAP_initHeight=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('height'));
 }
