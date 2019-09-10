@@ -93,6 +93,7 @@ class Marker {
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
+            console.log(MAP_initWidth,MAP_initHeight);
             width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             nw=width+this.dis2;
@@ -118,10 +119,10 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
+            console.log(MAP_initWidth,MAP_initHeight);
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
             ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0));
-            console.log(nh,MAP_initHeight,tt,tl);
             if(ck)
             {
                 map.style.width=nw+'px';
@@ -207,7 +208,6 @@ class Marker {
     }
     setPin(msg)
     {
-
         this.info = [];
         appendMapHolder(this.url);
         if (Array.isArray(msg))
