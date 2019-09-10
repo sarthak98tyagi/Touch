@@ -89,7 +89,7 @@ class Marker {
     {
         this.cnt=1;
         var map=document.getElementById(MARKER_mapId);
-        var w,h,nw,f,nh,tl,tt,dis2,width,height;
+        var w,h,nw,f,nh,tl,tt,dis2,width,height,ck;
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
@@ -100,8 +100,8 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            var n=0;
-            if((width===MARKER_viewportWidth &&((-tl)<=0 && (-tt)<=0)) || ((nw-tl)>=MARKER_viewportWidth && (nh-tt)>=MARKER_viewportHeight))
+            ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl) < MARKER_viewportWidth && (nh - tt) < MARKER_viewportHeight));
+            if(ck)
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
@@ -118,11 +118,7 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            var ck=true;
-            if(((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)) || ((nw-tl)<MARKER_viewportWidth && (nh-tt)<MARKER_viewportHeight))
-            {
-                ck=false;
-            }
+            ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl) < MARKER_viewportWidth && (nh - tt) < MARKER_viewportHeight));
             if(ck)
             {
                 map.style.width=nw+'px';
