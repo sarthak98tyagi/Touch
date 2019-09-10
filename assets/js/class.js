@@ -119,14 +119,12 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
-            console.log(MAP_initHeight,MAP_initWidth);
-            if((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0))
+            if(((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)))
             {
                 ck=false;
             }
-            if(ck)
+            if(ck && ((-tl)<=0 && (-tt)<=0))
             {
-                console.log(nh,nw,tl,tt);
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
