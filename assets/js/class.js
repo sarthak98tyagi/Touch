@@ -123,6 +123,8 @@ class Marker {
             ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl) < MARKER_viewportWidth && (nh - tt) < MARKER_viewportHeight));
             if(ck)
             {
+                console.log(getComputedStyle(map).getPropertyValue('right'));
+                console.log(getComputedStyle(map).getPropertyValue('botttom'));
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
