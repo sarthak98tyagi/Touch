@@ -1,7 +1,5 @@
 const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_viewportHeight= document.documentElement.clientHeight;
-var MAP_initWidth;
-var MAP_initHeight;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
@@ -89,7 +87,6 @@ class Marker {
     startZoom(e)
     {
         this.cnt=1;
-        console.log(MAP_initWidth,MAP_initHeight);
         var map=document.getElementById(MARKER_mapId);
         var w,h,nw,f,nh,tl,tt,dis2,width,height;
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
@@ -121,7 +118,7 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
-            console.log(MAP_initHeight,MAP_initWidth);
+            console.log(getComputedStyle(map).getPropertyValue('width'));
             if((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0))
             {
                 ck=false;
