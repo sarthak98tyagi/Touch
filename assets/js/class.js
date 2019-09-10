@@ -121,7 +121,7 @@ class Marker {
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
             ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0));
-            console.log(tt,tl);
+            console.log(nh,MAP_initHeight,tt,tl);
             if(ck)
             {
                 map.style.width=nw+'px';
