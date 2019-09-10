@@ -1,5 +1,6 @@
 const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_viewportHeight= document.documentElement.clientHeight;
+let MAP_initWidth,MAP_initHeight;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
@@ -118,7 +119,7 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
-            console.log(getComputedStyle(map).getPropertyValue('width'));
+            console.log(MAP_initHeight,MAP_initWidth);
             if((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0))
             {
                 ck=false;
