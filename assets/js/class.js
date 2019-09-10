@@ -118,8 +118,8 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            var r=getComputedStyle(map).getPropertyValue('right');
-            var b=getComputedStyle(map).getPropertyValue('botttom');
+            var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
+            var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
             ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl + r) < MARKER_viewportWidth && (nh - tt + b) < MARKER_viewportHeight));
             if(ck)
             {
