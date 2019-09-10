@@ -119,6 +119,7 @@ class Marker {
             tt=((this.ycor/height)*nh)-this.y;
             if((width===MARKER_viewportWidth &&((-tl)<=0 && (-tt)<=0)) || ((nw-tl)>MARKER_viewportWidth && (nh-tt)>MARKER_viewportHeight))
             {
+                console.log(nh-tt,MARKER_viewportHeight);
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
