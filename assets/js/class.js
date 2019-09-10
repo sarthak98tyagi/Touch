@@ -119,10 +119,9 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            console.log(MAP_initWidth,MAP_initHeight);
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
-            ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0));
+            ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0) || ((tl>(nw-r))||(tt>(nh-b))));
             if(ck)
             {
                 map.style.width=nw+'px';
