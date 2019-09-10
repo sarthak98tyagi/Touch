@@ -123,7 +123,7 @@ class Marker {
             var b=parseFloat(getComputedStyle(map).getPropertyValue('botttom'));
             console.log(MAP_initHeight,MAP_initWidth);
 
-            ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl + r) < MARKER_viewportWidth && (nh - tt + b) < MARKER_viewportHeight));
+            ck = !(((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0)) || ((nw - tl + r) < MARKER_viewportWidth || (nh - tt + b) < MARKER_viewportHeight));
             if(ck)
             {
                 console.log(nw,tl,parseFloat(getComputedStyle(map).getPropertyValue('right')),r);
