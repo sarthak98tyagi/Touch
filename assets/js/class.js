@@ -1,6 +1,6 @@
 const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_viewportHeight= document.documentElement.clientHeight;
-var MAP_initWidth,MAP_initHeight;
+let MAP_initWidth,MAP_initHeight;
 const MARKER_mapId = "inspectionMapImage";
 let dragging = false;
 class Marker {
