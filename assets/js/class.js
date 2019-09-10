@@ -119,10 +119,14 @@ class Marker {
             tt=((this.ycor/height)*nh)-this.y;
             console.log(nh,tt,nh-tt,MARKER_viewportHeight,"H");
             console.log(nw,tl,nw-tl,MARKER_viewportWidth,"W");
-            if((width<=MARKER_viewportWidth &&((-tl)<=0 && (-tt)<=0)) || ((nw-tl)>=MARKER_viewportWidth && (nh-tt)>=MARKER_viewportHeight))
+            var ck=true;
+            if((nh<MARKER_viewportHeight || nw<MARKER_viewportWidth) || ((nh===MARKER_viewportHeight && tt<=0) || (nh===MARKER_viewportHeight && tt<=0)))
             {
-                // console.log(nh,tt,nh-tt,MARKER_viewportHeight);
-                console.log("MIN");
+                ck=false;
+            }
+            if(ck)
+            {
+
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
@@ -137,7 +141,6 @@ class Marker {
         var width,height,ch,dis,ml,mr,mt;
         width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
         height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-
         ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
         if(ch===1)
         {
