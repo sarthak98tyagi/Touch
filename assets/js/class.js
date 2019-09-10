@@ -120,7 +120,7 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
-            if((nh<MARKER_viewportHeight || nw<MARKER_viewportWidth) || ((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)))
+            if((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0))
             {
                 ck=false;
             }
