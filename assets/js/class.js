@@ -122,7 +122,7 @@ class Marker {
             console.log(nh,tt,nh-tt,MARKER_viewportHeight,"H");
             console.log(nw,tl,nw-tl,MARKER_viewportWidth,"W");
             var ck=true;
-            if((nh<MARKER_viewportHeight || nw<MARKER_viewportWidth) || ((nh===MAP_initHeight && tt<=0) || (nw===MAP_initWidth && tl<=0)))
+            if((nh<MARKER_viewportHeight || nw<MARKER_viewportWidth) || ((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0)))
             {
                 ck=false;
             }
