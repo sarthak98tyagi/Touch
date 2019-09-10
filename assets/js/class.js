@@ -120,6 +120,7 @@ class Marker {
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
             var ck=true;
+            console.log(MAP_initHeight,MAP_initWidth);
             if((nh<=MAP_initHeight && tt<=0) || (nw<=MAP_initWidth && tl<=0))
             {
                 ck=false;
@@ -590,9 +591,8 @@ function appendMapHolder(url)
     map.style.top='0px';
     map.style.minWidth="100%";
     mapholder.appendChild(map);
-    MAP_initWidth=getComputedStyle(map).getPropertyValue('width');
-    MAP_initHeight=getComputedStyle(map).getPropertyValue('height');
-
+    MAP_initWidth=parseFloat(getComputedStyle(map).getPropertyValue('width'));
+    MAP_initHeight=parseFloat(getComputedStyle(map).getPropertyValue('height'));
 }
 a=new Marker('assets/images/map.jpg');
 function st(){a.setPin(['hi','hello','hey']);}
