@@ -17,7 +17,7 @@ class Marker {
     {
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
-        this.x=e.targetTouches[0].holder.offsetLeft/2;
+        this.x=e.targetTouches[0]-holder.offsetLeft/2;
         this.y=e.targetTouches[0].clientY-holder.offsetTop;
         e.preventDefault();
         if(e.targetTouches.length===2)
@@ -36,7 +36,7 @@ class Marker {
     {
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
-        var x1=e.targetTouches[0].holder.offsetLeft/2;
+        var x1=e.targetTouches[0]-holder.offsetLeft/2;
         var y1=e.targetTouches[0].clientY-holder.offsetTop;
         if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
