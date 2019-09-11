@@ -109,7 +109,6 @@ class Marker {
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            ck = !((nh <= MAP_initHeight && tt <= 0) || (nw <= MAP_initWidth && tl <= 0));
             if(ck)
             {
                 map.style.width=nw+'px';
