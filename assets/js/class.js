@@ -1,7 +1,7 @@
 const MARKER_viewportWidth = document.documentElement.clientWidth;
 const MARKER_viewportHeight= document.documentElement.clientHeight;
-let MAP_initWidth,MAP_initHeight;
 const MARKER_mapId = "inspectionMapImage";
+var MARKER_holderId="map-holder";
 let dragging = false;
 class Marker {
     constructor(url, pointer = [])
@@ -16,15 +16,18 @@ class Marker {
     checkEvent(e)
     {
         var map=document.getElementById(MARKER_mapId);
-        this.x=e.targetTouches[0].clientX;
-        this.y=e.targetTouches[0].clientY;
+        var holder=document.getElementById(MARKER_holderId);
+        this.x=e.targetTouches[0].holder.offsetLeft/2;
+        this.y=e.targetTouches[0].clientY-holder.offsetTop;
         e.preventDefault();
         if(e.targetTouches.length===2)
         {
-            this.dis1=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
-            this.x=(e.targetTouches[0].clientX+e.targetTouches[1].clientX)/2;
+             var x1=e.targetTouches[1].clientX-holder.offsetLeft/2;
+             var y1=e.targetTouches[1].clientY-holder.offsetTop;
+            this.dis1=Math.hypot((x1-this.x),(y1-this.y));
+            this.x=(this.x+x1)/2;
             this.xcor=Math.abs(parseFloat(map.style.left))+this.x;
-            this.y=(e.targetTouches[0].clientY+e.targetTouches[0].clientY)/2;
+            this.y=(this.y+y1)/2;
             this.ycor=Math.abs(parseFloat(map.style.top))+this.y;
         }
         this.dis3 = this.dis1;
@@ -32,10 +35,13 @@ class Marker {
     findEvent(e)
     {
         var map=document.getElementById(MARKER_mapId);
-        if((Math.abs(this.x-e.targetTouches[0].clientX)<1 && Math.abs(this.y-e.targetTouches[0].clientY)<1) && e.targetTouches.length===1 && !isDesktop())
+        var holder=document.getElementById(MARKER_holderId);
+        var x1=e.targetTouches[0].holder.offsetLeft/2;
+        var y1=e.targetTouches[0].clientY-holder.offsetTop;
+        if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
-            var x=e.targetTouches[0].clientX+Math.abs(parseFloat(map.style.left));
-            var y=e.targetTouches[0].clientY+Math.abs(parseFloat(map.style.top));
+            var x=x1+Math.abs(parseFloat(map.style.left));
+            var y=y1+Math.abs(parseFloat(map.style.top));
             var w,h;
             w=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -89,11 +95,13 @@ class Marker {
     {
         this.cnt=1;
         var map=document.getElementById(MARKER_mapId);
+        var holder=document.getElementById(MARKER_holderId);
         var w,h,nw,f,nh,tl,tt,dis2,width,height,ck;
-        this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX),(e.targetTouches[1].clientY-e.targetTouches[0].clientY));
+        var lm=holder.offsetLeft/2;
+        var tm=holder.offsetTop;
+        this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX-2*lm),(e.targetTouches[1].clientY-e.targetTouches[0].clientY-2*tm));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
-            console.log(MAP_initWidth,MAP_initHeight);
             width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
             height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             nw=width+this.dis2;
@@ -139,16 +147,19 @@ class Marker {
     startSwipe(e)
     {
         var map=document.getElementById(MARKER_mapId);
+        var holder=document.getElementById(MARKER_holderId);
         var width,height,ch,dis,ml,mr,mt;
         width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
         height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-        ch=(Math.abs(e.targetTouches[0].clientX-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
+        var lm=holder.offsetLeft/2;
+        var tm=holder.offsetTop/2;
+        ch=(Math.abs(e.targetTouches[0].clientX-lm-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
         if(ch===1)
         {
             this.cnt=1;
             ml=parseFloat(map.style.left);
             mr=parseFloat(getComputedStyle(map).getPropertyValue('right'));
-            dis=e.targetTouches[0].clientX - this.x;
+            dis=e.targetTouches[0].clientX-lm - this.x;
                 if(dis<0)
                 {
                     if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
@@ -191,7 +202,6 @@ class Marker {
                     map.style.top = -(height - document.documentElement.clientHeight) + 'px';
                     this.scaleshift();
                 }
-
             }
             else
             {
@@ -206,7 +216,6 @@ class Marker {
                     this.scaleshift();
                 }
             }
-
         }
     }
     setPin(msg)
@@ -215,22 +224,25 @@ class Marker {
         appendMapHolder(this.url);
         if (Array.isArray(msg))
             this.info = msg;
-        else if (typeof (msg) == "object") {
+        else if (typeof (msg) == "object")
+        {
             Object.entries(msg).forEach(function (value, index)
             {
                 this.info.push(value);
             });
         }
         var map = document.getElementById(MARKER_mapId);
+        var holder=document.getElementById(MARKER_holderId);
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
-        if (isDesktop())
+        if(isDesktop())
         {
             map.addEventListener("click", function (e)
             {
-                var x = e.clientX+Math.abs(parseFloat(map.style.left));
-                var y = e.clientY+Math.abs(parseFloat(map.style.top));
-                var w, h;
+                var x=(e.clientX-holder.offsetLeft/2)+Math.abs(parseFloat(map.style.left));
+                var y = (e.clientY-holder.offsetTop)+Math.abs(parseFloat(map.style.top));
+                console.log(x,y,e.clientX,e.clientY);
+                var w,h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
                 if(this.info.length>0)
@@ -239,7 +251,7 @@ class Marker {
                 }
             }.bind(this));
         }
-       this.catchEvent();
+        this.catchEvent();
     }
     addPin(pinInfo)
     {
@@ -250,7 +262,6 @@ class Marker {
             const pin = new Pin(pinInfo.x, pinInfo.y, pinInfo.w, pinInfo.h,pinInfo.data, marker, this.editable,this.mp);
             // this.pins.push(pin);
             this.mp=this.mp+1;
-
     }
     managePin(n,editable)
     {
@@ -418,6 +429,7 @@ class Pin
         {
             this.startDrag(e);
             const map = document.getElementById(MARKER_mapId);
+            var holder=document.getElementById(MARKER_holderId);
             var a=(e.target.parentElement.id).substring(3,);
             var evn=document.getElementById(a);
             var overLay=this.overlay();
@@ -427,8 +439,8 @@ class Pin
                 dragging = true;
                 e.preventDefault();
                 e.stopPropagation();
-                var dx=e.clientX;
-                var dy=e.clientY;
+                var dx=e.clientX-holder.offsetLeft/2;
+                var dy=e.clientY-holder.offsetTop;
                 evn.style.left=dx+'px';
                 evn.style.top=dy+'px';
                 this.x=parseFloat(map.style.left)+dx;
@@ -472,6 +484,7 @@ class Pin
         document.getElementById(a).style.background = "yellow";
         this.deletePopup(e);
         var map=document.getElementById(MARKER_mapId);
+        var holder=document.getElementById(MARKER_holderId);
         var scale=new CustomEvent('scaleshift');
         document.getElementById(a).addEventListener('touchmove', function (e)     /*drag*/
         {
@@ -485,15 +498,17 @@ class Pin
                 var l = document.documentElement.clientHeight;
                 var cl = parseFloat(map.style.left);
                 var ct = parseFloat(map.style.top);
-                if ((40 < dim.clientX && (k - dim.clientX) > 40) && ((40 < dim.clientY && (l - dim.clientY) > 40)))
+                var lm=holder.offsetLeft/2;
+                var tm=holder.offsetTop;
+                if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
                 {
-                    e.target.style.left = (dim.clientX) + 'px';
-                    e.target.style.top = (dim.clientY) + 'px';
+                    e.target.style.left = (dim.clientX-lm) + 'px';
+                    e.target.style.top = (dim.clientY-tm) + 'px';
                 }
-                if ((k - dim.clientX) < 30)
+                if ((k - (dim.clientX-lm)) < 30)
                 {
                     var rr = w + parseFloat(map.style.left) - k;
-                    var rdis = Math.abs(k - dim.clientX);
+                    var rdis = Math.abs(k - (dim.clientX-lm));
                     if ((-rr + rdis) <= 0)
                     {
                         var rl = parseFloat(map.style.left);
@@ -503,11 +518,11 @@ class Pin
 
                     }
                 }
-                if ((l - dim.clientY) < 30)
+                if ((l - (dim.clientY-tm)) < 30)
                 {
 
                     var bb = h + parseFloat(map.style.top) - l;
-                    var bdis = Math.abs(l - dim.clientY);
+                    var bdis = Math.abs(l - (dim.clientY-tm));
                     if ((-bb + bdis) <= 0) {
                         var bt = parseFloat(map.style.top);
                         map.style.top = (bt - bdis) + 'px';
@@ -516,10 +531,10 @@ class Pin
 
                     }
                 }
-                if (dim.clientX < 30)
+                if ((dim.clientX-lm) < 30)
                 {
                     var ll = parseFloat(map.style.left);
-                    var ldis = 30 - dim.clientX;
+                    var ldis = 30 - (dim.clientX-lm);
                     if ((ll + ldis) <= 0) {
                         map.style.left = (ll + ldis) + 'px';
                         this.cnt = 1;
@@ -527,10 +542,10 @@ class Pin
 
                     }
                 }
-                if (dim.clientY < 30)
+                if ((dim.clientY-tm) < 30)
                 {
                     var tl = parseFloat(map.style.top);
-                    var tdis = 30 - dim.clientY;
+                    var tdis = 30 - (dim.clientY-tm);
                     if ((tl + tdis) <= 0)
                     {
                         map.style.top = (tl + tdis) + 'px';
@@ -538,8 +553,8 @@ class Pin
                         map.dispatchEvent(scale);
                     }
                 }
-                var xmark = Math.abs(cl) + dim.clientX;
-                var ymark = Math.abs(ct) + dim.clientY;
+                var xmark = Math.abs(cl) + (dim.clientX-lm);
+                var ymark = Math.abs(ct) + (dim.clientY-tm);
                 var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
                 var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
                 // this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
@@ -568,17 +583,10 @@ class Pin
         marker.style.top=(this.y+parseFloat(map.style.top))+'px';
     }
 }
-function isDesktop()
-{
-    return MARKER_viewportWidth >= 992;
-}
+function isDesktop(){return MARKER_viewportWidth >= 992;}
 function appendMapHolder(url)
 {
     var mapholder=document.createElement("div");
-    mapholder.style.position="relative";
-    mapholder.style.width="100%";
-    mapholder.style.hieght="100vh";
-    mapholder.style.background="black";
     mapholder.id="map-holder";
     document.body.appendChild(mapholder);
     var map=document.createElement("img");
@@ -588,10 +596,8 @@ function appendMapHolder(url)
     map.style.position='absolute';
     map.style.left='0px';
     map.style.top='0px';
-    map.style.minWidth="100%";
+    map.style.width="100%";
     mapholder.appendChild(map);
-    MAP_initWidth=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('width'));
-    MAP_initHeight=parseFloat(getComputedStyle(document.getElementById('inspectionMapImage')).getPropertyValue('height'));
 }
 a=new Marker('assets/images/map.jpg');
 function st(){a.setPin(['hi','hello','hey']);}
