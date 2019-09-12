@@ -40,6 +40,7 @@ class Marker {
         var y1=e.targetTouches[0].clientY-holder.offsetTop;
         if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
+            console.log('!!');
             var x=x1+Math.abs(parseFloat(map.style.left));
             var y=y1+Math.abs(parseFloat(map.style.top));
             var w,h;
@@ -47,7 +48,7 @@ class Marker {
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             if(this.info.length>0)
             {
-                console.log(x,y,w,h,x1,y1);
+
                 this.addPin({x: x, y: y, w: w, h: h, data: this.info.shift()})
             }
         }
