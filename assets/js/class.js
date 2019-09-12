@@ -133,7 +133,6 @@ class Marker {
                 ck=false;
             if(ck)
             {
-                console.log(nw,tl,parseFloat(getComputedStyle(map).getPropertyValue('right')),r);
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
@@ -150,7 +149,7 @@ class Marker {
         width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
         height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
         var lm=holder.offsetLeft/2;
-        var tm=holder.offsetTop/2;
+        var tm=holder.offsetTop;
         ch=(Math.abs(e.targetTouches[0].clientX-lm-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
         if(ch===1)
         {
@@ -235,11 +234,11 @@ class Marker {
         map.addEventListener("touchmove", this.findEvent.bind(this));
         if(isDesktop())
         {
-            map.addEventListener("click", function (e)
+            map.addEventListener("click", function(e)
             {
                 var x=(e.clientX-holder.offsetLeft/2)+Math.abs(parseFloat(map.style.left));
                 var y = (e.clientY-holder.offsetTop)+Math.abs(parseFloat(map.style.top));
-                console.log(x,y,e.clientX,e.clientY);
+                console.log(e.clientX,e.clientY);
                 var w,h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
