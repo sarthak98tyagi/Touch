@@ -47,6 +47,7 @@ class Marker {
             h=parseFloat(getComputedStyle(map).getPropertyValue("height"));
             if(this.info.length>0)
             {
+                console.log(x,y,w,h,x1,y1);
                 this.addPin({x: x, y: y, w: w, h: h, data: this.info.shift()})
             }
         }
