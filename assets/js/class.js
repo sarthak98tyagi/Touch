@@ -504,6 +504,7 @@ class Pin
                     e.target.style.left = (dim.clientX-lm) + 'px';
                     e.target.style.top = (dim.clientY-tm) + 'px';
                 }
+                console.log(k-(dim.clientX-lm));
                 if ((k - (dim.clientX-lm)) < 30)
                 {
                     var rr = w + parseFloat(map.style.left) - k;
