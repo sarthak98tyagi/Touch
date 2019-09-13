@@ -501,7 +501,7 @@ class Pin
                 var tm=holder.offsetTop;
                 if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
                 {
-                    console.log('running');
+                    console.log('running',dim.clientX-lm);
                     e.target.style.left = (dim.clientX-lm) + 'px';
                     e.target.style.top = (dim.clientY-tm) + 'px';
                 }
