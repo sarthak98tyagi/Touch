@@ -489,6 +489,7 @@ class Pin
             e.preventDefault();
             if (e.targetTouches.length === 1 && this.move)
             {
+                console.log('!!');
                 var dim = e.targetTouches[0];
                 var w = parseFloat(getComputedStyle(map).getPropertyValue('width'));
                 var k = document.documentElement.clientWidth;
@@ -500,6 +501,7 @@ class Pin
                 var tm=holder.offsetTop;
                 if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
                 {
+                    console.log('running');
                     e.target.style.left = (dim.clientX-lm) + 'px';
                     e.target.style.top = (dim.clientY-tm) + 'px';
                 }
