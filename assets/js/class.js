@@ -35,13 +35,15 @@ class Marker
     }
     findEvent(e)
     {
-        console.log('!!');
+
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
         var x1=e.targetTouches[0]-holder.offsetLeft/2;
         var y1=e.targetTouches[0].clientY-holder.offsetTop;
+        console.log(x1,y1);
         if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
+            console.log('working');
             var x=x1+Math.abs(parseFloat(map.style.left));
             var y=y1+Math.abs(parseFloat(map.style.top));
             var w,h;
