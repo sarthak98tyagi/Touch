@@ -101,7 +101,6 @@ class Marker
         var w,h,nw,f,nh,tl,tt,dis2,width,height,ck;
         var lm=holder.offsetLeft;
         var tm=holder.offsetTop;
-        console.log('outer');
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX-2*lm),(e.targetTouches[1].clientY-e.targetTouches[0].clientY-2*tm));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
@@ -112,10 +111,8 @@ class Marker
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            console.log('inner');
-            if(ck)
+            if(tl>=0 && tt>=0)
             {
-                console.log('!!');
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
