@@ -498,34 +498,32 @@ class Pin
                 var ct = parseFloat(map.style.top);
                 var lm=holder.offsetLeft;
                 var tm=holder.offsetTop;
-                if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
+                if ((40 < (dim.clientX) && (k - (dim.clientX)) > 40) && ((40 < (dim.clientY) && (l - (dim.clientY)) > 40)))
                 {
 
-                    e.target.style.left = (dim.clientX-lm) + 'px';
-                    e.target.style.top = (dim.clientY-tm) + 'px';
+                    e.target.style.left = (dim.clientX) + 'px';
+                    e.target.style.top = (dim.clientY) + 'px';
                 }
-                console.log(k-(dim.clientX-lm));
-                if ((k - (dim.clientX-lm)) < 30)
+                console.log(k-(dim.clientX));
+                if ((k - (dim.clientX)) < 30)
                 {
                     var rr = w + parseFloat(map.style.left) - k;
-                    var rdis = Math.abs(k - (dim.clientX-lm));
-                    console.log(rr,rdis);
+                    var rdis = Math.abs(k - (dim.clientX));
                     if ((-rr + rdis) <= 0)
                     {
 
                         var rl = parseFloat(map.style.left);
-                        console.log(rl,'!!');
                         map.style.left = (rl - rdis) + 'px';
                         this.cnt = 1;
                         map.dispatchEvent(scale);
 
                     }
                 }
-                if ((l - (dim.clientY-tm)) < 30)
+                if ((l - (dim.clientY)) < 30)
                 {
 
                     var bb = h + parseFloat(map.style.top) - l;
-                    var bdis = Math.abs(l - (dim.clientY-tm));
+                    var bdis = Math.abs(l - (dim.clientY));
                     if ((-bb + bdis) <= 0) {
                         var bt = parseFloat(map.style.top);
                         map.style.top = (bt - bdis) + 'px';
@@ -534,10 +532,10 @@ class Pin
 
                     }
                 }
-                if ((dim.clientX-lm) < 30)
+                if ((dim.clientX) < 30)
                 {
                     var ll = parseFloat(map.style.left);
-                    var ldis = 30 - (dim.clientX-lm);
+                    var ldis = 30 - (dim.clientX);
                     if ((ll + ldis) <= 0) {
                         map.style.left = (ll + ldis) + 'px';
                         this.cnt = 1;
@@ -545,10 +543,10 @@ class Pin
 
                     }
                 }
-                if ((dim.clientY-tm) < 30)
+                if ((dim.clientY) < 30)
                 {
                     var tl = parseFloat(map.style.top);
-                    var tdis = 30 - (dim.clientY-tm);
+                    var tdis = 30 - (dim.clientY);
                     if ((tl + tdis) <= 0)
                     {
                         map.style.top = (tl + tdis) + 'px';
@@ -556,8 +554,8 @@ class Pin
                         map.dispatchEvent(scale);
                     }
                 }
-                var xmark = Math.abs(cl) + (dim.clientX-lm);
-                var ymark = Math.abs(ct) + (dim.clientY-tm);
+                var xmark = Math.abs(cl) + (dim.clientX);
+                var ymark = Math.abs(ct) + (dim.clientY);
                 var inwidth = parseFloat(getComputedStyle(map).getPropertyValue('width'));
                 var inheight = parseFloat(getComputedStyle(map).getPropertyValue('height'));
                 // this.pointers[e.target.id] = [xmark, ymark, inwidth, inheight, this.pointers[e.target.id][4]];
