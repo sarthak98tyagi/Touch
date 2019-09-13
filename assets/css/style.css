@@ -7,11 +7,10 @@ body
 #map-holder
 {
     position:relative;
-    top: 100px;
-    width:50%;
+    top: 25px;
+    max-width:75%;
     min-height: 50vh;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
     z-index: 999;
 }
 .overlay

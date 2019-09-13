@@ -18,12 +18,12 @@ class Marker
     {
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
-        this.x=e.targetTouches[0].clientX-holder.offsetLeft/2;
+        this.x=e.targetTouches[0].clientX-holder.offsetLeft;
         this.y=e.targetTouches[0].clientY-holder.offsetTop;
         e.preventDefault();
         if(e.targetTouches.length===2)
         {
-             var x1=e.targetTouches[1].clientX-holder.offsetLeft/2;
+             var x1=e.targetTouches[1].clientX-holder.offsetLeft;
              var y1=e.targetTouches[1].clientY-holder.offsetTop;
             this.dis1=Math.hypot((x1-this.x),(y1-this.y));
             this.x=(this.x+x1)/2;
@@ -38,12 +38,10 @@ class Marker
 
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
-        var x1=e.targetTouches[0].clientX-holder.offsetLeft/2;
+        var x1=e.targetTouches[0].clientX-holder.offsetLeft;
         var y1=e.targetTouches[0].clientY-holder.offsetTop;
-        console.log(x1,y1,this.x,this.y);
         if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
-            console.log('working');
             var x=x1+Math.abs(parseFloat(map.style.left));
             var y=y1+Math.abs(parseFloat(map.style.top));
             var w,h;
@@ -89,7 +87,6 @@ class Marker
                 {
                     var nx=ws+al;
                     var ny=((this.pointers[index][1]*ah)/this.pointers[index][3])+at;
-                    // console.log(nx,ny);
                     mark.style.left=nx+'px';
                     mark.style.top=ny+'px';
                 }
@@ -102,8 +99,9 @@ class Marker
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
         var w,h,nw,f,nh,tl,tt,dis2,width,height,ck;
-        var lm=holder.offsetLeft/2;
+        var lm=holder.offsetLeft;
         var tm=holder.offsetTop;
+        console.log('outer');
         this.dis2=Math.hypot((e.targetTouches[1].clientX-e.targetTouches[0].clientX-2*lm),(e.targetTouches[1].clientY-e.targetTouches[0].clientY-2*tm));
         if((this.dis2-this.dis3)>0)                /*zoom-in*/
         {
@@ -114,8 +112,10 @@ class Marker
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
+            console.log('inner');
             if(ck)
             {
+                console.log('!!');
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
@@ -153,7 +153,7 @@ class Marker
         var width,height,ch,dis,ml,mr,mt;
         width=parseFloat(getComputedStyle(map).getPropertyValue("width"));
         height=parseFloat(getComputedStyle(map).getPropertyValue("height"));
-        var lm=holder.offsetLeft/2;
+        var lm=holder.offsetLeft;
         var tm=holder.offsetTop;
         ch=(Math.abs(e.targetTouches[0].clientX-lm-this.x)>Math.abs(e.targetTouches[0].clientY-this.y))?1:0;
         if(ch===1)
@@ -240,9 +240,8 @@ class Marker
         {
             map.addEventListener("click", function(e)
             {
-                var x=(e.clientX-holder.offsetLeft/2)+Math.abs(parseFloat(map.style.left));
+                var x=(e.clientX-holder.offsetLeft)+Math.abs(parseFloat(map.style.left));
                 var y = (e.clientY-holder.offsetTop)+Math.abs(parseFloat(map.style.top));
-                console.log(e.clientX,e.clientY);
                 var w,h;
                 w = parseFloat(getComputedStyle(map).getPropertyValue("width"));
                 h = parseFloat(getComputedStyle(map).getPropertyValue("height"));
@@ -386,6 +385,7 @@ class Pin
     {
         var popup = document.createElement("div");
         var map=document.getElementById(MARKER_mapId);
+        var holder=document.getElementById(MARKER_holderId);
         popup.className = "popup";
         popup.id="box"+this.marker.id;
         var data;
@@ -408,8 +408,8 @@ class Pin
             element.className = data[index].classes;
             popup.appendChild(element);
         });
-        popup.style.left=(this.x+parseFloat(map.style.left))+'px';
-        popup.style.top=(this.y+parseFloat(map.style.top))+'px';
+        popup.style.left=(this.x+parseFloat(map.style.left)+holder.offsetLeft)+'px';
+        popup.style.top=(this.y+parseFloat(map.style.top)+holder.offsetTop)+'px';
         document.getElementById('map-holder').appendChild(popup);
     }
     removePopup(e)
@@ -440,7 +440,7 @@ class Pin
                 dragging = true;
                 e.preventDefault();
                 e.stopPropagation();
-                var dx=e.clientX-holder.offsetLeft/2;
+                var dx=e.clientX-holder.offsetLeft;
                 var dy=e.clientY-holder.offsetTop;
                 evn.style.left=dx+'px';
                 evn.style.top=dy+'px';
@@ -499,7 +499,7 @@ class Pin
                 var l = document.documentElement.clientHeight;
                 var cl = parseFloat(map.style.left);
                 var ct = parseFloat(map.style.top);
-                var lm=holder.offsetLeft/2;
+                var lm=holder.offsetLeft;
                 var tm=holder.offsetTop;
                 if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
                 {
