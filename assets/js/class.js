@@ -3,7 +3,8 @@ const MARKER_viewportHeight= document.documentElement.clientHeight;
 const MARKER_mapId = "inspectionMapImage";
 var MARKER_holderId="map-holder";
 let dragging = false;
-class Marker {
+class Marker
+{
     constructor(url, pointer = [])
     {
         this.url = url;
@@ -34,13 +35,13 @@ class Marker {
     }
     findEvent(e)
     {
+        console.log('!!');
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
         var x1=e.targetTouches[0]-holder.offsetLeft/2;
         var y1=e.targetTouches[0].clientY-holder.offsetTop;
         if((Math.abs(this.x-x1)<1 && Math.abs(this.y-y1)<1) && e.targetTouches.length===1 && !isDesktop())
         {
-            console.log('!!');
             var x=x1+Math.abs(parseFloat(map.style.left));
             var y=y1+Math.abs(parseFloat(map.style.top));
             var w,h;
@@ -161,11 +162,10 @@ class Marker {
             dis=e.targetTouches[0].clientX-lm - this.x;
                 if(dis<0)
                 {
-                    if (Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
+                    if(Math.abs(ml - Math.abs(dis)) <= (width - document.documentElement.clientWidth))
                     {
                         map.style.left = (ml - Math.abs(dis)) + 'px';
                         this.scaleshift();
-
                     }
                     else if(width>document.documentElement.clientWidth)
                     {
