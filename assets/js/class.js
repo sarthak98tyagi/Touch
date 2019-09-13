@@ -500,7 +500,7 @@ class Pin
                 var tm=holder.offsetTop;
                 if ((40 < (dim.clientX-lm) && (k - (dim.clientX-lm)) > 40) && ((40 < (dim.clientY-tm) && (l - (dim.clientY-tm)) > 40)))
                 {
-                    console.log(e.target);
+
                     e.target.style.left = (dim.clientX-lm) + 'px';
                     e.target.style.top = (dim.clientY-tm) + 'px';
                 }
@@ -508,9 +508,12 @@ class Pin
                 {
                     var rr = w + parseFloat(map.style.left) - k;
                     var rdis = Math.abs(k - (dim.clientX-lm));
+                    console.log(rr,rdis);
                     if ((-rr + rdis) <= 0)
                     {
+
                         var rl = parseFloat(map.style.left);
+                        console.log(rl,'!!');
                         map.style.left = (rl - rdis) + 'px';
                         this.cnt = 1;
                         map.dispatchEvent(scale);
