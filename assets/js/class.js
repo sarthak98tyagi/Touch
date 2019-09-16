@@ -130,12 +130,13 @@ class Marker
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('bottom'));
             console.log(f);
-            // {
-            //     map.style.width = nw + 'px';
-            //     map.style.left = -tl + 'px';
-            //     map.style.top = -tt + 'px';
-            //     this.scaleshift(f);
-            // }
+            if((nw===MARKER_viewportWidth && ((-tl)<0 && (-tt)<0)) || (nw>MARKER_viewportWidth))
+            {
+                map.style.width = nw + 'px';
+                map.style.left = -tl + 'px';
+                map.style.top = -tt + 'px';
+                this.scaleshift(f);
+            }
         }
         this.dis3 = this.dis2;
     }
