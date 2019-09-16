@@ -88,3 +88,14 @@ i
     right: 20px;
     color: darkred;
 }
+@media screen and (max-width: 992px)
+{
+    #map-holder
+    {
+        position:relative;
+        max-width:100%;
+        min-height: 50vh;
+        margin: 0 auto;
+        z-index: 999;
+    }
+}
