@@ -576,8 +576,10 @@ class Pin
     {
         var map=document.getElementById(MARKER_mapId);
         document.getElementById('map-holder').appendChild(marker);
-        marker.style.left=(this.x+parseFloat(map.style.left))+'px';
-        marker.style.top=(this.y+parseFloat(map.style.top))+'px';
+        var x=((this.x+parseFloat(map.style.left))/this.width)*parseFloat(getComputedStyle(map).getPropertyValue('width'));
+        var y=((this.y+parseFloat(map.style.top))/this.height)*parseFloat(getComputedStyle(map).getPropertyValue('height'));
+        marker.style.left=x+'px';
+        marker.style.top=y+'px';
     }
 }
 function isDesktop(){return MARKER_viewportWidth >= 992;}
