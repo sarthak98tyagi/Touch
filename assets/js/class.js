@@ -35,7 +35,6 @@ class Marker
     }
     findEvent(e)
     {
-
         var map=document.getElementById(MARKER_mapId);
         var holder=document.getElementById(MARKER_holderId);
         var x1=e.targetTouches[0].clientX-holder.offsetLeft;
@@ -286,7 +285,7 @@ class Marker
         var map=document.getElementById(MARKER_mapId);
         map.addEventListener("touchstart", this.checkEvent.bind(this));
         map.addEventListener("touchmove", this.findEvent.bind(this));
-        this.pointers.forEach( function (value,index)
+        this.pointers.forEach(function (value,index)
         {
             var pinInfo = this.pointers[index];
             const marker = document.createElement("div");
@@ -331,7 +330,6 @@ class Marker
             this.scaleshift();
         }.bind(this))
     }
-
 }
 class Pin
 {
@@ -500,11 +498,9 @@ class Pin
                 var tm=holder.offsetTop;
                 if ((40 < (dim.clientX) && (k - (dim.clientX)) > 40) && ((40 < (dim.clientY) && (l - (dim.clientY)) > 40)))
                 {
-
                     e.target.style.left = (dim.clientX) + 'px';
                     e.target.style.top = (dim.clientY) + 'px';
                 }
-                console.log(k-(dim.clientX));
                 if ((k - (dim.clientX)) < 30)
                 {
                     var rr = w + parseFloat(map.style.left) - k;
