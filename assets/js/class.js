@@ -129,13 +129,11 @@ class Marker
             tt=((this.ycor/height)*nh)-this.y;
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('bottom'));
-            if(nw>=MARKER_viewportWidth)
-            {
+            
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
                 map.style.top=-tt+'px';
                 this.scaleshift(f);
-            }
         }
         this.dis3 = this.dis2;
     }
