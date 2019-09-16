@@ -129,7 +129,7 @@ class Marker
             tt=((this.ycor/height)*nh)-this.y;
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('bottom'));
-            if((-tl)<0 && (-tt)<0)
+            if(nw>=MARKER_viewportWidth)
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
