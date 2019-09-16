@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="100" column="1" lean-forward="true" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="1" />
+            <state relative-caret-position="519">
+              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
             </state>
           </provider>
         </entry>
@@ -67,10 +67,10 @@
       <find>mapclass</find>
       <find>MARKER_viewportWidth</find>
       <find>clientX</find>
-      <find>client</find>
       <find>console</find>
       <find>offsetLeft</find>
       <find>offset</find>
+      <find>client</find>
     </findStrings>
     <replaceStrings>
       <replace>mapClick</replace>
@@ -198,12 +198,12 @@
       <workItem from="1568198969046" duration="17757000" />
       <workItem from="1568368685785" duration="288000" />
       <workItem from="1568375133141" duration="9311000" />
-      <workItem from="1568627801682" duration="1079000" />
+      <workItem from="1568627801682" duration="1324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="555230000" />
+    <option name="totallyTimeSpent" value="555475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -365,8 +365,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="100" column="1" lean-forward="true" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="1" />
+        <state relative-caret-position="519">
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
