@@ -110,7 +110,7 @@ class Marker
             nh=height*f;
             tl=((this.xcor/width)*nw)-this.x;
             tt=((this.ycor/height)*nh)-this.y;
-            if(tl>=0 && tt>=0)
+            if((-tl)<0 && (-tt)<0)
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
@@ -129,7 +129,7 @@ class Marker
             tt=((this.ycor/height)*nh)-this.y;
             var r=parseFloat(getComputedStyle(map).getPropertyValue('right'));
             var b=parseFloat(getComputedStyle(map).getPropertyValue('bottom'));
-            if(tl>=0 && tt>=0)
+            if((-tl)<0 && (-tt)<0)
             {
                 map.style.width=nw+'px';
                 map.style.left=-tl+'px';
